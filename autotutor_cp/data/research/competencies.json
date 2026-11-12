@@ -1,0 +1,310 @@
+{
+  "version": "1.1.0",
+  "status": "editorial_prototype_not_expert_validated",
+  "prerequisite_semantics": "Suggested support relations, not a unique mandatory learning order",
+  "nodes": [
+    {
+      "id": "arrays",
+      "title": "Vetores e índices",
+      "prerequisites": [],
+      "terms": [
+        "array",
+        "index",
+        "vetor"
+      ]
+    },
+    {
+      "id": "loops",
+      "title": "Laços e invariantes",
+      "prerequisites": [],
+      "terms": [
+        "loop",
+        "invariant",
+        "laço"
+      ]
+    },
+    {
+      "id": "complexity",
+      "title": "Complexidade assintótica",
+      "prerequisites": [
+        "loops"
+      ],
+      "terms": [
+        "complexity",
+        "complexidade"
+      ]
+    },
+    {
+      "id": "prefix_sum",
+      "title": "Somas de prefixos",
+      "prerequisites": [
+        "arrays",
+        "loops"
+      ],
+      "terms": [
+        "prefix sum",
+        "prefix sums",
+        "soma de prefixos"
+      ]
+    },
+    {
+      "id": "monotonicity",
+      "title": "Monotonicidade e decisão",
+      "prerequisites": [
+        "loops"
+      ],
+      "terms": [
+        "monotonic",
+        "predicate",
+        "monotonicidade"
+      ]
+    },
+    {
+      "id": "binary_search",
+      "title": "Busca binária na resposta",
+      "prerequisites": [
+        "monotonicity",
+        "complexity"
+      ],
+      "terms": [
+        "binary search",
+        "busca binária"
+      ]
+    },
+    {
+      "id": "graph_traversal",
+      "title": "Representação e visitação de grafos",
+      "prerequisites": [
+        "arrays",
+        "loops"
+      ],
+      "terms": [
+        "graph traversal",
+        "graph representation"
+      ]
+    },
+    {
+      "id": "bfs",
+      "title": "BFS e distâncias unitárias",
+      "prerequisites": [
+        "graph_traversal"
+      ],
+      "terms": [
+        "breadth first",
+        "breadth-first",
+        "bfs"
+      ]
+    },
+    {
+      "id": "dfs",
+      "title": "DFS e componentes",
+      "prerequisites": [
+        "graph_traversal"
+      ],
+      "terms": [
+        "depth first",
+        "depth-first",
+        "dfs",
+        "components"
+      ]
+    },
+    {
+      "id": "dp_state",
+      "title": "Estados e transições de DP",
+      "prerequisites": [
+        "arrays",
+        "loops"
+      ],
+      "terms": [
+        "dynamic programming",
+        "recurrence",
+        "programação dinâmica"
+      ]
+    },
+    {
+      "id": "segment_tree",
+      "title": "Segment Tree e agregação",
+      "prerequisites": [
+        "arrays",
+        "complexity"
+      ],
+      "terms": [
+        "segment tree",
+        "segtree",
+        "árvore de segmentos"
+      ]
+    },
+    {
+      "id": "lazy_propagation",
+      "title": "Lazy propagation",
+      "prerequisites": [
+        "segment_tree"
+      ],
+      "terms": [
+        "lazy propagation",
+        "range update"
+      ]
+    },
+    {
+      "id": "greedy",
+      "title": "Escolhas gulosas e trocas",
+      "prerequisites": [
+        "complexity"
+      ],
+      "terms": [
+        "greedy",
+        "guloso"
+      ]
+    },
+    {
+      "id": "tree_paths",
+      "title": "Caminhos em árvores",
+      "prerequisites": [
+        "graph_traversal"
+      ],
+      "terms": [
+        "tree",
+        "diameter"
+      ]
+    },
+    {
+      "id": "integer_bounds",
+      "title": "Limites numéricos e overflow",
+      "prerequisites": [
+        "arrays"
+      ],
+      "terms": [
+        "overflow",
+        "integer",
+        "long long"
+      ]
+    },
+    {
+      "id": "conditionals",
+      "title": "Condicionais e casos",
+      "prerequisites": [],
+      "terms": [
+        "conditional",
+        "if",
+        "condição"
+      ]
+    },
+    {
+      "id": "simulation",
+      "title": "Simulação e problemas Ad Hoc",
+      "prerequisites": [
+        "loops",
+        "conditionals"
+      ],
+      "terms": [
+        "simulation",
+        "simulação",
+        "ad hoc"
+      ]
+    },
+    {
+      "id": "sorting",
+      "title": "Ordenação e contagem",
+      "prerequisites": [
+        "arrays",
+        "loops"
+      ],
+      "terms": [
+        "sorting",
+        "sort",
+        "ordenação",
+        "distinct"
+      ]
+    }
+  ],
+  "targets": {
+    "Fundamentos e simulação": {
+      "contract_id": "external_316f25ad6b1d1a3f",
+      "competencies": [
+        "loops",
+        "simulation"
+      ],
+      "topic": "Fundamentos"
+    },
+    "Vetores e contagem": {
+      "contract_id": "external_8ed32967ddec7f18",
+      "competencies": [
+        "arrays",
+        "integer_bounds"
+      ],
+      "topic": "Fundamentos"
+    },
+    "Ordenação": {
+      "contract_id": "external_e9fc6c81c10225f9",
+      "competencies": [
+        "sorting",
+        "arrays"
+      ],
+      "topic": "Estruturas de Dados"
+    },
+    "Soma de prefixos": {
+      "contract_id": "prefix",
+      "competencies": [
+        "prefix_sum",
+        "integer_bounds"
+      ],
+      "topic": "Prefix Sum"
+    },
+    "Busca binária": {
+      "contract_id": "binary",
+      "competencies": [
+        "binary_search",
+        "monotonicity"
+      ],
+      "topic": "Busca Binária"
+    },
+    "Guloso introdutório": {
+      "contract_id": "greedy",
+      "competencies": [
+        "greedy",
+        "sorting"
+      ],
+      "topic": "Guloso"
+    },
+    "BFS": {
+      "contract_id": "extended_nearest_source",
+      "competencies": [
+        "bfs",
+        "graph_traversal"
+      ],
+      "topic": "Grafos"
+    },
+    "DFS": {
+      "contract_id": "extended_components",
+      "competencies": [
+        "dfs",
+        "graph_traversal"
+      ],
+      "topic": "Grafos"
+    },
+    "DP": {
+      "contract_id": "dp",
+      "competencies": [
+        "dp_state",
+        "arrays"
+      ],
+      "topic": "DP"
+    },
+    "Segment Tree": {
+      "contract_id": "extended_range_sum",
+      "competencies": [
+        "segment_tree",
+        "integer_bounds"
+      ],
+      "topic": "Segment Tree"
+    },
+    "Lazy propagation": {
+      "contract_id": "extended_range_add_sum",
+      "competencies": [
+        "lazy_propagation",
+        "segment_tree"
+      ],
+      "topic": "Segment Tree"
+    }
+  }
+}

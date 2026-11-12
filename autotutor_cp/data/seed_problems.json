@@ -1,0 +1,298 @@
+[
+  {
+    "id": "graph",
+    "family": "graph",
+    "title": "Rotas entre cidades",
+    "topic": "Grafos",
+    "difficulty": "Intermediário",
+    "tags": [
+      "Grafos",
+      "BFS",
+      "Caminho mínimo"
+    ],
+    "math_essence": "Distância mínima entre dois vértices em grafo não ponderado.",
+    "core_concepts": [
+      "Grafos",
+      "BFS",
+      "Caminho mínimo"
+    ],
+    "approach_summary": "BFS com fila e distâncias; cada vértice é visitado uma vez.",
+    "complexity": "O(N + M)",
+    "statement": "## Rotas entre cidades\n\nUm mapa contém cidades e estradas bidirecionais de custo unitário. Determine o menor número de estradas entre duas cidades; imprima -1 se não existir rota.\n\n### Entrada e saída\nLeia N M, depois M pares u v e por fim s t. Imprima a distância mínima de s a t.\n\n### Restrições\n1 ≤ N ≤ 200000; 0 ≤ M ≤ 200000; grafo simples não direcionado.",
+    "constraints": {
+      "n_max": 200000
+    },
+    "time_limit_sec": 2.0,
+    "memory_limit_mb": 256,
+    "std_cpp": "#include <iostream>\n#include <vector>\n#include <queue>\n#include <algorithm>\n#include <climits>\n#include <utility>\nusing namespace std;\nint main(){ios::sync_with_stdio(false);cin.tie(nullptr);\nint n,m;cin>>n>>m;vector<vector<int>> g(n);while(m--){int u,v;cin>>u>>v;--u;--v;g[u].push_back(v);g[v].push_back(u);}int s,t;cin>>s>>t;--s;--t;vector<int>d(n,-1);queue<int>q;q.push(s);d[s]=0;while(!q.empty()){int u=q.front();q.pop();for(int v:g[u])if(d[v]<0){d[v]=d[u]+1;q.push(v);}}cout<<d[t]<<\"\\n\";\n}\n",
+    "brute_cpp": "#include <iostream>\n#include <vector>\n#include <queue>\n#include <algorithm>\n#include <climits>\n#include <utility>\nusing namespace std;\nint main(){ios::sync_with_stdio(false);cin.tie(nullptr);\nint n,m;cin>>n>>m;vector<vector<int>>d(n,vector<int>(n,1000000));for(int i=0;i<n;i++)d[i][i]=0;while(m--){int u,v;cin>>u>>v;d[u-1][v-1]=d[v-1][u-1]=1;}int s,t;cin>>s>>t;for(int k=0;k<n;k++)for(int i=0;i<n;i++)for(int j=0;j<n;j++)d[i][j]=min(d[i][j],d[i][k]+d[k][j]);cout<<(d[s-1][t-1]==1000000?-1:d[s-1][t-1])<<\"\\n\";\n}\n",
+    "examples": [
+      {
+        "input": "4 3\n1 2\n2 3\n3 4\n1 4\n",
+        "expected_output": "3\n"
+      }
+    ],
+    "tests": [
+      {
+        "input": "4 3\n1 2\n2 3\n3 4\n1 4\n",
+        "expected_output": "3\n",
+        "strategy": "base"
+      }
+    ],
+    "double_validated": false
+  },
+  {
+    "id": "dp",
+    "family": "dp",
+    "title": "Tesouros sem vizinhos",
+    "topic": "DP",
+    "difficulty": "Iniciante",
+    "tags": [
+      "DP",
+      "Programação dinâmica",
+      "Sequências"
+    ],
+    "math_essence": "Conjunto independente de peso máximo em um caminho.",
+    "core_concepts": [
+      "DP",
+      "Programação dinâmica",
+      "Sequências"
+    ],
+    "approach_summary": "DP de prefixos: escolher o último elemento ou ignorá-lo.",
+    "complexity": "O(N)",
+    "statement": "## Tesouros sem vizinhos\n\nExistem N baús em linha com valores não negativos. Escolha baús sem escolher dois vizinhos e maximize o valor total. É permitido não escolher nenhum.\n\n### Entrada e saída\nLeia N e N valores a_i. Imprima a maior soma possível.\n\n### Restrições\n1 ≤ N ≤ 200000; 0 ≤ a_i ≤ 10^9.",
+    "constraints": {
+      "n_max": 200000
+    },
+    "time_limit_sec": 2.0,
+    "memory_limit_mb": 256,
+    "std_cpp": "#include <iostream>\n#include <vector>\n#include <queue>\n#include <algorithm>\n#include <climits>\n#include <utility>\nusing namespace std;\nint main(){ios::sync_with_stdio(false);cin.tie(nullptr);\nint n;cin>>n;long long a=0,b=0;while(n--){long long x;cin>>x;long long c=max(b,a+x);a=b;b=c;}cout<<b<<\"\\n\";\n}\n",
+    "brute_cpp": "#include <iostream>\n#include <vector>\n#include <queue>\n#include <algorithm>\n#include <climits>\n#include <utility>\nusing namespace std;\nint main(){ios::sync_with_stdio(false);cin.tie(nullptr);\nint n;cin>>n;vector<long long>a(n);for(auto &x:a)cin>>x;long long ans=0;for(int m=0;m<(1<<n);m++){if(m&(m<<1))continue;long long s=0;for(int i=0;i<n;i++)if(m>>i&1)s+=a[i];ans=max(ans,s);}cout<<ans<<\"\\n\";\n}\n",
+    "examples": [
+      {
+        "input": "5\n2 7 9 3 1\n",
+        "expected_output": "12\n"
+      }
+    ],
+    "tests": [
+      {
+        "input": "5\n2 7 9 3 1\n",
+        "expected_output": "12\n",
+        "strategy": "base"
+      }
+    ],
+    "double_validated": false
+  },
+  {
+    "id": "greedy",
+    "family": "greedy",
+    "title": "Agenda de torneios",
+    "topic": "Guloso",
+    "difficulty": "Iniciante",
+    "tags": [
+      "Guloso",
+      "Ordenação",
+      "Intervalos"
+    ],
+    "math_essence": "Cardinalidade máxima de subconjunto de intervalos disjuntos semiabertos.",
+    "core_concepts": [
+      "Guloso",
+      "Ordenação",
+      "Intervalos"
+    ],
+    "approach_summary": "Ordenar por término e aceitar o próximo intervalo compatível.",
+    "complexity": "O(N log N)",
+    "statement": "## Agenda de torneios\n\nVocê quer assistir ao máximo de partidas completas sem sobreposição. Uma partida que começa exatamente quando a anterior termina é compatível.\n\n### Entrada e saída\nLeia N, depois N pares início fim. Imprima a quantidade máxima de partidas compatíveis.\n\n### Restrições\n1 ≤ N ≤ 200000; 0 ≤ início < fim ≤ 10^9.",
+    "constraints": {
+      "n_max": 200000
+    },
+    "time_limit_sec": 2.0,
+    "memory_limit_mb": 256,
+    "std_cpp": "#include <iostream>\n#include <vector>\n#include <queue>\n#include <algorithm>\n#include <climits>\n#include <utility>\nusing namespace std;\nint main(){ios::sync_with_stdio(false);cin.tie(nullptr);\nint n;cin>>n;vector<pair<int,int>>a(n);for(auto &p:a)cin>>p.second>>p.first;sort(a.begin(),a.end());int end=-1,ans=0;for(auto p:a)if(p.second>=end){ans++;end=p.first;}cout<<ans<<\"\\n\";\n}\n",
+    "brute_cpp": "#include <iostream>\n#include <vector>\n#include <queue>\n#include <algorithm>\n#include <climits>\n#include <utility>\nusing namespace std;\nint main(){ios::sync_with_stdio(false);cin.tie(nullptr);\nint n;cin>>n;vector<pair<int,int>>a(n);for(auto &p:a)cin>>p.first>>p.second;int ans=0;for(int m=0;m<(1<<n);m++){bool ok=true;int c=0;for(int i=0;i<n;i++)if(m>>i&1){c++;for(int j=0;j<i;j++)if((m>>j&1)&&max(a[i].first,a[j].first)<min(a[i].second,a[j].second))ok=false;}if(ok)ans=max(ans,c);}cout<<ans<<\"\\n\";\n}\n",
+    "examples": [
+      {
+        "input": "4\n0 5\n0 2\n2 3\n3 5\n",
+        "expected_output": "3\n"
+      }
+    ],
+    "tests": [
+      {
+        "input": "4\n0 5\n0 2\n2 3\n3 5\n",
+        "expected_output": "3\n",
+        "strategy": "base"
+      }
+    ],
+    "double_validated": false
+  },
+  {
+    "id": "binary",
+    "family": "binary",
+    "title": "Carga das naves",
+    "topic": "Busca Binária",
+    "difficulty": "Intermediário",
+    "tags": [
+      "Busca Binária",
+      "Guloso",
+      "Monotonicidade"
+    ],
+    "math_essence": "Minimização do máximo de somas de partições contíguas com predicado monótono.",
+    "core_concepts": [
+      "Busca Binária",
+      "Guloso",
+      "Monotonicidade"
+    ],
+    "approach_summary": "Busca binária na capacidade; verificação gulosa do número de grupos.",
+    "complexity": "O(N log soma)",
+    "statement": "## Carga das naves\n\nUma sequência de N cargas positivas deve ser dividida em no máximo K grupos contíguos não vazios. Minimize a maior soma de um grupo.\n\n### Entrada e saída\nLeia N K e N pesos. Imprima a menor capacidade que permite essa divisão.\n\n### Restrições\n1 ≤ K ≤ N ≤ 200000; 1 ≤ peso ≤ 10^9.",
+    "constraints": {
+      "n_max": 200000
+    },
+    "time_limit_sec": 2.0,
+    "memory_limit_mb": 256,
+    "std_cpp": "#include <iostream>\n#include <vector>\n#include <queue>\n#include <algorithm>\n#include <climits>\n#include <utility>\nusing namespace std;\nint main(){ios::sync_with_stdio(false);cin.tie(nullptr);\nint n,k;cin>>n>>k;vector<long long>a(n);long long lo=0,hi=0;for(auto &x:a){cin>>x;lo=max(lo,x);hi+=x;}while(lo<hi){long long mid=lo+(hi-lo)/2,s=0;int c=1;for(auto x:a){if(s+x>mid){c++;s=0;}s+=x;}if(c<=k)hi=mid;else lo=mid+1;}cout<<lo<<\"\\n\";\n}\n",
+    "brute_cpp": "#include <iostream>\n#include <vector>\n#include <queue>\n#include <algorithm>\n#include <climits>\n#include <utility>\nusing namespace std;\nint main(){ios::sync_with_stdio(false);cin.tie(nullptr);\nint n,k;cin>>n>>k;vector<long long>a(n);for(auto &x:a)cin>>x;long long ans=LLONG_MAX;for(int m=0;m<(1<<(n-1));m++){if(__builtin_popcount((unsigned)m)+1>k)continue;long long s=0,b=0;for(int i=0;i<n;i++){s+=a[i];if(i==n-1||(m>>i&1)){b=max(b,s);s=0;}}ans=min(ans,b);}cout<<ans<<\"\\n\";\n}\n",
+    "examples": [
+      {
+        "input": "5 3\n2 4 7 3 5\n",
+        "expected_output": "8\n"
+      }
+    ],
+    "tests": [
+      {
+        "input": "5 3\n2 4 7 3 5\n",
+        "expected_output": "8\n",
+        "strategy": "base"
+      }
+    ],
+    "double_validated": false
+  },
+  {
+    "id": "prefix",
+    "family": "prefix",
+    "title": "Energia em intervalos",
+    "topic": "Prefix Sum",
+    "difficulty": "Iniciante",
+    "tags": [
+      "Prefix Sum",
+      "Soma de prefixos",
+      "Consultas"
+    ],
+    "math_essence": "Consultas estáticas de soma em intervalos de uma sequência.",
+    "core_concepts": [
+      "Prefix Sum",
+      "Soma de prefixos",
+      "Consultas"
+    ],
+    "approach_summary": "Pré-calcular somas acumuladas e subtrair dois prefixos por consulta.",
+    "complexity": "O(N + Q)",
+    "statement": "## Energia em intervalos\n\nUma estação registra N leituras não negativas de energia. Responda Q consultas sobre a soma das leituras entre L e R, inclusive.\n\n### Entrada e saída\nLeia N Q, N valores e Q pares L R (índices começam em 1). Imprima uma soma por linha.\n\n### Restrições\n1 ≤ N,Q ≤ 200000; 0 ≤ a_i ≤ 10^9; 1 ≤ L ≤ R ≤ N.",
+    "constraints": {
+      "n_max": 200000
+    },
+    "time_limit_sec": 2.0,
+    "memory_limit_mb": 256,
+    "std_cpp": "#include <iostream>\n#include <vector>\n#include <queue>\n#include <algorithm>\n#include <climits>\n#include <utility>\nusing namespace std;\nint main(){ios::sync_with_stdio(false);cin.tie(nullptr);\nint n,q;cin>>n>>q;vector<long long>p(n+1);for(int i=1;i<=n;i++){long long x;cin>>x;p[i]=p[i-1]+x;}while(q--){int l,r;cin>>l>>r;cout<<p[r]-p[l-1]<<\"\\n\";}\n}\n",
+    "brute_cpp": "#include <iostream>\n#include <vector>\n#include <queue>\n#include <algorithm>\n#include <climits>\n#include <utility>\nusing namespace std;\nint main(){ios::sync_with_stdio(false);cin.tie(nullptr);\nint n,q;cin>>n>>q;vector<long long>a(n);for(auto &x:a)cin>>x;while(q--){int l,r;cin>>l>>r;long long s=0;for(int i=l-1;i<r;i++)s+=a[i];cout<<s<<\"\\n\";}\n}\n",
+    "examples": [
+      {
+        "input": "4 3\n1 2 3 4\n1 4\n2 3\n4 4\n",
+        "expected_output": "10\n5\n4\n"
+      }
+    ],
+    "tests": [
+      {
+        "input": "4 3\n1 2 3 4\n1 4\n2 3\n4 4\n",
+        "expected_output": "10\n5\n4\n",
+        "strategy": "base"
+      }
+    ],
+    "double_validated": false
+  },
+  {
+    "id": "tree",
+    "family": "tree",
+    "title": "Diâmetro da floresta espacial",
+    "topic": "Árvores",
+    "difficulty": "Intermediário",
+    "tags": [
+      "Árvores",
+      "BFS",
+      "Diâmetro"
+    ],
+    "math_essence": "Maior distância entre dois vértices em árvore não ponderada.",
+    "core_concepts": [
+      "Árvores",
+      "BFS",
+      "Diâmetro"
+    ],
+    "approach_summary": "Duas BFS: encontrar extremo distante e então a maior distância a partir dele.",
+    "complexity": "O(N)",
+    "statement": "## Diâmetro da floresta espacial\n\nUma rede conectada de N bases possui N-1 ligações bidirecionais. Determine o maior número de ligações no caminho simples entre duas bases. Para uma única base, a resposta é 0.\n\n### Entrada e saída\nLeia N e N-1 pares u v descrevendo uma árvore. Imprima seu diâmetro em arestas.\n\n### Restrições\n1 ≤ N ≤ 200000; 1 ≤ u,v ≤ N; entrada forma uma árvore.",
+    "constraints": {
+      "n_max": 200000
+    },
+    "time_limit_sec": 2.0,
+    "memory_limit_mb": 256,
+    "std_cpp": "#include <iostream>\n#include <vector>\n#include <queue>\n#include <algorithm>\n#include <climits>\n#include <utility>\nusing namespace std;\nint main(){ios::sync_with_stdio(false);cin.tie(nullptr);\nint n;cin>>n;vector<vector<int>>g(n);for(int i=1;i<n;i++){int u,v;cin>>u>>v;--u;--v;g[u].push_back(v);g[v].push_back(u);}auto bfs=[&](int s){vector<int>d(n,-1);queue<int>q;q.push(s);d[s]=0;int best=s;while(!q.empty()){int u=q.front();q.pop();if(d[u]>d[best])best=u;for(int v:g[u])if(d[v]<0){d[v]=d[u]+1;q.push(v);}}return make_pair(best,d[best]);};cout<<bfs(bfs(0).first).second<<\"\\n\";\n}\n",
+    "brute_cpp": "#include <iostream>\n#include <vector>\n#include <queue>\n#include <algorithm>\n#include <climits>\n#include <utility>\nusing namespace std;\nint main(){ios::sync_with_stdio(false);cin.tie(nullptr);\nint n;cin>>n;vector<vector<int>>g(n);for(int i=1;i<n;i++){int u,v;cin>>u>>v;--u;--v;g[u].push_back(v);g[v].push_back(u);}int ans=0;for(int s=0;s<n;s++){vector<int>d(n,-1);queue<int>q;q.push(s);d[s]=0;while(!q.empty()){int u=q.front();q.pop();ans=max(ans,d[u]);for(int v:g[u])if(d[v]<0){d[v]=d[u]+1;q.push(v);}}}cout<<ans<<\"\\n\";\n}\n",
+    "examples": [
+      {
+        "input": "4\n1 2\n2 3\n2 4\n",
+        "expected_output": "2\n"
+      }
+    ],
+    "tests": [
+      {
+        "input": "4\n1 2\n2 3\n2 4\n",
+        "expected_output": "2\n",
+        "strategy": "base"
+      }
+    ],
+    "double_validated": false
+  },
+  {
+    "id": "segment_tree",
+    "family": "segtree",
+    "title": "Sensores em atualização",
+    "topic": "Segment Tree",
+    "difficulty": "Intermediário",
+    "tags": [
+      "Segment Tree",
+      "SegTree",
+      "Consultas em intervalos",
+      "Atualização pontual"
+    ],
+    "math_essence": "Mínimo em intervalos com atribuições pontuais intercaladas.",
+    "core_concepts": [
+      "Segment Tree",
+      "Monóide mínimo",
+      "Atualização pontual"
+    ],
+    "approach_summary": "Guarde o mínimo de cada segmento; atribuições pontuais e consultas percorrem O(log N) nós.",
+    "complexity": "O(N + Q log N)",
+    "statement": "## Sensores em atualização\n\nUma estação acompanha N sensores em uma linha. Os valores podem mudar durante o monitoramento. Processe as operações na ordem recebida.\n\n### Entrada\nLeia N Q, os N valores iniciais e depois Q operações:\n- `1 k x`: substitua o valor do sensor k por x.\n- `2 l r`: consulte o menor valor entre os sensores l e r, inclusive.\n\n### Saída\nPara cada operação do tipo 2, imprima o mínimo do intervalo após todas as atualizações anteriores.\n\n### Restrições\n1 ≤ N ≤ 200000; 1 ≤ Q ≤ 200000; 0 ≤ valores iniciais, x ≤ 10^9; 1 ≤ k ≤ N; 1 ≤ l ≤ r ≤ N. Índices começam em 1. Tempo: 2 s. Memória: 256 MB.\n\n### Objetivo de estudo\nPratique Segment Tree com atualização pontual e consulta de mínimo em intervalo. Considere o efeito de aumentar o valor que antes era o mínimo.\n",
+    "constraints": {
+      "n_max": 200000,
+      "q_max": 200000
+    },
+    "time_limit_sec": 2.0,
+    "memory_limit_mb": 256,
+    "std_cpp": "#include <bits/stdc++.h>\nusing namespace std;\nint main(){ios::sync_with_stdio(false);cin.tie(nullptr);\nint n,q;if(!(cin>>n>>q))return 0;int s=1;while(s<n)s*=2;\nvector<long long> t(2*s,LLONG_MAX);for(int i=0;i<n;i++)cin>>t[s+i];\nfor(int i=s-1;i;i--)t[i]=min(t[2*i],t[2*i+1]);\nwhile(q--){int op,l;long long r;cin>>op>>l>>r;\nif(op==1){int k=s+l-1;t[k]=r;for(k/=2;k;k/=2)t[k]=min(t[2*k],t[2*k+1]);}\nelse{int a=s+l-1,b=s+(int)r;long long ans=LLONG_MAX;while(a<b){if(a&1)ans=min(ans,t[a++]);if(b&1)ans=min(ans,t[--b]);a/=2;b/=2;}cout<<ans<<'\\n';}}\n}\n",
+    "brute_cpp": "#include <bits/stdc++.h>\nusing namespace std;\nint main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n,q;if(!(cin>>n>>q))return 0;vector<long long>a(n);for(auto &x:a)cin>>x;while(q--){int op,l;long long r;cin>>op>>l>>r;if(op==1)a[l-1]=r;else{long long ans=LLONG_MAX;for(int i=l-1;i<(int)r;i++)ans=min(ans,a[i]);cout<<ans<<'\\n';}}}\n",
+    "examples": [
+      {
+        "input": "5 5\n5 3 8 2 7\n2 1 5\n1 4 9\n2 2 5\n1 2 1\n2 1 3\n",
+        "expected_output": "2\n3\n1\n"
+      }
+    ],
+    "tests": [
+      {
+        "input": "5 5\n5 3 8 2 7\n2 1 5\n1 4 9\n2 2 5\n1 2 1\n2 1 3\n",
+        "expected_output": "2\n3\n1\n",
+        "strategy": "small_exhaustive"
+      }
+    ],
+    "double_validated": false
+  }
+]

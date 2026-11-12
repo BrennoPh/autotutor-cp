@@ -1,0 +1,19 @@
+.venv/
+__pycache__/
+.pytest_cache/
+workspace/*
+!workspace/.gitkeep
+.env
+.streamlit/secrets.toml
+data/progress.sqlite3*
+data/backups/
+
+.runtime/
+.models/
+
+# Public RAG database is rebuilt from the portable compressed JSON package.
+data/knowledge.sqlite3*
+
+# Experimental credentials and local execution ledgers
+.env.*
+!.env.example

@@ -1,0 +1,186 @@
+{
+  "version": 1,
+  "description": "Catálogo canônico dos principais livros de referência em programação competitiva e algoritmos.",
+  "books": [
+    {
+      "id": "clrs",
+      "title": "Introduction to Algorithms (CLRS)",
+      "authors": ["Thomas H. Cormen", "Charles E. Leiserson", "Ronald L. Rivest", "Clifford Stein"],
+      "edition": "4ª edição (2022)",
+      "publisher": "MIT Press",
+      "open_access": false,
+      "url": "https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/",
+      "overview": "A bíblia acadêmica dos algoritmos. Demonstrações formais rigorosas, provas de invariantes de laço e análise assintótica profunda.",
+      "topics": {
+        "fundamentals": "Cap. 1 a 3: Função dos algoritmos, crescimento de funções e notação assintótica (O, Omega, Theta).",
+        "structures": "Cap. 10 e 11: Estruturas de dados elementares (pilhas, filas, listas ligadas e tabelas hash).",
+        "binary": "Cap. 2 e 12: Divisão e conquista, busca binária e árvores binárias de busca.",
+        "greedy": "Cap. 16: Algoritmos gulosos, propriedade da escolha gulosa e códigos de Huffman.",
+        "dp": "Cap. 15: Programação dinâmica, corte de hastes, multiplicação de cadeias de matrizes e maior subsequência comum.",
+        "graph": "Cap. 22: Algoritmos elementares em grafos (representações, BFS, DFS, ordenação topológica e componentes fortemente conexos).",
+        "tree": "Cap. 23: Árvores geradoras mínimas (Kruskal e Prim)."
+      }
+    },
+    {
+      "id": "cp4",
+      "title": "Competitive Programming 4 (CP4 - Vol. 1 & 2)",
+      "authors": ["Steven Halim", "Felix Halim", "Suhendry Effendy"],
+      "edition": "4ª edição (2020)",
+      "publisher": "Lulu Press",
+      "open_access": false,
+      "url": "https://cpbook.net/",
+      "overview": "O manual definitivo para maratonistas ICPC e competidores OBI/IOI. Focado em padrões práticos, truques de C++ e classificação de problemas.",
+      "topics": {
+        "fundamentals": "Vol. 1, Cap. 1: Introdução à programação competitiva, leitura rápida, tipos de dados e limites de tempo.",
+        "structures": "Vol. 1, Cap. 2: Estruturas de dados com bibliotecas C++ STL (vector, stack, queue, priority_queue, bitset e DSU).",
+        "prefix": "Vol. 1, Cap. 2: Somas de prefixos em 1D e 2D, e estruturas para consultas em intervalos.",
+        "binary": "Vol. 1, Cap. 3: Busca completa e busca binária na resposta (BSTA - Binary Search the Answer).",
+        "math": "Vol. 1, Cap. 5: Matemática em competições (combinatória, teoria dos números, primos, GCD e aritmética modular).",
+        "greedy": "Vol. 1, Cap. 3: Resolução gulosa clássica (interval scheduling, troco e ordenações de invariantes).",
+        "dp": "Vol. 1, Cap. 3: Programação dinâmica (0-1 Knapsack, Coin Change, LIS e bitmask DP).",
+        "graph": "Vol. 1, Cap. 4: Grafos essenciais (BFS, DFS, Dijkstra, Bellman-Ford e Floyd-Warshall).",
+        "tree": "Vol. 2, Cap. 4: Árvores, Lowest Common Ancestor (LCA) e diâmetro de árvores."
+      }
+    },
+    {
+      "id": "cph",
+      "title": "Competitive Programmer's Handbook",
+      "authors": ["Antti Laaksonen"],
+      "edition": "Edição aberta (2018)",
+      "publisher": "CSES / University of Helsinki",
+      "open_access": true,
+      "url": "https://cses.fi/book/book.pdf",
+      "overview": "O livro oficial do acervo CSES. Extremamente didático, conciso, focado na prática e disponível gratuitamente pelo autor.",
+      "topics": {
+        "fundamentals": "Cap. 1 e 2: Introdução, complexidade de tempo, estimativa de operações e ordenação.",
+        "structures": "Cap. 4: Estruturas de dados (vector, set, map, priority_queue e iteradores).",
+        "prefix": "Cap. 9: Consultas em intervalos (somas de prefixos e matriz de diferenças).",
+        "binary": "Cap. 3: Busca binária para busca de valores e para encontrar o menor valor viável.",
+        "math": "Cap. 21: Teoria dos números (primalidade, crivo de Eratóstenes, exponenciação modular e GCD).",
+        "greedy": "Cap. 6: Algoritmos gulosos (escalonamento de tarefas e minimização de somas).",
+        "dp": "Cap. 7: Programação dinâmica (problema do troco, LIS, caminhos em matrizes e mochila).",
+        "graph": "Cap. 11 a 13: Grafos, BFS, DFS, componentes conexos, caminhos mínimos (Dijkstra) e coloração.",
+        "tree": "Cap. 14: Algoritmos em árvores (travessias, diâmetro, subárvores e subida binária / LCA)."
+      }
+    },
+    {
+      "id": "skiena_adm",
+      "title": "The Algorithm Design Manual",
+      "authors": ["Steven S. Skiena"],
+      "edition": "3ª edição (2020)",
+      "publisher": "Springer",
+      "open_access": false,
+      "url": "https://www.algorist.com/",
+      "overview": "Famoso pelo 'Hitchhiker's Guide to Algorithms'. Foco em intuição geométrica, modelagem de problemas do mundo real e catálogo de estruturas.",
+      "topics": {
+        "fundamentals": "Cap. 1 e 2: Projeto prático de algoritmos e análise assintótica.",
+        "structures": "Cap. 3: Estruturas de dados (dicionários, filas de prioridade e árvores de busca balanceadas).",
+        "binary": "Cap. 4: Ordenação e busca eficiente por bisseção.",
+        "greedy": "Cap. 5: Heurísticas gulosas e empacotamento.",
+        "dp": "Cap. 10: Programação dinâmica (alinhamento de sequências, subconjuntos e matrizes).",
+        "graph": "Cap. 7 e 8: Travessias em grafos (BFS, DFS, articulações e caminhos mínimos).",
+        "tree": "Cap. 8: Árvores geradoras e caminhos em redes."
+      }
+    },
+    {
+      "id": "erickson_alg",
+      "title": "Algorithms",
+      "authors": ["Jeff Erickson"],
+      "edition": "1ª edição (2019)",
+      "publisher": "University of Illinois Urbana-Champaign",
+      "open_access": true,
+      "url": "https://jeffe.cs.illinois.edu/teaching/algorithms/",
+      "overview": "Obra-prima didática sob licença Creative Commons. Apresenta recursão e backtracking com clareza incomparável.",
+      "topics": {
+        "fundamentals": "Cap. 0 e 1: Recursão, indução matemática e backtracking passo a passo.",
+        "binary": "Cap. 1: Divisão e conquista com resolução exata de recorrências.",
+        "greedy": "Cap. 4: Algoritmos gulosos e árvores geradoras mínimas com demonstrações de matróides.",
+        "dp": "Cap. 3: Programação dinâmica desenvolvida como recursão com memorização sem saltos conceituais.",
+        "graph": "Cap. 5 e 6: Fundamentos de grafos, busca em profundidade (DFS), ordenação topológica e componentes conexos.",
+        "tree": "Cap. 7 e 8: Árvores geradoras mínimas e caminhos mínimos em arestas dirigidas."
+      }
+    },
+    {
+      "id": "sannemo_pops",
+      "title": "Principles of Algorithmic Problem Solving",
+      "authors": ["Johan Sannemo"],
+      "edition": "Edição aberta (2018)",
+      "publisher": "KTH Royal Institute of Technology / IOI",
+      "open_access": true,
+      "url": "https://progolymp.se/",
+      "overview": "Escrito pelo treinador da equipe olímpica sueca da IOI. Explica o processo mental de como inventar a solução de um problema.",
+      "topics": {
+        "fundamentals": "Cap. 1 e 2: O método de resolução de problemas e técnicas de depuração em competição.",
+        "structures": "Cap. 3: Estruturas de dados básicas e STL para alta performance.",
+        "prefix": "Cap. 4: Somatórios em intervalos e tabelas de acumulação.",
+        "binary": "Cap. 5: Busca binária sobre funções monótonas.",
+        "greedy": "Cap. 6: Estratégias gulosas e argumentos de troca (exchange arguments).",
+        "dp": "Cap. 7: Programação dinâmica (subestrutura ótima e reconstrução de soluções).",
+        "graph": "Cap. 8 e 9: Grafos, alcance, BFS como camadas de tempo e caminhos mínimos."
+      }
+    },
+    {
+      "id": "sedgewick_algs",
+      "title": "Algorithms (4th Edition)",
+      "authors": ["Robert Sedgewick", "Kevin Wayne"],
+      "edition": "4ª edição (2011)",
+      "publisher": "Addison-Wesley",
+      "open_access": false,
+      "url": "https://algs4.cs.princeton.edu/",
+      "overview": "Referência clássica de Princeton. Ilustrações visuais impecáveis da evolução de ponteiros, pilhas, filas e árvores.",
+      "topics": {
+        "fundamentals": "Cap. 1.1 e 1.2: Modelo de programação e abstração de dados.",
+        "structures": "Cap. 1.3: Bags, Queues e Stacks com representações encadeadas vs baseadas em vetores.",
+        "binary": "Cap. 3.1 e 3.2: Tabelas de símbolos e árvores binárias de busca balanceadas.",
+        "graph": "Cap. 4.1 e 4.2: Grafos não direcionados e direcionados (DFS, BFS e aplicações de conectividade).",
+        "tree": "Cap. 4.3 e 4.4: Árvores geradoras mínimas (Prim e Kruskal) e caminhos mais curtos (Dijkstra)."
+      }
+    },
+    {
+      "id": "kleinberg_tardos",
+      "title": "Algorithm Design",
+      "authors": ["Jon Kleinberg", "Éva Tardos"],
+      "edition": "1ª edição (2005)",
+      "publisher": "Pearson",
+      "open_access": false,
+      "url": "https://www.pearson.com/",
+      "overview": "O livro mais respeitado para entender provas de correção e modelagem matemática de algoritmos gulosos e programação dinâmica.",
+      "topics": {
+        "fundamentals": "Cap. 2: Análise básica de algoritmos e funções de crescimento.",
+        "greedy": "Cap. 4: Algoritmos gulosos (Interval Scheduling, Interval Partitioning e Dijkstra provado via invariante guloso).",
+        "dp": "Cap. 6: Programação dinâmica (Segmented Least Squares, Subset Sums e Sequence Alignment).",
+        "graph": "Cap. 3: Grafos e conectividade (BFS, DFS e teste de bipartição com prova de ciclos ímpares)."
+      }
+    },
+    {
+      "id": "concrete_math",
+      "title": "Concrete Mathematics: A Foundation for Computer Science",
+      "authors": ["Ronald L. Graham", "Donald E. Knuth", "Oren Patashnik"],
+      "edition": "2ª edição (1994)",
+      "publisher": "Addison-Wesley",
+      "open_access": false,
+      "url": "https://www-cs-faculty.stanford.edu/~knuth/gkp.html",
+      "overview": "A base matemática de Donald Knuth para ciência da computação. O texto fundamental para somatórios, coeficientes binomiais e teoria dos números.",
+      "topics": {
+        "prefix": "Cap. 2: Somas, notação sigma, cálculo finito e diferenças finitas (a base matemática exata das somas de prefixos).",
+        "math": "Cap. 3 e 4: Funções piso/teto, divisibilidade, números primos, GCD e aritmética modular.",
+        "fundamentals": "Cap. 5: Coeficientes binomiais e identidades combinatórias."
+      }
+    },
+    {
+      "id": "open_data_structures",
+      "title": "Open Data Structures",
+      "authors": ["Pat Morin"],
+      "edition": "Edição aberta (2013)",
+      "publisher": "Athabasca University Press",
+      "open_access": true,
+      "url": "https://opendatastructures.org/",
+      "overview": "Livro com texto completo aberto sob licença Creative Commons. Detalha a implementação matemática e em código de estruturas de dados modernas.",
+      "topics": {
+        "structures": "Cap. 2 e 3: Array-based lists (ArrayQueue, ArrayDeque) e Linked lists (SLList, DLList).",
+        "binary": "Cap. 6 e 7: Árvores binárias de busca e árvores aleatórias (Treap).",
+        "graph": "Cap. 12: Representações de grafos (AdjacencyMatrix e AdjacencyList) e travessias básicas."
+      }
+    }
+  ]
+}

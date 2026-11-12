@@ -1,0 +1,10 @@
+{
+  "success": true,
+  "model_version": "gemini-3.1-flash-lite",
+  "usage": {
+    "promptTokenCount": 20,
+    "candidatesTokenCount": 5,
+    "totalTokenCount": 25
+  },
+  "seconds": 4.342
+}

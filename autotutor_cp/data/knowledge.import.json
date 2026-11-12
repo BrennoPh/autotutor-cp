@@ -1,0 +1,85 @@
+{
+  "imported_at": "2026-11-04T04:02:31.932093+00:00",
+  "result": {
+    "unchanged": 321
+  },
+  "stats": {
+    "documents": 321,
+    "chunks": 1607,
+    "bytes": 4591616,
+    "sources": [
+      {
+        "source": "AutoTutor · material autoral",
+        "documents": 19
+      },
+      {
+        "source": "CP-Algorithms",
+        "documents": 164
+      },
+      {
+        "source": "USACO Guide / CP Initiative",
+        "documents": 138
+      }
+    ],
+    "tracks": [
+      {
+        "track": "Base",
+        "documents": 87
+      },
+      {
+        "track": "Complementar",
+        "documents": 234
+      }
+    ],
+    "languages": [
+      "en",
+      "pt-BR"
+    ]
+  },
+  "skipped": [
+    {
+      "path": "src/sequences/longest_increasing_subsequence.md",
+      "reason": "too little tutorial prose after cleaning"
+    },
+    {
+      "path": "content/1_General/USACO_Monthlies.mdx",
+      "reason": "too little tutorial prose after cleaning"
+    },
+    {
+      "path": "content/2_Bronze/Casework.mdx",
+      "reason": "too little tutorial prose after cleaning"
+    },
+    {
+      "path": "content/2_Bronze/Intro_Complete.mdx",
+      "reason": "too little tutorial prose after cleaning"
+    },
+    {
+      "path": "content/4_Gold/All_Roots.mdx",
+      "reason": "too little tutorial prose after cleaning"
+    },
+    {
+      "path": "content/5_Plat/Range_Sweep.mdx",
+      "reason": "too little tutorial prose after cleaning"
+    },
+    {
+      "path": "content/6_Advanced/Comb_Sub.mdx",
+      "reason": "too little tutorial prose after cleaning"
+    },
+    {
+      "path": "content/6_Advanced/FFT-ext.mdx",
+      "reason": "too little tutorial prose after cleaning"
+    },
+    {
+      "path": "content/6_Advanced/FFT.mdx",
+      "reason": "too little tutorial prose after cleaning"
+    },
+    {
+      "path": "content/6_Advanced/Segtree_Beats.mdx",
+      "reason": "too little tutorial prose after cleaning"
+    }
+  ],
+  "export": {
+    "documents": 321,
+    "bytes": 846836
+  }
+}

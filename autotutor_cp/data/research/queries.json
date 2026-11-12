@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "reviewed": false,
+  "complete_relevance_universe": false,
+  "unit": "document_id",
+  "queries": [
+    {
+      "id": "1",
+      "query": "Segment Tree: soma em intervalo e atualização pontual",
+      "relevance_judgments": {},
+      "reviewer": null
+    },
+    {
+      "id": "2",
+      "query": "Lazy propagation: adição em intervalo",
+      "relevance_judgments": {},
+      "reviewer": null
+    },
+    {
+      "id": "3",
+      "query": "Busca binária e monotonicidade",
+      "relevance_judgments": {},
+      "reviewer": null
+    },
+    {
+      "id": "4",
+      "query": "Soma de prefixos em vetores estáticos",
+      "relevance_judgments": {},
+      "reviewer": null
+    },
+    {
+      "id": "5",
+      "query": "BFS: menor caminho sem pesos",
+      "relevance_judgments": {},
+      "reviewer": null
+    },
+    {
+      "id": "6",
+      "query": "DFS: componentes conexas",
+      "relevance_judgments": {},
+      "reviewer": null
+    },
+    {
+      "id": "7",
+      "query": "DP: definição de estado e transição",
+      "relevance_judgments": {},
+      "reviewer": null
+    }
+  ],
+  "instructions": "Anotar relevância 0,1,2 para candidatos de todos os métodos e documentos relevantes adicionais; dupla revisão. Não calcular Recall sem universo relevante completo."
+}

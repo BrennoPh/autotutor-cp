@@ -1,0 +1,167 @@
+{
+  "python": "3.12.3",
+  "problem_count": 39,
+  "topics": {
+    "Grafos": 6,
+    "DP": 9,
+    "Guloso": 7,
+    "Busca Binária": 1,
+    "Prefix Sum": 3,
+    "Árvores": 1,
+    "Segment Tree": 5,
+    "Fundamentos": 2,
+    "Matemática": 3,
+    "Estruturas de Dados": 2
+  },
+  "corpus": {
+    "documents": 5551,
+    "chunks": 6837,
+    "bytes": 15458304,
+    "sources": [
+      {
+        "source": "AutoTutor · material autoral",
+        "documents": 19
+      },
+      {
+        "source": "CP-Algorithms",
+        "documents": 164
+      },
+      {
+        "source": "CSES",
+        "documents": 400
+      },
+      {
+        "source": "Maratona UFMG",
+        "documents": 27
+      },
+      {
+        "source": "Neps Academy",
+        "documents": 1201
+      },
+      {
+        "source": "TLE Eliminators",
+        "documents": 1
+      },
+      {
+        "source": "USACO Guide / CP Initiative",
+        "documents": 138
+      },
+      {
+        "source": "YouKn0wWho Academy",
+        "documents": 3601
+      }
+    ],
+    "tracks": [
+      {
+        "track": "Base",
+        "documents": 87
+      },
+      {
+        "track": "Complementar",
+        "documents": 234
+      },
+      {
+        "track": "Referências",
+        "documents": 5230
+      }
+    ],
+    "languages": [
+      "en",
+      "pt-BR"
+    ]
+  },
+  "kind_counts": [
+    [
+      "article",
+      302
+    ],
+    [
+      "guide",
+      9
+    ],
+    [
+      "lesson",
+      10
+    ],
+    [
+      "problem_reference",
+      4001
+    ],
+    [
+      "reference",
+      1202
+    ],
+    [
+      "video_reference",
+      27
+    ]
+  ],
+  "external_fulltext": 302,
+  "curriculum": [
+    {
+      "id": "fundamentals",
+      "title": "Fundamentos",
+      "prerequisites": []
+    },
+    {
+      "id": "structures",
+      "title": "Estruturas de Dados",
+      "prerequisites": [
+        "fundamentals"
+      ]
+    },
+    {
+      "id": "prefix",
+      "title": "Prefix Sum",
+      "prerequisites": [
+        "fundamentals",
+        "structures"
+      ]
+    },
+    {
+      "id": "binary",
+      "title": "Busca Binária",
+      "prerequisites": [
+        "fundamentals"
+      ]
+    },
+    {
+      "id": "math",
+      "title": "Matemática",
+      "prerequisites": [
+        "fundamentals"
+      ]
+    },
+    {
+      "id": "greedy",
+      "title": "Guloso",
+      "prerequisites": [
+        "fundamentals"
+      ]
+    },
+    {
+      "id": "dp",
+      "title": "DP",
+      "prerequisites": [
+        "fundamentals",
+        "prefix"
+      ]
+    },
+    {
+      "id": "graph",
+      "title": "Grafos",
+      "prerequisites": [
+        "fundamentals",
+        "structures"
+      ]
+    },
+    {
+      "id": "tree",
+      "title": "Árvores",
+      "prerequisites": [
+        "graph"
+      ]
+    }
+  ],
+  "segment_tree_counted": false
+}

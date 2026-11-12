@@ -1,0 +1,345 @@
+{
+  "external_api_calls": 0,
+  "method": "bm25",
+  "results": [
+    {
+      "target": "Fundamentos e simulação",
+      "method": "bm25",
+      "seconds": 0.0218,
+      "sources": [
+        {
+          "id": "kb_911b2996e16a40fe816553378419af2d",
+          "chunk_id": 7411,
+          "title": "Introduction to Sets & Maps",
+          "url": "https://usaco.guide/bronze/intro-sets",
+          "license": "CC BY-NC-SA 4.0",
+          "retrieval_score": 22.372663
+        },
+        {
+          "id": "kb_2ee4fa44b1cd7657ee747a9c6a21876c",
+          "chunk_id": 7307,
+          "title": "Fast Input & Output",
+          "url": "https://usaco.guide/general/fast-io",
+          "license": "CC BY-NC-SA 4.0",
+          "retrieval_score": 21.876738
+        },
+        {
+          "id": "kb_59cef81e9452c126cf92356a5ac02311",
+          "chunk_id": 7321,
+          "title": "Input & Output",
+          "url": "https://usaco.guide/general/input-output",
+          "license": "CC BY-NC-SA 4.0",
+          "retrieval_score": 21.577863
+        }
+      ],
+      "context_chars": 2110,
+      "competency_labels": "keyword-based weak labels, unreviewed",
+      "index_digest": null,
+      "redundancy_jaccard": 0.0216,
+      "human_relevance_evaluated": false
+    },
+    {
+      "target": "Vetores e contagem",
+      "method": "bm25",
+      "seconds": 0.0014,
+      "sources": [],
+      "context_chars": 0,
+      "competency_labels": "keyword-based weak labels, unreviewed",
+      "index_digest": null,
+      "redundancy_jaccard": 0.0,
+      "human_relevance_evaluated": false
+    },
+    {
+      "target": "Ordenação",
+      "method": "bm25",
+      "seconds": 0.0051,
+      "sources": [
+        {
+          "id": "kb_aec0b9808661e55d41642bb3344121a7",
+          "chunk_id": 7418,
+          "title": "Introduction to Sorting",
+          "url": "https://usaco.guide/bronze/intro-sorting",
+          "license": "CC BY-NC-SA 4.0",
+          "retrieval_score": 19.454576
+        },
+        {
+          "id": "kb_5294c06a7c3261564b76bf6b8fc27fe1",
+          "chunk_id": 7493,
+          "title": "Custom Comparators and Coordinate Compression",
+          "url": "https://usaco.guide/silver/sorting-custom",
+          "license": "CC BY-NC-SA 4.0",
+          "retrieval_score": 17.019521
+        },
+        {
+          "id": "kb_5c3d4267081386ac82fa4719f1a7da84",
+          "chunk_id": 597,
+          "title": "Topological Sorting",
+          "url": "https://cp-algorithms.com/graph/topological-sort.html",
+          "license": "CC BY-SA 4.0",
+          "retrieval_score": 16.847255
+        }
+      ],
+      "context_chars": 2198,
+      "competency_labels": "keyword-based weak labels, unreviewed",
+      "index_digest": null,
+      "redundancy_jaccard": 0.0213,
+      "human_relevance_evaluated": false
+    },
+    {
+      "target": "Soma de prefixos",
+      "method": "bm25",
+      "seconds": 0.0045,
+      "sources": [
+        {
+          "id": "kb_5c8b8216321f0c8d99e2519aefaa56ab",
+          "chunk_id": 7483,
+          "title": "Introduction to Prefix Sums",
+          "url": "https://usaco.guide/silver/prefix-sums",
+          "license": "CC BY-NC-SA 4.0",
+          "retrieval_score": 46.151524
+        },
+        {
+          "id": "kb_2e1a29dd118d787be478a40647d6bb9e",
+          "chunk_id": 7480,
+          "title": "More on Prefix Sums",
+          "url": "https://usaco.guide/silver/more-prefix-sums",
+          "license": "CC BY-NC-SA 4.0",
+          "retrieval_score": 30.148847
+        },
+        {
+          "id": "kb_451eb246f886991e412e0614c41896ef",
+          "chunk_id": 7738,
+          "title": "Prefix Sums of Number-Theoretic Functions (Part 1)",
+          "url": "https://usaco.guide/adv/prefix-sums-nt-1",
+          "license": "CC BY-NC-SA 4.0",
+          "retrieval_score": 24.568574
+        }
+      ],
+      "context_chars": 2016,
+      "competency_labels": "keyword-based weak labels, unreviewed",
+      "index_digest": null,
+      "redundancy_jaccard": 0.1251,
+      "human_relevance_evaluated": false
+    },
+    {
+      "target": "Busca binária",
+      "method": "bm25",
+      "seconds": 0.0074,
+      "sources": [
+        {
+          "id": "kb_1b210ef3cc700b5b44718dc8613ecf1c",
+          "chunk_id": 7445,
+          "title": "Binary Search",
+          "url": "https://usaco.guide/silver/binary-search",
+          "license": "CC BY-NC-SA 4.0",
+          "retrieval_score": 42.769284
+        },
+        {
+          "id": "kb_1460839fe089ca51cf703ef9d777f3f6",
+          "chunk_id": 148,
+          "title": "Binary search",
+          "url": "https://cp-algorithms.com/num_methods/binary_search.html",
+          "license": "CC BY-SA 4.0",
+          "retrieval_score": 42.676284
+        },
+        {
+          "id": "kb_48934a775d1c26a443238f5a678b0aaa",
+          "chunk_id": 7447,
+          "title": "Binary Search on a Sorted Array",
+          "url": "https://usaco.guide/silver/binary-search-sorted-array",
+          "license": "CC BY-NC-SA 4.0",
+          "retrieval_score": 25.593994
+        }
+      ],
+      "context_chars": 1866,
+      "competency_labels": "keyword-based weak labels, unreviewed",
+      "index_digest": null,
+      "redundancy_jaccard": 0.0238,
+      "human_relevance_evaluated": false
+    },
+    {
+      "target": "Guloso introdutório",
+      "method": "bm25",
+      "seconds": 0.0021,
+      "sources": [
+        {
+          "id": "kb_90e71b6529a99a8692fdd1ffb5d5f873",
+          "chunk_id": 7401,
+          "title": "Introduction to Greedy Algorithms",
+          "url": "https://usaco.guide/bronze/intro-greedy",
+          "license": "CC BY-NC-SA 4.0",
+          "retrieval_score": 23.891148
+        },
+        {
+          "id": "kb_3eef66b3317506aa045c5238e8a0abc0",
+          "chunk_id": 7465,
+          "title": "Greedy Algorithms with Sorting",
+          "url": "https://usaco.guide/silver/greedy-sorting",
+          "license": "CC BY-NC-SA 4.0",
+          "retrieval_score": 23.322883
+        },
+        {
+          "id": "kb_1602bc6db740dc04ad65c5f267704c3a",
+          "chunk_id": 7711,
+          "title": "Matroids",
+          "url": "https://usaco.guide/adv/matroid",
+          "license": "CC BY-NC-SA 4.0",
+          "retrieval_score": 6.933322
+        }
+      ],
+      "context_chars": 1915,
+      "competency_labels": "keyword-based weak labels, unreviewed",
+      "index_digest": null,
+      "redundancy_jaccard": 0.0216,
+      "human_relevance_evaluated": false
+    },
+    {
+      "target": "BFS",
+      "method": "bm25",
+      "seconds": 0.0085,
+      "sources": [
+        {
+          "id": "kb_63c5f187834c4e10d5dedfb0effaa93d",
+          "chunk_id": 643,
+          "title": "Breadth-first search",
+          "url": "https://cp-algorithms.com/graph/breadth-first-search.html",
+          "license": "CC BY-SA 4.0",
+          "retrieval_score": 33.550199
+        },
+        {
+          "id": "kb_1383e764d2b185d4ea26069552c01543",
+          "chunk_id": 136,
+          "title": "0-1 BFS",
+          "url": "https://cp-algorithms.com/graph/01_bfs.html",
+          "license": "CC BY-SA 4.0",
+          "retrieval_score": 26.743779
+        },
+        {
+          "id": "kb_26dd23b060054765afb4733365ce0902",
+          "chunk_id": 242,
+          "title": "Disjoint Set Union",
+          "url": "https://cp-algorithms.com/data_structures/disjoint_set_union.html",
+          "license": "CC BY-SA 4.0",
+          "retrieval_score": 18.603338
+        }
+      ],
+      "context_chars": 2198,
+      "competency_labels": "keyword-based weak labels, unreviewed",
+      "index_digest": null,
+      "redundancy_jaccard": 0.1975,
+      "human_relevance_evaluated": false
+    },
+    {
+      "target": "DFS",
+      "method": "bm25",
+      "seconds": 0.0081,
+      "sources": [
+        {
+          "id": "kb_2f8c7ea3ca2e91f428fcf1210de49703",
+          "chunk_id": 309,
+          "title": "Depth First Search",
+          "url": "https://cp-algorithms.com/graph/depth-first-search.html",
+          "license": "CC BY-SA 4.0",
+          "retrieval_score": 54.760946
+        },
+        {
+          "id": "kb_5c3d4267081386ac82fa4719f1a7da84",
+          "chunk_id": 595,
+          "title": "Topological Sorting",
+          "url": "https://cp-algorithms.com/graph/topological-sort.html",
+          "license": "CC BY-SA 4.0",
+          "retrieval_score": 24.510097
+        },
+        {
+          "id": "kb_0fa0b6b9319e7875af9cfb6d0bc48423",
+          "chunk_id": 129,
+          "title": "Search for connected components in a graph",
+          "url": "https://cp-algorithms.com/graph/search-for-connected-components.html",
+          "license": "CC BY-SA 4.0",
+          "retrieval_score": 18.364282
+        }
+      ],
+      "context_chars": 2198,
+      "competency_labels": "keyword-based weak labels, unreviewed",
+      "index_digest": null,
+      "redundancy_jaccard": 0.1614,
+      "human_relevance_evaluated": false
+    },
+    {
+      "target": "DP",
+      "method": "bm25",
+      "seconds": 0.0049,
+      "sources": [
+        {
+          "id": "kb_8f71bbc8c2805e4349f5b1956c93598a",
+          "chunk_id": 880,
+          "title": "Introduction to Dynamic Programming",
+          "url": "https://cp-algorithms.com/dynamic_programming/intro-to-dp.html",
+          "license": "CC BY-SA 4.0",
+          "retrieval_score": 50.348235
+        },
+        {
+          "id": "kb_c2e07da7db844984e82260cdf5939d08",
+          "chunk_id": 7543,
+          "title": "Introduction to DP",
+          "url": "https://usaco.guide/gold/intro-dp",
+          "license": "CC BY-NC-SA 4.0",
+          "retrieval_score": 49.165368
+        },
+        {
+          "id": "kb_d98f5963fded52a1ae2a3d1f2f640ca9",
+          "chunk_id": 1328,
+          "title": "Dynamic Programming on Broken Profile. Problem \"Parquet\"",
+          "url": "https://cp-algorithms.com/dynamic_programming/profile-dynamics.html",
+          "license": "CC BY-SA 4.0",
+          "retrieval_score": 26.819107
+        }
+      ],
+      "context_chars": 2198,
+      "competency_labels": "keyword-based weak labels, unreviewed",
+      "index_digest": null,
+      "redundancy_jaccard": 0.0677,
+      "human_relevance_evaluated": false
+    }
+  ],
+  "claim": "Auditoria de fontes recuperadas; sem métrica de relevância ou aprendizagem.",
+  "vocabulary_fix": {
+    "query": "Vetores e contagem",
+    "before_sources": [],
+    "after": {
+      "method": "bm25",
+      "seconds": 0.0112,
+      "sources": [
+        {
+          "id": "kb_5a731cc7510cbb97343220376e897247",
+          "chunk_id": 579,
+          "title": "MEX (minimal excluded) of a sequence",
+          "url": "https://cp-algorithms.com/sequences/mex.html",
+          "license": "CC BY-SA 4.0",
+          "retrieval_score": 15.511662
+        },
+        {
+          "id": "kb_eab00e0cc9c7fac35872bc8d36429408",
+          "chunk_id": 7383,
+          "title": "Introduction to Data Structures",
+          "url": "https://usaco.guide/bronze/intro-ds",
+          "license": "CC BY-NC-SA 4.0",
+          "retrieval_score": 13.727407
+        },
+        {
+          "id": "kb_aec0b9808661e55d41642bb3344121a7",
+          "chunk_id": 7417,
+          "title": "Introduction to Sorting",
+          "url": "https://usaco.guide/bronze/intro-sorting",
+          "license": "CC BY-NC-SA 4.0",
+          "retrieval_score": 12.851502
+        }
+      ],
+      "context_chars": 2198,
+      "competency_labels": "keyword-based weak labels, unreviewed",
+      "index_digest": null,
+      "redundancy_jaccard": 0.0367
+    },
+    "interpretation": "Remove ausência de candidatos por vocabulário bilíngue; relevância pedagógica ainda não revisada."
+  }
+}

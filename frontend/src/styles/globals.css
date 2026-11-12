@@ -1,0 +1,116 @@
+@import "katex/dist/katex.min.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 40% 98%; /* #F8FAFC */
+    --foreground: 222 47% 11%; /* #0F172A */
+
+    --card: 0 0% 100%; /* #FFFFFF */
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    --primary: 224 76% 48%; /* #2563EB Clean Developer Blue */
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 224 76% 42%;
+
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 47% 11%;
+
+    --muted: 210 40% 92%;
+    --muted-foreground: 215 16% 47%;
+
+    --accent: 210 40% 94%;
+    --accent-foreground: 222 47% 11%;
+
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 224 76% 48%;
+
+    /* Silenced Functional Tokens (Linear / GitHub Minimalist) */
+    --ai-glow: 215 16% 47%; /* Neutral slate */
+    --ai-accent: 224 76% 48%; /* Clean blue */
+    --ai-border: 214 32% 91%; /* Clean border */
+
+    --radius: 0.5rem; /* 8px compact developer radius */
+  }
+
+  .dark {
+    --background: 222 47% 6%; /* #0B0F17 Deep Slate / GitHub Dark */
+    --foreground: 210 40% 98%; /* #F8FAFC */
+
+    --card: 222 47% 9%; /* #0F172A Solid Slate Surface */
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 224 76% 54%; /* #3B82F6 Linear Primary */
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 224 76% 48%;
+
+    --secondary: 217 33% 14%; /* #151E2E */
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217 33% 13%;
+    --muted-foreground: 215 20% 65%; /* Slate 400 */
+
+    --accent: 217 33% 16%;
+    --accent-foreground: 210 40% 98%;
+
+    --border: 217 33% 18%; /* #1E293B Crisp 1px solid */
+    --input: 217 33% 18%;
+    --ring: 224 76% 54%;
+
+    /* Silenced Functional Tokens - No fluorescent glows */
+    --ai-glow: 215 20% 65%; /* Slate 400 neutral */
+    --ai-accent: 224 76% 54%; /* Blue accent */
+    --ai-border: 217 33% 18%; /* Solid 1px slate */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased selection:bg-primary/20 selection:text-primary;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+}
+
+/* Shimmer utility for structural skeleton loading */
+.skeleton-shimmer {
+  position: relative;
+  overflow: hidden;
+  background-color: hsl(var(--muted));
+}
+
+.skeleton-shimmer::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: translateX(-100%);
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0,
+    rgba(255, 255, 255, 0.05) 20%,
+    rgba(255, 255, 255, 0.1) 60%,
+    rgba(255, 255, 255, 0)
+  );
+  animation: shimmer 2s infinite;
+  content: "";
+}
+
+/* Focus visible styling for WCAG AA compliance (1px crisp ring) */
+*:focus-visible {
+  outline: 1px solid hsl(var(--primary));
+  outline-offset: 1px;
+}

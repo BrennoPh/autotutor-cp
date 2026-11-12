@@ -1,0 +1,9 @@
+{
+  "format": "autotutor-project-ai-memory",
+  "schema_version": 1,
+  "source_of_truth": "handoffs/projeto-atual.md",
+  "technique": "capture-consolidate-recall-handoff",
+  "portable": true,
+  "sensitive_data": "excluded",
+  "updated_at": "2026-11-05"
+}

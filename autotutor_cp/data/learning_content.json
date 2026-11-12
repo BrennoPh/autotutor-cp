@@ -1,0 +1,2975 @@
+{
+  "version": 1,
+  "topics": [
+    {
+      "id": "fundamentals",
+      "title": "Fundamentos",
+      "prerequisites": [],
+      "minutes": 40,
+      "summary": "Aprender a resolver problemas começa por traduzir o enunciado em entradas, saídas e relações verificáveis. Antes de escolher uma técnica, precisamos estimar o trabalho que cabe nos limites e representar corretamente os valores.",
+      "objectives": [
+        "Transformar restrições em uma estimativa de custo.",
+        "Distinguir erro de implementação de erro de estratégia.",
+        "Construir testes pequenos e usar tipos numéricos adequados."
+      ],
+      "sections": [
+        {
+          "title": "Do texto ao modelo",
+          "body": "Separe a história da pergunta matemática. Escreva quais dados chegam, o que deve ser impresso e quais relações precisam permanecer verdadeiras. Se o problema pede uma soma em um intervalo, o nome dos personagens não altera a operação. Reproduza o exemplo manualmente e invente uma entrada menor. Esse processo revela ambiguidades de índice, inclusão das extremidades e possibilidade de valores repetidos."
+        },
+        {
+          "title": "Contando operações",
+          "body": "A notação O descreve uma taxa de crescimento assintótica, não o tempo exato em segundos. Uma varredura de N elementos custa O(N); duas varreduras consecutivas continuam O(N). Dois laços aninhados que percorrem N valores podem custar O(N²). Para N=200000, N² vale 40 bilhões: é um forte sinal para procurar outra estratégia. Não existe uma quantidade universal de operações por segundo; constantes, compilador, memória e máquina também importam."
+        },
+        {
+          "title": "Tipos e fronteiras",
+          "body": "O tipo int de 32 bits representa valores até aproximadamente 2,1 bilhões. Somar três valores de um bilhão pode ultrapassar esse limite, mesmo que cada entrada isolada caiba em int. Use long long para acumuladores e promova multiplicações antes de elas acontecerem, por exemplo 1LL * a * b. Em arrays de tamanho N, índices válidos vão de 0 a N-1. Um tipo maior não corrige acesso fora do vetor."
+        },
+        {
+          "title": "Depurar com evidência",
+          "body": "CE acontece antes da execução e pede ler o primeiro diagnóstico do compilador. WA indica divergência em um teste, mas não informa sozinho a causa. TLE pode indicar algoritmo caro ou laço que não avança. RE inclui término anormal e acessos inválidos, entre outras causas. Registre o estado das variáveis em um contraexemplo pequeno; corrigir uma hipótese de cada vez permite saber qual mudança fez diferença."
+        }
+      ],
+      "example": {
+        "story": "Uma estação recebe as leituras 1000000000, 1000000000 e 1000000000. O total é 3000000000. A sequência tem apenas três valores, mas exige um acumulador capaz de guardar esse total.",
+        "code": "long long total = 0;\nfor (int valor : leituras) {\n    total += valor; // Acumula sem limitar a soma a 32 bits.\n}",
+        "trace": [
+          "Antes da leitura: total = 0.",
+          "Após a primeira: 1000000000.",
+          "Após a segunda: 2000000000.",
+          "Após a terceira: 3000000000."
+        ]
+      },
+      "pitfalls": [
+        "Usar int na soma de muitos valores grandes.",
+        "Confundir O(N)+O(N) com O(N²).",
+        "Alterar várias partes do código sem reproduzir a falha."
+      ],
+      "challenge": "Conte as operações de dois laços aninhados que percorrem N elementos. Compare o total com duas varreduras consecutivas.",
+      "slides": [
+        {
+          "title": "O Modelo de Computação em Maratona",
+          "points": [
+            "Em competições de programação (ICPC, OBI, Codeforces), seu código roda contra testes secretos sob limites estritos de tempo e memória.",
+            "Um limite típico de tempo é 1.0 a 2.0 segundos; o limite de memória padrão é 256 MB a 512 MB.",
+            "A primeira tarefa do competidor ao ler um problema é calcular o orçamento de operações viável."
+          ],
+          "notes": "Compreender os limites da máquina evita submeter soluções ingênuas que receberão Time Limit Exceeded (TLE)."
+        },
+        {
+          "title": "A Regra de Ouro: 10^8 Operações por Segundo",
+          "points": [
+            "Um processador moderno em juiz online executa aproximadamente 10^8 operações aritméticas/lógicas elementares por segundo em C++.",
+            "Se o tempo limite é de 1.0s, seu algoritmo deve realizar no máximo ~10^8 passos no pior caso.",
+            "Operações com constantes pesadas (divisão, módulo, alocação de memória) reduzem esse limite para ~2 * 10^7.",
+            "Operações com bits (bitwise) e vetores contíguos podem ultrapassar 2 * 10^8 operações."
+          ],
+          "notes": "Essa regra de bolso permite saber se sua ideia é viável antes mesmo de escrever uma única linha de código."
+        },
+        {
+          "title": "Notação Assintótica: Big-O, Ômega e Theta",
+          "points": [
+            "Big-O (O): Limite superior assintótico (pior caso ou teto do crescimento).",
+            "Big-Ômega (Ω): Limite inferior assintótico (melhor caso ou piso do crescimento).",
+            "Big-Theta (Θ): Limite justo (quando O e Ω coincidem).",
+            "Em maratona, sempre analisamos o PIOR CASO para evitar que o juiz com casos de teste adversariais cause TLE."
+          ],
+          "notes": "Ignoramos constantes aditivas e multiplicativas pequenas para focar no comportamento do algoritmo quando N cresce."
+        },
+        {
+          "title": "Mapeando o Limite de N para a Complexidade Alvo",
+          "points": [
+            "N <= 10..12: O(N!) ou O(N^2 * 2^N) — permutações, busca completa recursiva.",
+            "N <= 20..22: O(2^N) ou O(N * 2^N) — bitmask DP, subconjuntos.",
+            "N <= 500: O(N^3) — Floyd-Warshall, multiplicação de matrizes.",
+            "N <= 5000: O(N^2) — laços duplos, DP quadrática.",
+            "N <= 2 * 10^5: O(N log N) ou O(N) — ordenação, busca binária, árvores, grafos.",
+            "N <= 10^9..10^18: O(log N) ou O(1) — busca binária na resposta, matemática, exponenciação modular."
+          ],
+          "notes": "Essa tabela de correspondência direta entre o tamanho da entrada e a complexidade esperada é o maior segredo dos maratonistas veteranos."
+        },
+        {
+          "title": "Análise de Laços Aninhados e Séries Harmônicas",
+          "points": [
+            "Dois laços de 0 a N: N * N = O(N^2).",
+            "Laço interno variando até i: N * (N + 1) / 2 = O(N^2).",
+            "Laço externo de 1 a N, laço interno com passo i (múltiplos): N/1 + N/2 + N/3 + ... = N * ln(N) = O(N log N).",
+            "Identificar séries harmônicas evita descartar algoritmos de crivo achando que são quadráticos."
+          ],
+          "notes": "O crivo de Eratóstenes e a contagem de divisores parecem ter custo quadrático à primeira vista, mas sua análise formal revela O(N log N) ou O(N log log N)."
+        },
+        {
+          "title": "Entrada e Saída Rápida em C++ (Fast I/O)",
+          "points": [
+            "Por padrão, std::cin e std::cout sincronizam com stdio do C (scanf/printf), causando lentidão massiva.",
+            "Linhas obrigatórias no início da main: ios_base::sync_with_stdio(false); cin.tie(NULL);",
+            "NUNCA use std::endl em laços: ele força o esvaziamento do buffer de saída (flush). Use '\\n'.",
+            "Com Fast I/O, cin e cout tornam-se tão ou mais rápidos que scanf e printf."
+          ],
+          "notes": "Muitos competidores recebem TLE com soluções O(N) simplesmente porque usaram std::endl para imprimir 200.000 linhas."
+        },
+        {
+          "title": "Tipos Numéricos e Integer Overflow",
+          "points": [
+            "int (32 bits com sinal): armazena de -2 * 10^9 até +2 * 10^9 (exatamente 2^31 - 1 = 2.147.483.647).",
+            "long long (64 bits com sinal): armazena até ~9 * 10^18 (2^63 - 1).",
+            "Qualquer soma de prefixos, multiplicação de inteiros até 10^5 ou soma de elementos 10^9 ESTOURA o int.",
+            "Cuidado: a expressão 'long long x = a * b;' estoura se a e b forem int, pois a multiplicação ocorre em 32 bits antes da atribuição! Use '1LL * a * b'."
+          ],
+          "notes": "O overflow silencioso de inteiros em C++ produz números negativos estranhos e é uma das causas número 1 de Wrong Answer (WA)."
+        },
+        {
+          "title": "Aritmética de Ponto Flutuante e Precisão",
+          "points": [
+            "double oferece ~15 a 17 dígitos de precisão significativa; long double oferece ~18 a 19 dígitos.",
+            "Nunca compare floats com igualdade exata (a == b). Use tolerância epsilon: fabs(a - b) < 1e-9.",
+            "Evite divisões prematuras. Sempre que possível, converta comparações de frações a/b < c/d em multiplicações: a * d < c * b.",
+            "Para imprimir com casas decimais fixas: cout << fixed << setprecision(9) << ans << '\\n';"
+          ],
+          "notes": "Trabalhar com inteiros sempre que possível elimina 100% dos erros sutis de arredondamento em geometria e física."
+        },
+        {
+          "title": "Problemas de Simulação: O Método Direto",
+          "points": [
+            "Simulação pura: o enunciado descreve um processo passo a passo (um jogo, um robô, uma fila de banco).",
+            "Sua tarefa é implementar exatamente o que foi descrito, sem tentar atalhos matemáticos que possam quebrar regras sutis.",
+            "Modularize o código em funções pequenas e legíveis (mover(), colidir(), pontuar()).",
+            "Fique atento à ordem exata dos eventos: quem joga primeiro? O que acontece em caso de empate?"
+          ],
+          "notes": "Problemas de simulação testam sua atenção a detalhes e sua velocidade de codificação sem bugs."
+        },
+        {
+          "title": "Navegação em Grids 2D com Vetores de Direção",
+          "points": [
+            "Para mover nas 4 direções (Cima, Baixo, Esquerda, Direita), evite encadear 4 blocos de if/else.",
+            "Use vetores constantes de deslocamento: const int dr[] = {-1, 1, 0, 0}; const int dc[] = {0, 0, -1, 1};",
+            "Para 8 direções (incluindo diagonais), basta expandir para arrays de tamanho 8.",
+            "Laço idiomático: for (int d = 0; d < 4; d++) { int nr = r + dr[d], nc = c + dc[d]; if (valido(nr, nc)) ... }"
+          ],
+          "notes": "Essa técnica reduz seu código de simulação pela metade e previne erros de digitação nas coordenadas vizinhas."
+        },
+        {
+          "title": "Problemas Ad Hoc e Identificação de Invariantes",
+          "points": [
+            "Problemas Ad Hoc não se encaixam em algoritmos clássicos prontos (não é Dijkstra nem DP padrão).",
+            "Exigem encontrar uma observação-chave ou uma propriedade invariante que simplifica o problema.",
+            "Estratégia: simule manualmente os primeiros casos pequenos (N=1, 2, 3, 4, 5) em uma folha de papel.",
+            "Procure por padrões: a resposta é sempre par? O maior elemento sempre vence? Há repetição periódica?"
+          ],
+          "notes": "Em maratona, a habilidade de resolver problemas Ad Hoc é o que diferencia os competidores medalhistas."
+        },
+        {
+          "title": "Análise de Paridade e Simetrias",
+          "points": [
+            "Muitos problemas aparentemente complexos dependem apenas da paridade da soma ou de inversões.",
+            "Em jogos de tabuleiro ou trocas de moedas, analise se uma operação muda a paridade ou a preserva.",
+            "Se o estado inicial e o estado objetivo têm paridades diferentes e a operação preserva paridade, a resposta é impossível.",
+            "Exemplo: no jogo dos 15 (15-puzzle), a paridade da permutação mais a linha do espaço vazio é invariante."
+          ],
+          "notes": "Identificar se um invariante é conservado permite responder 'NÃO' imediatamente em O(1)."
+        },
+        {
+          "title": "O Princípio da Casa dos Pombos (Pigeonhole)",
+          "points": [
+            "Se N itens forem colocados em M recipientes e N > M, pelo menos um recipiente conterá mais de um item.",
+            "Em competições: se você calcular N+1 somas de prefixos módulo N, pelo menos duas serão congruentes módulo N.",
+            "Isso prova instantaneamente que existe um subvetor contíguo cuja soma é divisível por N!",
+            "Use o princípio para provar que ciclos devem ocorrer ou que respostas existem sem precisar testar tudo."
+          ],
+          "notes": "O princípio dos pombos frequentemente transforma buscas exponenciais em garantias matemáticas determinísticas."
+        },
+        {
+          "title": "Construção de Casos de Teste Locais",
+          "points": [
+            "Nunca submeta seu código apenas testando os exemplos do enunciado (eles são propositalmente fracos).",
+            "Teste o caso mínimo: N = 1, valores zero, valores negativos.",
+            "Teste o caso máximo: N = 10^5, valores máximos (10^9) para checar se dá overflow ou estouro de memória.",
+            "Teste casos em linha reta, grafos desconexos, árvores degeneradas e matrizes 1x1."
+          ],
+          "notes": "Testar casos extremos na sua máquina antes de enviar economiza submissões com penalidade de tempo (+20 minutos por erro)."
+        },
+        {
+          "title": "Stress Testing com Scripts Locais",
+          "points": [
+            "Técnica profissional de maratona quando você está recebendo Wrong Answer e não sabe por quê.",
+            "Escreva uma solução ingênua (força bruta O(N^2) ou O(2^N)) que você tem 100% de certeza que está correta.",
+            "Escreva um gerador de testes aleatórios pequenos.",
+            "Rode um script bash ou python que compara a saída da sua solução rápida com a da força bruta até encontrar a discordância."
+          ],
+          "notes": "O gerador encontra em segundos o caso de 4 números onde sua lógica falhou, permitindo debugar com precisão."
+        },
+        {
+          "title": "Diagnóstico do Veredito: Wrong Answer (WA)",
+          "points": [
+            "WA significa que sua lógica falhou em pelo menos um caso de teste oficial.",
+            "Causas mais frequentes: Integer overflow (usou int em vez de long long), caso N=1 esquecido, ordem de impressão incorreta.",
+            "Atenção a espaços e quebras de linha: 'YES' vs 'Yes' ou esquecer de imprimir espaço entre números.",
+            "Confira se o problema exige arredondamento específico (piso, teto ou truncamento)."
+          ],
+          "notes": "Revise os limites de tipos numéricos antes de tentar reescrever o algoritmo do zero."
+        },
+        {
+          "title": "Diagnóstico do Veredito: Time Limit Exceeded (TLE)",
+          "points": [
+            "Seu código demorou mais que o tempo permitido (ex: > 1.0s).",
+            "Causa 1: A complexidade teórica do seu algoritmo é alta demais para o N (ex: O(N^2) para N=10^5).",
+            "Causa 2: Loop infinito (condição de parada de while que nunca é atingida ou busca que revisita nós).",
+            "Causa 3: Entrada e saída lentas (não usou Fast I/O ou usou std::endl).",
+            "Causa 4: Alocações repetidas de memória dentro de loops (ex: criar vector<int> de tamanho N dentro do for)."
+          ],
+          "notes": "Declare estruturas grandes globalmente ou passe referências constantes (&) em vez de copiar vetores por valor."
+        },
+        {
+          "title": "Diagnóstico do Veredito: Runtime Error (RTE / RE)",
+          "points": [
+            "Seu programa abortou com código de erro diferente de zero durante a execução.",
+            "Causa 1: Acesso fora dos limites de um array ou vector (Index Out of Bounds / SIGSEGV).",
+            "Causa 2: Divisão por zero ou resto de divisão por zero (x % 0 / SIGFPE).",
+            "Causa 3: Estouro de pilha de recursão (Stack Overflow) por recursão profunda sem limite ampliado.",
+            "Causa 4: Desreferência de ponteiro nulo ou ponteiro inválido."
+          ],
+          "notes": "No Linux, compile com as flags de depuração: -Wall -Wextra -fsanitize=address,undefined para pegar erros de índice na hora."
+        },
+        {
+          "title": "Diagnóstico do Veredito: Memory Limit Exceeded (MLE)",
+          "points": [
+            "Seu programa consumiu mais memória do que o limite permitido (ex: > 256 MB).",
+            "Calcule a memória dos seus arrays: int arr[10000][10000] consome 10^8 * 4 bytes = 400 MB (MLE imediato).",
+            "Evite matrizes quando lista de adjacência for suficiente.",
+            "Fique atento a recursões com parâmetros copiados por valor em vez de por referência."
+          ],
+          "notes": "sizeof(int) = 4 bytes, sizeof(long long) = 8 bytes, sizeof(double) = 8 bytes. Multiplique pelo tamanho do vetor para estimar o uso de RAM."
+        },
+        {
+          "title": "Rotina de Maratona: Estratégia em Equipe",
+          "points": [
+            "Nos primeiros 15 minutos: divida a leitura de todos os problemas do caderno entre os integrantes.",
+            "Identifique imediatamente os problemas mais fáceis para abrir o placar (balão inicial).",
+            "Enquanto um integrante codifica no teclado, os outros dois pensam e escrevem código no papel.",
+            "Nunca fique mais de 45 minutos travado no teclado sem progresso: imprima o código, libere a máquina e pense no papel."
+          ],
+          "notes": "Em maratona da ICPC, a estratégia de equipe e gerenciamento de tempo no teclado é tão importante quanto o conhecimento algorítmico."
+        }
+      ],
+      "videos": [
+        {
+          "title": "Complexidade de Algoritmos",
+          "url": "https://www.youtube.com/watch?v=uX0mdrs_xdk",
+          "publisher": "AoCPC Community",
+          "source_url": "https://aocpc-community.github.io/aocpc-guide/guide/aprender/",
+          "language": "Português",
+          "catalog_checked": "2026-10-24"
+        },
+        {
+          "title": "Concursos de Programação",
+          "url": "https://www.youtube.com/watch?v=fPxpVi4no7I",
+          "publisher": "AoCPC Community",
+          "source_url": "https://aocpc-community.github.io/aocpc-guide/guide/aprender/",
+          "language": "Português",
+          "catalog_checked": "2026-10-24"
+        }
+      ],
+      "questions": [
+        {
+          "kind": "diagnostic",
+          "prompt": "Dois laços aninhados percorrem N posições cada. Qual é o custo no pior caso?",
+          "options": [
+            "O(N)",
+            "O(N²)",
+            "O(log N)",
+            "O(1)"
+          ],
+          "answer": 1,
+          "explanation": "Cada uma das N iterações externas executa N iterações internas: N × N.",
+          "id": "fundamentals_1"
+        },
+        {
+          "kind": "diagnostic",
+          "prompt": "Qual tipo é adequado para somar até 200000 valores de 10^9?",
+          "options": [
+            "int de 32 bits",
+            "char",
+            "long long de 64 bits",
+            "bool"
+          ],
+          "answer": 2,
+          "explanation": "A soma pode chegar a 2 × 10^14; cabe em long long, mas não em int de 32 bits.",
+          "id": "fundamentals_2"
+        },
+        {
+          "kind": "review",
+          "prompt": "Duas varreduras completas, uma após a outra, sobre N elementos custam:",
+          "options": [
+            "O(N²)",
+            "O(2^N)",
+            "O(N)",
+            "O(log N)"
+          ],
+          "answer": 2,
+          "explanation": "O custo é 2N; fatores constantes são omitidos na notação assintótica.",
+          "id": "fundamentals_3"
+        },
+        {
+          "kind": "review",
+          "prompt": "Um vector possui N elementos. Qual é o último índice válido?",
+          "options": [
+            "N",
+            "N+1",
+            "N-1",
+            "Sempre 0"
+          ],
+          "answer": 2,
+          "explanation": "A indexação começa em zero e termina em N-1.",
+          "id": "fundamentals_4"
+        }
+      ]
+    },
+    {
+      "id": "structures",
+      "title": "Estruturas de Dados",
+      "prerequisites": [
+        "fundamentals"
+      ],
+      "minutes": 45,
+      "summary": "Uma estrutura de dados organiza operações: acessar, inserir, remover, consultar ou manter uma ordem. Escolher bem depende das operações exigidas pelo problema, e não apenas do tamanho da entrada.",
+      "objectives": [
+        "Comparar vector, fila, pilha e map.",
+        "Reconhecer FIFO e LIFO.",
+        "Relacionar a frequência das operações ao custo total."
+      ],
+      "sections": [
+        {
+          "title": "Escolher pelas operações",
+          "body": "Um vector oferece acesso por índice em O(1), mas remover o primeiro elemento desloca os demais e custa O(N). Uma fila permite inserir no fim e remover do início sem esse deslocamento a cada operação. Se o problema exige buscar por chave e preservar ordem, map pode ser mais adequado. Anote primeiro quais operações se repetem; depois multiplique o custo de cada uma pelo número de chamadas."
+        },
+        {
+          "title": "Fila e pilha",
+          "body": "Fila segue FIFO: o primeiro a entrar é o primeiro a sair. É útil para atendimento e para explorar camadas em BFS. Pilha segue LIFO: o último a entrar é o primeiro a sair. Serve para desfazer ações e controlar explorações em profundidade. Verifique se a estrutura está vazia antes de ler ou remover um elemento. O nome da técnica não substitui o invariante que explica o conteúdo armazenado."
+        },
+        {
+          "title": "Contagens com chaves",
+          "body": "Um map associa uma chave a um valor e mantém as chaves ordenadas; buscas e atualizações custam O(log K), onde K é o número de chaves distintas. unordered_map oferece operações de custo médio constante sob hipóteses de hashing, mas esse não é um limite garantido no pior caso. Ao usar operador [], lembre-se de que ele pode inserir uma chave ausente com valor inicial."
+        },
+        {
+          "title": "Memória e invariantes",
+          "body": "Defina o significado de cada elemento guardado. Em uma fila de BFS, por exemplo, não basta dizer que ela guarda vértices: ela representa a fronteira da exploração. Uma matriz N por N pode estourar a memória mesmo quando o número de arestas é pequeno. Uma lista de adjacências usa espaço proporcional a N+M e representa melhor grafos esparsos."
+        }
+      ],
+      "example": {
+        "story": "Uma fila recebe 12, depois 7, depois 5. A primeira remoção deve produzir 12. Se você usasse uma pilha, a primeira remoção produziria 5: a estrutura muda a ordem do algoritmo.",
+        "code": "queue<int> fila;\nfila.push(12);\nfila.push(7);\nint primeiro = fila.front(); // 12\nfila.pop(); // Agora 7 está na frente.",
+        "trace": [
+          "Inserir 12: [12].",
+          "Inserir 7: [12, 7].",
+          "Inserir 5: [12, 7, 5].",
+          "Remover da frente: sai 12, restam [7, 5]."
+        ]
+      },
+      "pitfalls": [
+        "Ler front ou top de uma estrutura vazia.",
+        "Usar erase(begin) repetidamente em vector grande.",
+        "Supor que unordered_map tem O(1) garantido no pior caso."
+      ],
+      "challenge": "Implemente um contador de frequências e explique por que o custo com map depende do número de chaves distintas.",
+      "slides": [
+        {
+          "title": "O Papel das Estruturas de Dados na Maratona",
+          "points": [
+            "Estruturas de dados organizam coleções de valores para permitir consultas e modificações eficientes.",
+            "A escolha correta de estrutura frequentemente reduz a complexidade de O(N) para O(log N) ou O(1).",
+            "Em C++, a Standard Template Library (STL) fornece implementações otimizadas e testadas.",
+            "Dominar os custos assintóticos de cada método da STL é obrigatório para não introduzir TLE invisível."
+          ],
+          "notes": "Não reinvente estruturas básicas durante o contest. Use a STL com maestria e conheça a complexidade de cada função."
+        },
+        {
+          "title": "Vetores Dinâmicos: std::vector",
+          "points": [
+            "Array dinâmico contíguo em memória com redimensionamento automático.",
+            "push_back() possui custo O(1) AMORTIZADO: a capacidade dobra quando cheia (1, 2, 4, 8, 16...).",
+            "Acesso posicional v[i] é O(1) direto em memória com altíssima taxa de acerto de cache (cache locality).",
+            "Dica de performance: se você souber o tamanho final com antecedência, use v.reserve(N) para evitar realocações."
+          ],
+          "notes": "Inserir ou remover no início (v.insert(v.begin(), val)) é O(N). Se precisar de inserção rápida em ambas as pontas, use std::deque."
+        },
+        {
+          "title": "Pilhas (Stacks): O Princípio LIFO",
+          "points": [
+            "LIFO: Last-In, First-Out (O último a entrar é o primeiro a sair).",
+            "Métodos principais: push() para empilhar, pop() para desempilhar, top() para consultar o topo.",
+            "Todas as operações executam em O(1) estrito.",
+            "std::stack em C++ é um container adapter construído por padrão sobre std::deque."
+          ],
+          "notes": "Pilhas são a estrutura natural para avaliar expressões matemáticas, rastrear chamadas recursivas e resolver problemas de parênteses."
+        },
+        {
+          "title": "Problema Clássico de Pilha: Casamento de Parênteses",
+          "points": [
+            "Problema: determinar se uma expressão com '()', '[]' e '{}' está bem formada.",
+            "Algoritmo: ao ler caractere de abertura, empilhe. Ao ler caractere de fechamento, verifique se o topo corresponde e desempilhe.",
+            "Se tentar desempilhar com pilha vazia, ou se no final a pilha não estiver vazia: expressão inválida.",
+            "Complexidade: O(N) tempo e O(N) memória com uma única varredura linear."
+          ],
+          "notes": "Esse padrão de empilhar aberturas e comparar no fechamento é a base de compiladores e parsers de linguagens."
+        },
+        {
+          "title": "Pilha Monótona (Monotonic Stack): O Próximo Maior em O(N)",
+          "points": [
+            "Problema: para cada elemento de um array, encontrar o primeiro elemento maior à sua direita.",
+            "Solução ingênua com dois laços: O(N^2).",
+            "Solução com Pilha Monótona: mantenha os elementos na pilha em ordem decrescente.",
+            "Ao processar um elemento maior que o topo, desempilhe e registre: esse elemento é o 'próximo maior' dos nós desempilhados!",
+            "Cada elemento entra e sai da pilha no máximo uma vez, garantindo O(N) total."
+          ],
+          "notes": "A pilha monótona é uma das técnicas mais cobradas em maratonas para problemas de histogramas, áreas máximas de retângulos e visibilidade."
+        },
+        {
+          "title": "Filas (Queues): O Princípio FIFO",
+          "points": [
+            "FIFO: First-In, First-Out (O primeiro a entrar é o primeiro a sair).",
+            "Métodos principais: push() para enfileirar, pop() para desenfileirar, front() para consultar a frente.",
+            "Todas as operações executam em O(1) estrito.",
+            "std::queue é o motor fundamental da Busca em Largura (BFS) em grafos e matrizes."
+          ],
+          "notes": "Filas mantêm a ordem cronológica estrita de chegada dos eventos."
+        },
+        {
+          "title": "Deques: Double-Ended Queues",
+          "points": [
+            "Fila de extremidade dupla com inserção e remoção em O(1) em ambas as pontas.",
+            "Métodos: push_front(), push_back(), pop_front(), pop_back(), front(), back().",
+            "Permite acesso aleatório por índice d[i] em O(1).",
+            "Aplicação clássica na maratona: BFS 0-1 em grafos com arestas de pesos 0 e 1."
+          ],
+          "notes": "std::deque consome ligeiramente mais memória que std::vector porque aloca blocos fixos de memória em vez de um único bloco contíguo."
+        },
+        {
+          "title": "Fila Monótona (Monotonic Queue) e Janela Deslizante",
+          "points": [
+            "Problema: encontrar o menor elemento em cada janela deslizante de tamanho K em um array de tamanho N.",
+            "Solução usando std::multiset: O(N log K).",
+            "Solução usando Deque Monótono: O(N) linear! Mantém os índices dos elementos em ordem crescente de valor.",
+            "Ao avançar a janela: remove do fundo elementos maiores que o novo elemento, e remove da frente índices que saíram da janela."
+          ],
+          "notes": "O elemento mínimo da janela está sempre no front() da deque. Cada índice é inserido e removido no máximo uma vez."
+        },
+        {
+          "title": "Filas de Prioridade (Priority Queue / Heaps)",
+          "points": [
+            "Estrutura que mantém o elemento de maior prioridade (por padrão o maior elemento) no topo.",
+            "push() insere em O(log N); pop() remove o elemento de maior prioridade em O(log N); top() consulta em O(1).",
+            "Construída internamente sobre uma árvore binária quase completa chamada Binary Heap.",
+            "std::priority_queue<int> é um Max-Heap. Para Min-Heap: std::priority_queue<int, vector<int>, greater<int>>."
+          ],
+          "notes": "O Min-Heap é a estrutura que garante a complexidade O(E log V) do algoritmo de Dijkstra e de Prim."
+        },
+        {
+          "title": "Invariante de Heap e Representação em Vetor",
+          "points": [
+            "Um Heap quase completo pode ser armazenado em um vetor simples sem ponteiros!",
+            "Para um nó no índice i (1-based): Filho esquerdo = 2*i; Filho direito = 2*i + 1; Pai = i / 2.",
+            "Invariante de Max-Heap: para todo nó i diferente da raiz, valor[pai(i)] >= valor[i].",
+            "Operações de up-heap (subida) e down-heap (descida) reestabelecem a invariante em O(log N)."
+          ],
+          "notes": "Construir um heap a partir de um vetor desordenado leva O(N) usando make_heap / bottom-up heapify, e não O(N log N)."
+        },
+        {
+          "title": "Conjuntos Ordenados: std::set e std::multiset",
+          "points": [
+            "Armazena elementos ordenados e sem duplicatas (std::set) ou com duplicatas (std::multiset).",
+            "Implementado como Árvore Binária de Busca Balanceada (Red-Black Tree).",
+            "Inserção, remoção e busca executam em O(log N) no pior caso garantido.",
+            "Métodos essenciais: s.lower_bound(x) encontra o primeiro elemento >= x em O(log N)."
+          ],
+          "notes": "CUIDADO: Use o método do set 's.lower_bound(x)' e NUNCA a função genérica 'std::lower_bound(s.begin(), s.end(), x)'. A função genérica não tem acesso aleatório e roda em O(N), causando TLE!"
+        },
+        {
+          "title": "Dicionários Ordenados: std::map",
+          "points": [
+            "Associa uma chave (Key) a um valor (Value) mantendo as chaves sempre ordenadas.",
+            "Acesso, inserção e consulta em O(log N) por operação.",
+            "Cuidado clássico: acessar map[k] quando a chave k não existe INSERE automaticamente a chave com valor padrão (0 para inteiros)!",
+            "Para apenas consultar sem modificar o mapa, use: if (m.count(k)) ou m.find(k) != m.end()."
+          ],
+          "notes": "std::map é perfeito para mapear strings para identificadores numéricos ou comprimir coordenadas esparsas."
+        },
+        {
+          "title": "Tabelas Hash: std::unordered_map e std::unordered_set",
+          "points": [
+            "Estruturas baseadas em tabela hash (Hash Table).",
+            "Tempo MÉDIO de inserção, remoção e busca: O(1).",
+            "Os elementos NÃO ficam ordenados.",
+            "O pior caso teórico pode ser O(N) se houver muitas colisões de hash."
+          ],
+          "notes": "Muitos iniciantes usam unordered_map achando que é sempre mais rápido que map, mas o overhead de constantes e colisões pode torná-lo mais lento."
+        },
+        {
+          "title": "Defendendo Hash Maps contra Testes Adversariais",
+          "points": [
+            "No Codeforces e maratonas com hackeamento, outros competidores podem gerar testes que forçam colisões na função hash padrão do GCC.",
+            "Resultado de colisões em massa: sua complexidade salta de O(1) para O(N^2), gerando TLE imediato.",
+            "Solução profissional: use uma função de hash personalizada com número aleatório baseado em chrono::steady_clock.",
+            "Custom hash idiomático: struct custom_hash { size_t operator()(uint64_t x) const { ... } };"
+          ],
+          "notes": "Essa defesa com custom_hash é padrão obrigatório para competidores na plataforma Codeforces."
+        },
+        {
+          "title": "Disjoint Set Union (DSU / Union-Find)",
+          "points": [
+            "Estrutura para gerenciar uma partição de N elementos em subconjuntos disjuntos.",
+            "Operações fundamentais: find(u) retorna o representante do conjunto de u; unite(u, v) une os conjuntos de u e v.",
+            "Inicialização: cada elemento é seu próprio pai: parent[i] = i; size[i] = 1.",
+            "Sem otimizações, a árvore de pais pode se degenerar em uma linha, levando a O(N) por operação."
+          ],
+          "notes": "O DSU é a espinha dorsal de algoritmos de conectividade dinâmica e do algoritmo de Kruskal para Árvores Geradoras Mínimas."
+        },
+        {
+          "title": "Otimização 1 do DSU: Compressão de Caminhos (Path Compression)",
+          "points": [
+            "Ao chamar find(u), conectamos todos os nós visitados diretamente à raiz do conjunto.",
+            "Implementação em uma linha: int find(int u) { return parent[u] == u ? u : parent[u] = find(parent[u]); }",
+            "Essa otimização achata a árvore dinamicamente a cada consulta.",
+            "Com apenas path compression, o custo amortizado por operação já cai para O(log N)."
+          ],
+          "notes": "A atribuição parent[u] = find(parent[u]) atualiza o ponteiro durante o retorno da recursão sem custo extra."
+        },
+        {
+          "title": "Otimização 2 do DSU: União por Tamanho ou Rank",
+          "points": [
+            "Ao unir dois conjuntos com raízes r1 e r2, sempre penduramos a árvore MENOR sob a raiz da árvore MAIOR.",
+            "Isso garante que a profundidade da árvore nunca ultrapasse O(log N).",
+            "Código: if (sz[r1] < sz[r2]) swap(r1, r2); parent[r2] = r1; sz[r1] += sz[r2];",
+            "Combinando Path Compression + Union by Size, o custo por operação torna-se praticamente constante!"
+          ],
+          "notes": "As duas otimizações juntas produzem uma das estruturas mais rápidas de toda a ciência da computação."
+        },
+        {
+          "title": "A Função Inversa de Ackermann no DSU",
+          "points": [
+            "A complexidade teórica amortizada de cada operação de DSU é O(α(N)), onde α é a função inversa de Ackermann.",
+            "A função de Ackermann cresce astronomicamente rápido; sua inversa α(N) cresce astronomicamente devagar.",
+            "Para qualquer número de átomos no universo visível (N <= 10^80), α(N) <= 4.",
+            "Portanto, na prática, as operações de DSU executam em tempo O(1) estritamente constante."
+          ],
+          "notes": "Robert Tarjan demonstrou essa complexidade formal em 1975, um dos marcos clássicos da análise de algoritmos."
+        },
+        {
+          "title": "Bitset em C++: Operações com 64x de Aceleração",
+          "points": [
+            "std::bitset<N> armazena um vetor de booleanos comprimido em nível de bits (1 bit por booleano em vez de 1 byte).",
+            "Operações lógicas bit a bit (E, OU, XOR, deslocamentos) processam 64 bits em uma única instrução da CPU.",
+            "Reduz a complexidade prática de algoritmos de O(N^2) ou O(N^3) por um fator de 64.",
+            "Ideal para fechamento transitivo de grafos, problemas de mochila com valores booleanos e casamento de padrões."
+          ],
+          "notes": "Um algoritmo O(N^3 / 64) com N = 2000 executa ~1.2 * 10^8 operações, rodando com folga em menos de 0.2 segundos."
+        },
+        {
+          "title": "Resumo de Escolha de Estruturas na Maratona",
+          "points": [
+            "Consultas de mínimo/máximo com inserções contínuas? -> std::priority_queue.",
+            "Saber se elemento já foi visto? -> std::vector<bool> se chaves forem pequenas, std::set / unordered_set se esparsas.",
+            "Conectividade de componentes e fusão de grupos? -> DSU com Path Compression.",
+            "Processamento LIFO / avaliação de parênteses? -> std::stack.",
+            "Processamento FIFO / BFS em camadas? -> std::queue."
+          ],
+          "notes": "A estrutura correta torna a solução do problema intuitiva e o código enxuto."
+        }
+      ],
+      "videos": [
+        {
+          "title": "C++ STL, Bruteforce e Backtracking",
+          "url": "https://www.youtube.com/watch?v=E5FlE3o7aNs",
+          "publisher": "AoCPC Community",
+          "source_url": "https://aocpc-community.github.io/aocpc-guide/guide/aprender/",
+          "language": "Português",
+          "catalog_checked": "2026-10-24"
+        },
+        {
+          "title": "Operações em Arrays (Estáticos)",
+          "url": "https://www.youtube.com/watch?v=vTvHSGbZ9O8",
+          "publisher": "AoCPC Community",
+          "source_url": "https://aocpc-community.github.io/aocpc-guide/guide/aprender/",
+          "language": "Português",
+          "catalog_checked": "2026-10-24"
+        }
+      ],
+      "questions": [
+        {
+          "kind": "diagnostic",
+          "prompt": "Uma fila recebe 12, 7 e 5, nessa ordem. Qual valor sai primeiro?",
+          "options": [
+            "5",
+            "7",
+            "12",
+            "Depende da ordenação"
+          ],
+          "answer": 2,
+          "explanation": "Fila segue FIFO, então o primeiro valor inserido é removido primeiro.",
+          "id": "structures_1"
+        },
+        {
+          "kind": "diagnostic",
+          "prompt": "Qual estrutura da STL mantém chaves ordenadas e operações em O(log K)?",
+          "options": [
+            "queue",
+            "map",
+            "stack",
+            "vector sem ordenação"
+          ],
+          "answer": 1,
+          "explanation": "map mantém as chaves ordenadas e oferece busca e atualização logarítmicas.",
+          "id": "structures_2"
+        },
+        {
+          "kind": "review",
+          "prompt": "Uma pilha recebe 4, 8 e 9. Qual é o topo?",
+          "options": [
+            "4",
+            "8",
+            "9",
+            "Não existe topo"
+          ],
+          "answer": 2,
+          "explanation": "Pilha segue LIFO: o último valor inserido é o primeiro acessível no topo.",
+          "id": "structures_3"
+        },
+        {
+          "kind": "review",
+          "prompt": "Por que remover o primeiro elemento de um vector repetidamente pode custar O(N²)?",
+          "options": [
+            "Cada remoção ordena o vector",
+            "Os elementos restantes precisam ser deslocados",
+            "A memória dobra a cada remoção",
+            "Não é permitido remover"
+          ],
+          "answer": 1,
+          "explanation": "A soma dos deslocamentos pode ser (N-1)+(N-2)+...+1.",
+          "id": "structures_4"
+        }
+      ]
+    },
+    {
+      "id": "prefix",
+      "title": "Prefix Sum",
+      "prerequisites": [
+        "fundamentals",
+        "structures"
+      ],
+      "minutes": 40,
+      "summary": "Somas de prefixos transformam muitas consultas estáticas de intervalo em subtrações entre resultados já calculados. A ideia central é reaproveitar o trabalho de acumulação, mantendo uma convenção clara para os índices.",
+      "objectives": [
+        "Definir um prefixo vazio na posição zero.",
+        "Derivar a consulta inclusiva [L,R].",
+        "Reconhecer quando atualizações exigem outra estrutura."
+      ],
+      "sections": [
+        {
+          "title": "O trabalho que se repete",
+          "body": "Se cada consulta soma os elementos entre L e R novamente, uma consulta pode custar O(N). Com Q consultas, o custo chega a O(NQ). Quando os valores não mudam, podemos pagar O(N) uma vez para guardar somas acumuladas e responder cada consulta em O(1). Esse ganho depende de as consultas compartilharem o mesmo array."
+        },
+        {
+          "title": "Convenção e construção",
+          "body": "Considere os valores numerados de 1 a N e defina P[0]=0. Para i≥1, P[i] representa a soma dos primeiros i valores. Assim P[i]=P[i-1]+a[i]. O prefixo vazio simplifica o caso L=1, evitando um tratamento separado. Se o vector de entrada for indexado em zero, a construção usa valores[i-1]; mantenha essa tradução visível para não misturar convenções."
+        },
+        {
+          "title": "Por que a subtração funciona",
+          "body": "P[R] contém todos os elementos até R, inclusive os anteriores a L. Esses elementos anteriores são exatamente os primeiros L-1, cuja soma é P[L-1]. Portanto a soma inclusiva de L até R é P[R]-P[L-1]. Subtrair P[L] removeria também o elemento a[L], produzindo um erro de fronteira. Teste primeiro intervalos de um único elemento."
+        },
+        {
+          "title": "Custo e limites da técnica",
+          "body": "A preparação custa O(N) tempo e O(N) memória; Q consultas elevam o total a O(N+Q). A soma pode exigir long long. Se um valor do array muda, vários prefixos posteriores deixam de ser válidos: atualizar todos eles pode ser caro. Para muitas atualizações e consultas intercaladas, estude Fenwick tree ou segment tree, que resolvem outro cenário de operações."
+        }
+      ],
+      "example": {
+        "story": "Para a=[2,4,1,3], P=[0,2,6,7,10]. A consulta [2,4] pede 4+1+3. Subtraímos P[1]=2 de P[4]=10 para obter 8.",
+        "code": "vector<long long> p(n + 1, 0);\nfor (int i = 1; i <= n; ++i) {\n    p[i] = p[i - 1] + valores[i - 1];\n}\n// A consulta usa duas posições do prefixo, sem nova varredura.",
+        "trace": [
+          "Prefixo vazio: P[0]=0.",
+          "Acumulados: 2, 6, 7, 10.",
+          "Para [2,4], removemos o primeiro elemento.",
+          "Resultado: P[4]-P[1]=10-2=8."
+        ]
+      },
+      "pitfalls": [
+        "Subtrair P[L] em vez de P[L-1].",
+        "Misturar índices começando em 0 e em 1.",
+        "Manter prefixos antigos após atualizar valores."
+      ],
+      "challenge": "Calcule manualmente as consultas [1,1], [4,4] e [1,4] do exemplo. Explique qual prefixo é removido em cada caso.",
+      "slides": [
+        {
+          "title": "O Desafio das Consultas Repetidas",
+          "points": [
+            "Problema: dado um array de tamanho N, responda a Q consultas perguntando a soma dos elementos entre os índices L e R.",
+            "Abordagem ingênua: iterar de L a R para cada consulta. Custo: O(N) por consulta, total O(Q * N).",
+            "Com N = 2 * 10^5 e Q = 2 * 10^5, Q * N = 4 * 10^10 operações -> TLE certo (demoraria ~400 segundos!).",
+            "A técnica de Soma de Prefixos pré-calcula a resposta para responder qualquer consulta em O(1) estrito."
+          ],
+          "notes": "Soma de prefixos é a primeira otimização de complexidade que todo competidor deve dominar."
+        },
+        {
+          "title": "A Invariante Matemática da Soma de Prefixos",
+          "points": [
+            "Definição: P[k] é a soma de todos os elementos desde o início até o índice k.",
+            "Recorrência: P[0] = 0 e P[k] = P[k-1] + A[k] para k >= 1.",
+            "Pré-processamento: um único laço de 1 a N preenche todo o vetor P em tempo O(N) linear.",
+            "Espaço de memória auxiliar: O(N) para armazenar o vetor P."
+          ],
+          "notes": "A propriedade fundamental é que o prefixo até R contém o prefixo até L-1 acrescido dos elementos entre L e R."
+        },
+        {
+          "title": "A Fórmula Mágica de Consulta em O(1)",
+          "points": [
+            "Fórmula: Soma(L, R) = P[R] - P[L - 1].",
+            "Por que funciona? P[R] = (A[1] + ... + A[L-1]) + (A[L] + ... + A[R]). Ao subtrair P[L-1], sobra exatamente A[L] + ... + A[R].",
+            "Tempo de consulta: exatamente 1 subtração aritmética -> O(1) tempo constante!",
+            "Com isso, Q = 2 * 10^5 consultas executam em menos de 0.01 segundo."
+          ],
+          "notes": "Uma economia de complexidade de O(Q * N) para O(N + Q), viabilizando problemas com centenas de milhares de consultas."
+        },
+        {
+          "title": "A Importância da Base P[0] = 0 e Indexação 1-Based",
+          "points": [
+            "Em C++, usar arrays 1-based (índices de 1 a N) torna o código de prefix sums imune a falhas de índice.",
+            "Com 1-based: se L = 1, a fórmula calcula P[R] - P[0] = P[R] - 0 = P[R], sem precisar de if especial para a borda!",
+            "Com 0-based: quando L = 0, acessar P[L - 1] acessaria P[-1], gerando lixo de memória ou Runtime Error (RTE).",
+            "Adote como padrão: declare 'long long p[N + 1];' e leia a entrada de 1 a N."
+          ],
+          "notes": "Evitar casos especiais na borda elimina a causa número 1 de bugs em somas de prefixos."
+        },
+        {
+          "title": "Integer Overflow: Por que Usar long long",
+          "points": [
+            "Se cada elemento A[i] puder ser até 10^9 e N = 10^5, a soma acumulada atinge 10^14.",
+            "O tipo int de 32 bits só armazena até ~2 * 10^9.",
+            "Portanto, o vetor de prefix sums DEVE ser declarado como 'long long p[N + 1];'.",
+            "Ignorar isso gera overflow silencioso e números negativos bizarros (WA)."
+          ],
+          "notes": "Sempre confira os valores máximos do enunciado antes de decidir entre int e long long."
+        },
+        {
+          "title": "Contagem de Frequência em Faixas (Prefix Frequencies)",
+          "points": [
+            "A técnica não se limita a somas de valores; aplica-se a contagem de ocorrências de qualquer propriedade.",
+            "Exemplo: contar quantas vezes o caractere 'c' aparece na substring de L a R.",
+            "Crie uma matriz: pref[26][N + 1], onde pref[ch][i] conta quantas vezes o caractere ch apareceu até a posição i.",
+            "Consulta: pref[ch][R] - pref[ch][L - 1] responde a frequência em O(1)."
+          ],
+          "notes": "Muito comum em problemas de palíndromos, anagramas e permutações de strings."
+        },
+        {
+          "title": "Prefix XOR: Consultas de Paridade em O(1)",
+          "points": [
+            "A operação XOR possui a propriedade de autocancelamento: X ^ X = 0 e X ^ 0 = X.",
+            "Defina P[k] = P[k-1] ^ A[k].",
+            "O XOR do subvetor de L a R é simplesmente: P[R] ^ P[L - 1].",
+            "Aplicação: um subvetor pode formar um palíndromo se no máximo um caractere tiver frequência ímpar (máscara de bits com XOR)."
+          ],
+          "notes": "O XOR de prefixos transforma verificações de paridade de intervalos em operações binárias instantâneas."
+        },
+        {
+          "title": "Subvetor com Soma Igual a K em O(N)",
+          "points": [
+            "Problema: contar quantos subvetores contíguos somam exatamente K.",
+            "Abordagem ingênua: testar todos os pares (L, R) com prefix sums em O(N^2).",
+            "Abordagem ótima O(N): Queremos P[R] - P[L - 1] = K, o que equivale a P[L - 1] = P[R] - K.",
+            "Ao iterar R de 1 a N, consultamos em uma tabela hash (ou mapa) quantas vezes o valor (P[R] - K) já apareceu anteriormente como prefixo."
+          ],
+          "notes": "Essa combinação de Prefix Sums com Hash Map resolve um dos problemas mais clássicos de entrevistas e competições."
+        },
+        {
+          "title": "Subvetor com Soma Múltipla de K (Lema dos Pombos)",
+          "points": [
+            "Queremos que (P[R] - P[L - 1]) seja divisível por K, ou seja, P[R] % K == P[L - 1] % K.",
+            "Armazene a contagem dos restos da divisão de P[i] por K.",
+            "Atenção com números negativos em C++: se o resto for negativo, normalize com: (resto % K + K) % K.",
+            "Complexidade: O(N) com um único vetor de frequências de restos de tamanho K."
+          ],
+          "notes": "O Princípio dos Pombos garante que se o tamanho do array for maior que K, sempre existe pelo menos um subvetor múltiplo de K."
+        },
+        {
+          "title": "Soma de Prefixos em 2D: Definição em Matrizes",
+          "points": [
+            "Problema: responder a soma de qualquer subretângulo com cantos opostos (r1, c1) e (r2, c2) em O(1).",
+            "Definição: P[i][j] é a soma de todos os elementos na submatriz do topo esquerdo (1, 1) até (i, j).",
+            "Tamanho da matriz: (N + 1) x (M + 1), com linha 0 e coluna 0 preenchidas com zeros."
+          ],
+          "notes": "Essencial para matrizes de notas, mapas de densidade e problemas de visão computacional em maratonas."
+        },
+        {
+          "title": "A Fórmula de Construção 2D (Inclusão-Exclusão)",
+          "points": [
+            "Recorrência: P[i][j] = P[i-1][j] + P[i][j-1] - P[i-1][j-1] + A[i][j].",
+            "Por que subtrair P[i-1][j-1]? Porque ao somar o retângulo de cima e o retângulo da esquerda, a região superior esquerda foi somada duas vezes!",
+            "Construção completa em tempo O(N * M) com dois laços for aninhados."
+          ],
+          "notes": "Visualizar os retângulos geométricos sobrepostos torna a dedução da fórmula de inclusão-exclusão intuitiva."
+        },
+        {
+          "title": "A Fórmula de Consulta Retangular em O(1)",
+          "points": [
+            "Dada a consulta do retângulo de (r1, c1) até (r2, c2):",
+            "Soma = P[r2][c2] - P[r1 - 1][c2] - P[r2][c1 - 1] + P[r1 - 1][c1 - 1].",
+            "Subtrai a faixa inteira acima de r1, subtrai a faixa inteira à esquerda de c1, e reinsere o canto superior esquerdo que foi subtraído duplamente.",
+            "Tempo de resposta: exatamente 4 acessos e 3 operações aritméticas -> O(1) puro!"
+          ],
+          "notes": "Uma única linha de código que substitui laços aninhados de somatório."
+        },
+        {
+          "title": "O Problema Inverso: Vetor de Diferenças (Difference Array)",
+          "points": [
+            "Problema: dado um array inicial de zeros, execute Q operações: 'adicione o valor V a todos os elementos de L até R'. No final, imprima o array.",
+            "Abordagem ingênua: laço de L a R para cada operação -> O(Q * N) -> TLE.",
+            "Com Vetor de Diferenças: cada operação em faixa executa em tempo O(1)!",
+            "No final, uma única soma de prefixos reconstrói o array em O(N)."
+          ],
+          "notes": "Soma de prefixos e vetor de diferenças são operações inversas entre si, análogas à integração e derivada no cálculo."
+        },
+        {
+          "title": "Como Funciona o Vetor de Diferenças 1D",
+          "points": [
+            "Para somar V no intervalo [L, R]:",
+            "1. D[L] += V  (marca o início do incremento).",
+            "2. D[R + 1] -= V  (cancela o incremento a partir de R + 1).",
+            "Complexidade por atualização: exatamente duas operações pontuais -> O(1)!",
+            "Reconstrução final: A[i] = A[i-1] + D[i]."
+          ],
+          "notes": "Ao calcular os prefixos de D, o valor V é propagado de L até R, e no índice R+1 o -V anula a propagação."
+        },
+        {
+          "title": "Vetor de Diferenças em 2D",
+          "points": [
+            "Problema: somar V em todo o subretângulo de (r1, c1) até (r2, c2) em O(1).",
+            "Operações pontuais na matriz de diferenças D:",
+            "1. D[r1][c1] += V",
+            "2. D[r1][c2 + 1] -= V",
+            "3. D[r2 + 1][c1] -= V",
+            "4. D[r2 + 1][c2 + 1] += V",
+            "Reconstrução: calcula a soma de prefixos 2D sobre D ao final."
+          ],
+          "notes": "Atualizar qualquer retângulo em O(1) sem estruturas complexas de árvores é um dos truques mais elegantes de competição."
+        },
+        {
+          "title": "Compressão de Coordenadas com Prefix Sums",
+          "points": [
+            "Quando os valores de L e R forem grandes (ex: até 10^9), não podemos criar um array de tamanho 10^9.",
+            "Porém, se houver apenas N = 10^5 intervalos, existem no máximo 2 * 10^5 coordenadas relevantes.",
+            "Solução: colete todas as coordenadas, ordene e remova duplicatas com std::unique.",
+            "Mapeie cada coordenada original para seu índice no array comprimido de 1 a 2N e aplique o vetor de diferenças normalmente."
+          ],
+          "notes": "Compressão de coordenadas reduz problemas com coordenadas até 10^9 para o espaço de memória da máquina em O(N log N)."
+        },
+        {
+          "title": "Prefix Maxima e Minima: Consultas Não Invertíveis",
+          "points": [
+            "Soma e XOR são invertíveis (subtração desfaz soma, XOR desfaz XOR).",
+            "Máximo e Mínimo NÃO são invertíveis (saber o máximo de 1 a R e de 1 a L-1 não permite descobrir o máximo de L a R).",
+            "Para consultas de máximo/mínimo em faixas arbitrárias sem updates, use Sparse Table em O(1) com O(N log N) pré-cálculo.",
+            "Se o intervalo sempre começar no início (1 a R), o Prefix Maxima funciona perfeitamente: M[i] = max(M[i-1], A[i])."
+          ],
+          "notes": "Entender quando a operação permite inversão evita tentar aplicar a fórmula de subtração para operações de min/max."
+        },
+        {
+          "title": "Algoritmo de Kadane visto via Prefix Sums",
+          "points": [
+            "Problema do Subvetor com Maior Soma (Maximum Subarray Sum).",
+            "A soma de qualquer subvetor terminado em i é dada por P[i] - P[j] para algum j < i.",
+            "Para maximizar P[i] - P[j], devemos MINIMIZAR P[j].",
+            "Algoritmo: mantenha o menor prefixo visto até agora (min_prefix). A melhor resposta terminando em i é P[i] - min_prefix.",
+            "Complexidade: O(N) com uma única variável de mínimo prefixo."
+          ],
+          "notes": "Essa interpretação revela a equivalência matemática profunda entre o algoritmo de Kadane e a soma de prefixos."
+        },
+        {
+          "title": "Aplicações em Maratonas e Padrões Frequentes",
+          "points": [
+            "Problemas de sobreposição de intervalos: horários de pico em servidores ou salas de aula (Difference Array).",
+            "Imagens digitais: detecção de manchas e filtros de desfoque (Blur Filter com Prefix 2D).",
+            "Jogos de tabuleiro: pontuações acumuladas de territórios retangulares.",
+            "Filtro de paridade de letras para checagem de palíndromos em substrings."
+          ],
+          "notes": "Quase todo contest possui pelo menos um problema fácil/médio cuja solução envolve soma de prefixos."
+        },
+        {
+          "title": "Checklist de Verificação de Prefix Sums",
+          "points": [
+            "1. Declarou o vetor P como long long se a soma puder ultrapassar 2 * 10^9?",
+            "2. Usou indexação 1-based com P[0] = 0 para evitar if especial quando L = 1?",
+            "3. O tamanho do array P é N + 2 para suportar com folga acessos a R + 1 no vetor de diferenças?",
+            "4. Lembrou de calcular a soma de prefixos final após todas as atualizações de diferença?"
+          ],
+          "notes": "Seguir esse checklist mental garante submissões com Accepted (AC) de primeira tentativa."
+        }
+      ],
+      "videos": [
+        {
+          "title": "Operações em Arrays (Estáticos)",
+          "url": "https://www.youtube.com/watch?v=vTvHSGbZ9O8",
+          "publisher": "AoCPC Community",
+          "source_url": "https://aocpc-community.github.io/aocpc-guide/guide/aprender/",
+          "language": "Português",
+          "catalog_checked": "2026-10-24"
+        },
+        {
+          "title": "Resolução de Exercícios: Operações em Arrays",
+          "url": "https://www.youtube.com/watch?v=Y0YDkhjb5_4",
+          "publisher": "AoCPC Community",
+          "source_url": "https://aocpc-community.github.io/aocpc-guide/guide/aprender/",
+          "language": "Português",
+          "catalog_checked": "2026-10-24"
+        }
+      ],
+      "questions": [
+        {
+          "kind": "diagnostic",
+          "prompt": "Se P[i] soma os primeiros i valores, qual expressão soma o intervalo inclusivo [L,R]?",
+          "options": [
+            "P[R]-P[L]",
+            "P[R]-P[L-1]",
+            "P[L]+P[R]",
+            "P[R-1]-P[L]"
+          ],
+          "answer": 1,
+          "explanation": "É preciso remover apenas os valores anteriores a L, representados por P[L-1].",
+          "id": "prefix_1"
+        },
+        {
+          "kind": "diagnostic",
+          "prompt": "Após pré-processamento, qual é o custo de Q consultas de soma com prefixos?",
+          "options": [
+            "O(NQ)",
+            "O(Q²)",
+            "O(Q)",
+            "O(log Q)"
+          ],
+          "answer": 2,
+          "explanation": "Cada consulta usa duas leituras e uma subtração: O(1), totalizando O(Q), além do pré-processamento.",
+          "id": "prefix_2"
+        },
+        {
+          "kind": "review",
+          "prompt": "Para a=[2,4,1,3], qual é a soma de [2,4] com índices começando em 1?",
+          "options": [
+            "6",
+            "8",
+            "10",
+            "4"
+          ],
+          "answer": 1,
+          "explanation": "Os valores são 4,1,3; a soma é 8, também obtida por 10-2.",
+          "id": "prefix_3"
+        },
+        {
+          "kind": "review",
+          "prompt": "Ao mudar um valor do array, os prefixos previamente calculados:",
+          "options": [
+            "Continuam todos válidos",
+            "Podem precisar mudar a partir dessa posição",
+            "Mudam apenas na posição zero",
+            "Passam a exigir BFS"
+          ],
+          "answer": 1,
+          "explanation": "Todos os prefixos que incluem o valor alterado precisam incorporar a diferença.",
+          "id": "prefix_4"
+        }
+      ]
+    },
+    {
+      "id": "binary",
+      "title": "Busca Binária",
+      "prerequisites": [
+        "fundamentals"
+      ],
+      "minutes": 50,
+      "summary": "A busca binária elimina partes de um espaço ordenado a partir de uma informação que divide as possibilidades. Em programação competitiva, esse espaço pode ser um array ordenado ou um conjunto de respostas com viabilidade monótona.",
+      "objectives": [
+        "Identificar a propriedade que permite descartar metade do espaço.",
+        "Manter um invariante para os limites.",
+        "Distinguir busca de elemento e busca na resposta."
+      ],
+      "sections": [
+        {
+          "title": "Uma divisão com justificativa",
+          "body": "Em um array crescente, compare o alvo ao elemento do meio. Se o alvo é maior, nenhuma posição à esquerda do meio pode contê-lo. Se é menor, descarte a região à direita. O argumento depende da ordenação. Cada iteração reduz o intervalo aproximadamente à metade; após k passos restam cerca de N/2^k candidatos, levando a O(log N) comparações."
+        },
+        {
+          "title": "Invariantes dos limites",
+          "body": "Existem convenções diferentes para intervalos fechados e semiabertos. Escolha uma e não misture atualizações entre versões. Na busca pelo menor valor viável em [lo,hi], podemos manter a resposta dentro desse intervalo. Se mid é viável, hi=mid preserva o candidato; caso contrário, lo=mid+1 descarta valores inviáveis. O meio pode ser calculado como lo+(hi-lo)/2 para evitar somar os extremos."
+        },
+        {
+          "title": "Busca na resposta",
+          "body": "Para minimizar uma capacidade, transforme otimização em decisão: uma capacidade X permite realizar a tarefa? A busca é válida quando a viabilidade é monótona. Se uma nave com capacidade X consegue carregar grupos sob certas regras, uma capacidade maior também pode conseguir. Isso não prova por si só que qualquer verificador guloso esteja correto; o teste de viabilidade também precisa de uma justificativa."
+        },
+        {
+          "title": "Complexidade completa",
+          "body": "O número de iterações pode ser logarítmico, mas cada verificação tem seu próprio custo. Se o predicado percorre N elementos e o espaço de respostas tem amplitude S, o custo é O(N log S), não simplesmente O(log N). Considere respostas repetidas, ausência de solução e limites inferior e superior realmente válidos. Uma busca veloz sobre um predicado errado continua errada."
+        }
+      ],
+      "example": {
+        "story": "No array [1,3,5,7,9,11,13,15], queremos 11. O primeiro meio é a posição 3, com valor 7. Descartamos posições de 0 a 3. O novo meio é a posição 5, com valor 11.",
+        "code": "int meio = esquerda + (direita - esquerda) / 2;\n// Antes de alterar limites, justifique qual região não contém o alvo.",
+        "trace": [
+          "Intervalo inicial: posições 0 a 7.",
+          "Meio 3 contém 7, menor que 11.",
+          "Novo intervalo: posições 4 a 7.",
+          "Meio 5 contém 11: alvo encontrado."
+        ]
+      },
+      "pitfalls": [
+        "Buscar em dados sem ordenação nem predicado monótono.",
+        "Usar atualizações que não reduzem o intervalo.",
+        "Ignorar o custo de uma verificação de viabilidade."
+      ],
+      "challenge": "Explique por que a propriedade “a capacidade X funciona” pode ser monótona, enquanto “a capacidade X é exatamente a resposta” não é um bom predicado para a mesma busca.",
+      "slides": [
+        {
+          "title": "O Princípio da Busca Binária",
+          "points": [
+            "Estratégia de divisão e conquista que reduz o espaço de busca pela metade a cada iteração.",
+            "Pré-requisito inviolável: o espaço de busca deve ser ORDENADO ou MONÓTONO.",
+            "Complexidade: O(log N). Com N = 10^9, são necessárias apenas ~30 comparações; com N = 10^18, apenas ~60!",
+            "Um dos algoritmos mais eficientes e fundamentais de toda a ciência da computação."
+          ],
+          "notes": "Logaritmo na base 2 cresce tão devagar que torna problemas com números astronômicos tratáveis em milissegundos."
+        },
+        {
+          "title": "O Invariante do Intervalo [L, R]",
+          "points": [
+            "Mantemos dois ponteiros: L (início do intervalo viável) e R (fim do intervalo viável).",
+            "Invariante: se a resposta existir, ela está garantidamente dentro de [L, R].",
+            "Calculamos o elemento central M = (L + R) / 2.",
+            "Se o elemento em M for menor que o alvo, descartamos a metade esquerda: L = M + 1.",
+            "Se o elemento em M for maior que o alvo, descartamos a metade direita: R = M - 1."
+          ],
+          "notes": "A clareza sobre o que o intervalo [L, R] representa é o que impede loops infinitos e off-by-one errors."
+        },
+        {
+          "title": "Evitando Overflow no Ponto Médio",
+          "points": [
+            "Fórmula ingênua: int M = (L + R) / 2;",
+            "O BUG: se L e R forem grandes (ex: L = 1.5 * 10^9 e R = 2.0 * 10^9), a soma L + R estoura o limite do int (2.14 * 10^9), tornando-se negativa!",
+            "FÓRMULA SEGURA: int M = L + (R - L) / 2;",
+            "Essa forma alternativa é matematicamente equivalente e NUNCA estoura os limites de L e R."
+          ],
+          "notes": "Esse bug famoso permaneceu na biblioteca padrão do Java por quase uma década antes de ser corrigido."
+        },
+        {
+          "title": "Busca Exata vs lower_bound e upper_bound",
+          "points": [
+            "lower_bound(x): primeiro elemento que é MAIOR OU IGUAL a x (>= x).",
+            "upper_bound(x): primeiro elemento que é ESTRITAMENTE MAIOR que x (> x).",
+            "Se x não existir no array, lower_bound aponta para o primeiro elemento maior que x.",
+            "Contar quantas vezes x aparece no array ordenado em O(log N): upper_bound(x) - lower_bound(x)."
+          ],
+          "notes": "Em C++, use 'std::lower_bound(v.begin(), v.end(), x)' para vetores. Para conjuntos, use 's.lower_bound(x)'."
+        },
+        {
+          "title": "Busca Binária na Resposta (BSTA)",
+          "points": [
+            "A técnica mais poderosa e frequente de busca binária em competições de programação.",
+            "Em vez de buscar um valor dentro de um array pré-existente, buscamos o VALOR DA RESPOSTA ótima no espaço numérico.",
+            "Aplica-se a problemas de otimização: 'Qual é o menor tempo para completar as tarefas?' ou 'Qual é a maior distância mínima viável?'",
+            "Transforma um problema de otimização em um problema de decisão: 'É possível com valor X?'"
+          ],
+          "notes": "Sempre que um problema perguntar 'qual o valor mínimo/máximo tal que...', pense imediatamente em Busca Binária na Resposta."
+        },
+        {
+          "title": "A Função de Predicado Monótono: check(x)",
+          "points": [
+            "Criamos uma função booleana: bool check(long long x);",
+            "Propriedade de Monotonia: se for possível com X, também é possível com qualquer valor maior que X (ou vice-versa).",
+            "Comportamento da função: [Falso, Falso, Falso, Falso, Verdadeiro, Verdadeiro, Verdadeiro...]",
+            "A busca binária encontra exatamente o PONTO DE TRANSIÇÃO (o primeiro Verdadeiro) em O(log(MAX) * custo(check))."
+          ],
+          "notes": "Se a função check(x) não for monótona (se oscilar entre verdadeiro e falso), a busca binária não pode ser aplicada."
+        },
+        {
+          "title": "Problema Canônico: Alocação de Máquinas / Fábrica",
+          "points": [
+            "Problema: K máquinas produzem itens. A máquina i leva t[i] segundos por item. Qual o tempo mínimo para produzir T itens?",
+            "check(tempo): em 'tempo' segundos, a máquina i produz tempo / t[i] itens. Total produzido = soma(tempo / t[i]).",
+            "Se total >= T, retorna true; senão false.",
+            "A função check() é claramente monótona (mais tempo = mais itens produzidos) e roda em O(K) linear."
+          ],
+          "notes": "Com K = 10^5 e tempo até 10^18, a busca binária roda em 60 passos de O(K), totalizando ~6 * 10^6 operações (< 0.05s)."
+        },
+        {
+          "title": "Problema Canônico: Alocação de Livros / Empacotamento",
+          "points": [
+            "Problema: dividir N livros entre M estudantes contiguamente minimizando o número máximo de páginas lidas por qualquer estudante.",
+            "check(max_paginas): simule gulosamente. Aloque livros para o estudante atual enquanto a soma <= max_paginas. Se estourar, passe para o próximo estudante.",
+            "Se o número total de estudantes necessários <= M, retorna true; senão false.",
+            "A verificação gulosa do predicado check() roda em O(N)."
+          ],
+          "notes": "Esse padrão de 'Busca Binária na Resposta + Validação Gulosa no check()' resolve centenas de problemas de maratona."
+        },
+        {
+          "title": "Definindo os Limites L e R com Segurança",
+          "points": [
+            "L (limite inferior): deve ser o menor valor teoricamente concebível (geralmente 0 ou 1, ou o maior elemento individual).",
+            "R (limite superior): deve ser um valor que com certeza é suficiente no pior caso absoluto.",
+            "No problema dos livros: L = max(paginas[i]) (um estudante tem que ler pelo menos o maior livro), R = soma_total(paginas) (um estudante lê tudo).",
+            "Se R for muito pequeno, você nunca alcançará a resposta (WA). Se L for muito grande, o predicado falha."
+          ],
+          "notes": "Em caso de dúvida sobre o teto de R, use 10^18 para valores com long long. O log2 de 10^18 é apenas 60, não custa quase nada a mais."
+        },
+        {
+          "title": "Padrão de Código Robusto para BSTA",
+          "points": [
+            "long long L = 1, R = 1e18, ans = R;",
+            "while (L <= R) { long long M = L + (R - L) / 2; if (check(M)) { ans = M; R = M - 1; } else { L = M + 1; } }",
+            "Vantagem dessa estrutura: a variável 'ans' sempre guarda a melhor resposta válida encontrada até agora.",
+            "Imune a loops infinitos de fim de intervalo."
+          ],
+          "notes": "Salvar a melhor resposta válida e fechar o intervalo (R = M - 1) elimina qualquer ambiguidade sobre qual ponteiro imprimir ao final."
+        },
+        {
+          "title": "Busca Binária em Números de Ponto Flutuante (Floats)",
+          "points": [
+            "Quando a resposta é um número real (double) em vez de inteiro.",
+            "Não usamos L = M + 1 nem R = M - 1, pois entre M e M+1 existem infinitos números reais! Usamos L = M ou R = M.",
+            "Critério de parada por tolerância: while (R - L > 1e-9) { ... }",
+            "Perigo: erros de precisão do double podem fazer R - L nunca ficar menor que 1e-9 se os números forem grandes, gerando TLE!"
+          ],
+          "notes": "Em ponto flutuante, a representação de bits se esgota e comparações diretas de tolerância podem travar em loop infinito."
+        },
+        {
+          "title": "O Truque das 100 Iterações em Ponto Flutuante",
+          "points": [
+            "Em vez de testar 'while (R - L > EPS)', execute um laço for fixo de 80 a 100 iterações:",
+            "for (int iter = 0; iter < 100; iter++) { double M = (L + R) / 2; if (check(M)) R = M; else L = M; }",
+            "Por que funciona? (1/2)^100 é aproximadamente 10^-30, uma precisão muito superior aos 53 bits da mantissa do double!",
+            "Garante 100% de precisão e 0% de risco de loop infinito."
+          ],
+          "notes": "Técnica padrão ensinada pelos melhores técnicos de maratona para qualquer busca binária com doubles."
+        },
+        {
+          "title": "Busca Ternária: Otimização de Funções Unimodais",
+          "points": [
+            "Quando a função NÃO é monótona, mas possui um único pico (máximo) ou um único vale (mínimo).",
+            "Exemplo: parábolas, distâncias euclidianas convexas, custos de transporte unimodais.",
+            "Dividimos o intervalo [L, R] em três partes iguais usando dois pontos médios: m1 = L + (R - L) / 3 e m2 = R - (R - L) / 3.",
+            "Comparamos f(m1) com f(m2) e descartamos 1/3 do intervalo a cada passo."
+          ],
+          "notes": "A busca ternária reduz o intervalo por um fator de 2/3 a cada passo, com complexidade O(log_{1.5} N)."
+        },
+        {
+          "title": "Implementação da Busca Ternária para Mínimo",
+          "points": [
+            "Se f(m1) < f(m2): o mínimo não pode estar à direita de m2 -> R = m2.",
+            "Se f(m1) > f(m2): o mínimo não pode estar à esquerda de m1 -> L = m1.",
+            "Se f(m1) == f(m2): podemos descartar as extremidades ou convergir.",
+            "Em números reais, use 100 iterações fixas. Em inteiros, pare quando R - L < 3 e teste os valores restantes manualmente."
+          ],
+          "notes": "Em inteiros, a divisão inteira de 3 partes pode estagnar se R - L for pequeno, por isso a checagem manual final é essencial."
+        },
+        {
+          "title": "Busca Binária Interativa",
+          "points": [
+            "Problemas onde o corretor responde a perguntas do seu programa em tempo real via terminal.",
+            "Exemplo: 'Pensei em um número de 1 a 10^9. Você pode fazer até 30 perguntas com '>' ou '<'.'",
+            "Após imprimir cada pergunta: fflush(stdout); ou cout << endl; (aqui o flush é OBRIGATÓRIO!).",
+            "Sem esvaziar o buffer com fflush, seu programa trava aguardando resposta que o juiz não enviou (Idleness Limit Exceeded)."
+          ],
+          "notes": "Problemas interativos são comuns no Codeforces e na OBI; o esquecimento do fflush é o erro mais clássico."
+        },
+        {
+          "title": "Binary Search em Árvores e Grafos",
+          "points": [
+            "Busca binária combinada com caminhos mínimos: 'Qual o menor peso máximo de aresta em um caminho de 1 a N?'",
+            "check(max_peso): rode BFS ou Dijkstra ignorando qualquer aresta com peso > max_peso. Se 1 alcançar N, retorna true.",
+            "A combinação de busca binária com travessia de grafos resolve problemas complexos em tempo O(log(MAX_PESO) * (V + E))."
+          ],
+          "notes": "Transforma problemas de caminho minimax em verificações simples de alcance de BFS."
+        },
+        {
+          "title": "O Método de Subida Binária (Binary Lifting)",
+          "points": [
+            "Aplicação de busca binária em potências de 2 sobre estruturas de árvore e grafos funcionais.",
+            "up[u][i]: armazena o 2^i-ésimo ancestral do nó u.",
+            "Permite saltar 2^19, 2^18, ..., 2^0 passos para encontrar ancestrais ou responder consultas de LCA em O(log N).",
+            "Em vez de dividir o intervalo, somamos potências de 2 decrescentes que satisfazem o predicado."
+          ],
+          "notes": "Essa variante 'aditiva' de busca binária por potências de 2 é a base de estruturas avançadas de árvores."
+        },
+        {
+          "title": "Armadilhas de Maratona: Loop Infinito com 2 Elementos",
+          "points": [
+            "Quando L = 4 e R = 5: M = (4 + 5) / 2 = 4.",
+            "Se sua atualização for 'R = M;', o intervalo vira [4, 4] e para.",
+            "Mas se sua atualização for 'L = M;', o novo L continua sendo 4, e o loop while (L < R) NUNCA termina (TLE)!",
+            "Regra: se a atualização puder ser L = M, o cálculo do ponto médio DEVE arredondar para cima: M = L + (R - L + 1) / 2."
+          ],
+          "notes": "Compreender o sentido do arredondamento do ponto médio evita 100% dos loops infinitos em busca binária inteira."
+        },
+        {
+          "title": "Checklist de Busca Binária na Resposta",
+          "points": [
+            "1. A função de viabilidade check(x) é estritamente monótona (só muda de estado uma vez)?",
+            "2. O limite inferior L é viável e o limite superior R é grande o suficiente?",
+            "3. O cálculo do ponto médio usa M = L + (R - L) / 2 para prevenir overflow?",
+            "4. A variável 'ans' foi inicializada e atualizada a cada check(M) == true?",
+            "5. Se for float, usou laço fixo de 100 iterações em vez de EPS frágil?"
+          ],
+          "notes": "Com esse checklist, a chance de errar uma busca binária na resposta em contest é zero."
+        },
+        {
+          "title": "Aplicações Avançadas de Busca Binária",
+          "points": [
+            "Binary Search sobre o grafo de fluxo máximo: encontrando a capacidade de corte gargalo.",
+            "Combinando Busca Binária com 2-Pointers: fixando uma variável e buscando a outra.",
+            "Busca Binária sobre estruturas de dados: Segment Trees com busca binária interna (Walk on SegTree) em O(log N).",
+            "A técnica se aplica a qualquer problema onde uma propriedade é preservada unidirecionalmente."
+          ],
+          "notes": "A busca binária é um paradigma universal que transcende arrays simples e opera sobre qualquer estrutura com invariante monótono."
+        }
+      ],
+      "videos": [
+        {
+          "title": "Ordenação, Busca Binária e Aplicações",
+          "url": "https://www.youtube.com/watch?v=kBlSqEdyFIM",
+          "publisher": "AoCPC Community",
+          "source_url": "https://aocpc-community.github.io/aocpc-guide/guide/aprender/",
+          "language": "Português",
+          "catalog_checked": "2026-10-24"
+        },
+        {
+          "title": "Pilhas Monotónicas e Pesquisa Binária na Resposta",
+          "url": "https://www.youtube.com/watch?v=upebuSQF1rw",
+          "publisher": "AoCPC Community",
+          "source_url": "https://aocpc-community.github.io/aocpc-guide/guide/aprender/",
+          "language": "Português",
+          "catalog_checked": "2026-10-24"
+        }
+      ],
+      "questions": [
+        {
+          "kind": "diagnostic",
+          "prompt": "Qual condição permite buscar a menor capacidade viável por busca binária?",
+          "options": [
+            "As entradas precisam ser todas iguais",
+            "A viabilidade deve ser monótona",
+            "O array deve ter tamanho primo",
+            "A resposta precisa estar no meio"
+          ],
+          "answer": 1,
+          "explanation": "Se a transição entre inviável e viável ocorre de forma monótona, é possível descartar uma metade com segurança.",
+          "id": "binary_1"
+        },
+        {
+          "kind": "diagnostic",
+          "prompt": "Se o predicado custa O(N) e a busca faz O(log S) testes, o total é:",
+          "options": [
+            "O(log N)",
+            "O(N+S)",
+            "O(N log S)",
+            "O(S²)"
+          ],
+          "answer": 2,
+          "explanation": "O custo de cada teste deve ser multiplicado pela quantidade de testes.",
+          "id": "binary_2"
+        },
+        {
+          "kind": "review",
+          "prompt": "Ao buscar o menor valor viável em [lo,hi], mid é viável. Qual atualização preserva mid como candidato?",
+          "options": [
+            "lo=mid+1",
+            "hi=mid",
+            "hi=mid-1 sempre",
+            "lo=hi+1"
+          ],
+          "answer": 1,
+          "explanation": "mid pode ser a menor resposta, então permanece como extremo superior candidato.",
+          "id": "binary_3"
+        },
+        {
+          "kind": "review",
+          "prompt": "Por que lo+(hi-lo)/2 é uma forma útil de calcular o meio?",
+          "options": [
+            "Sempre retorna número primo",
+            "Evita somar diretamente dois extremos grandes",
+            "Ordena o array",
+            "Elimina o predicado"
+          ],
+          "answer": 1,
+          "explanation": "A expressão reduz o risco de overflow da soma lo+hi para extremos não negativos válidos.",
+          "id": "binary_4"
+        }
+      ]
+    },
+    {
+      "id": "math",
+      "title": "Matemática",
+      "prerequisites": [
+        "fundamentals"
+      ],
+      "minutes": 45,
+      "summary": "Muitos problemas dependem de propriedades aritméticas antes de dependerem de uma estrutura complexa. Divisibilidade, restos e invariantes ajudam a substituir enumerações caras por relações demonstráveis.",
+      "objectives": [
+        "Usar o algoritmo de Euclides para calcular MDC.",
+        "Controlar operações modulares e overflow.",
+        "Testar uma conjectura sem confundir testes com prova."
+      ],
+      "sections": [
+        {
+          "title": "Divisibilidade e MDC",
+          "body": "O máximo divisor comum de a e b é o maior inteiro positivo que divide ambos, quando não são ambos zero. Se a=q·b+r, qualquer divisor comum de a e b divide r, e qualquer divisor comum de b e r também divide a. Logo mdc(a,b)=mdc(b,a mod b). Repetimos essa relação até o segundo valor ser zero; o primeiro é o MDC."
+        },
+        {
+          "title": "Por que os restos ajudam",
+          "body": "Trabalhar módulo M agrupa números que deixam o mesmo resto na divisão por M. Podemos reduzir após somas e produtos, desde que a operação intermediária caiba no tipo. Em C++, restos negativos podem exigir normalização, por exemplo (x % M + M) % M para M positivo. Divisão modular não funciona como divisão comum: exige condições de invertibilidade e não deve ser aplicada automaticamente."
+        },
+        {
+          "title": "Invariantes e provas pequenas",
+          "body": "Uma propriedade invariante permanece verdadeira após cada operação permitida. Paridade e soma total são exemplos frequentes. Se cada jogada muda uma soma por um número par, sua paridade não muda. Isso pode provar impossibilidade sem simular todas as jogadas. Enumerar casos pequenos é útil para descobrir um padrão, mas uma prova precisa explicar por que ele vale para qualquer entrada válida."
+        },
+        {
+          "title": "Limites numéricos",
+          "body": "Mesmo uma fórmula O(1) pode falhar por overflow. Em n(n+1)/2, a multiplicação ocorre antes da divisão. Para entradas grandes, use um tipo suficiente ou reorganize os fatores com uma justificativa. A complexidade aritmética também depende da representação; as análises usuais de CP tratam operações de inteiros de tamanho fixo como constantes."
+        }
+      ],
+      "example": {
+        "story": "Para mdc(48,18), os restos são 12, 6 e 0. Cada par conserva o mesmo conjunto de divisores comuns; quando o resto zera, a resposta é 6.",
+        "code": "long long resto = a % b; // Só execute quando b != 0.\n// A propriedade central é mdc(a,b) = mdc(b,resto).",
+        "trace": [
+          "48 = 2×18 + 12.",
+          "18 = 1×12 + 6.",
+          "12 = 2×6 + 0.",
+          "O último divisor não nulo é 6."
+        ]
+      },
+      "pitfalls": [
+        "Calcular a % b com b=0.",
+        "Supor que aplicar módulo depois corrige um overflow anterior.",
+        "Tratar um padrão observado como prova completa."
+      ],
+      "challenge": "Se uma operação soma 2 ao total, a paridade pode mudar? Use a resposta para construir um exemplo impossível de atingir.",
+      "slides": [
+        {
+          "title": "Matemática na Programação Competitiva",
+          "points": [
+            "A matemática discreta é uma das áreas mais frequentes e decisivas em maratonas da SBC e ICPC.",
+            "Tópicos essenciais: Teoria dos Números, Primalidade, Crivos, Aritmética Modular, Exponenciação Rápida e Combinatória.",
+            "Objetivo: evitar computação de força bruta através de identidades e propriedades algébricas.",
+            "Complexidade típica: transformar laços de O(N) em O(sqrt(N)), O(log N) ou O(1)."
+          ],
+          "notes": "Compreender a matemática subjacente simplifica o código e previne Time Limit Exceeded."
+        },
+        {
+          "title": "Divisibilidade e Números Primos",
+          "points": [
+            "Um número inteiro p > 1 é primo se possui exatamente dois divisores positivos distintos: 1 e p.",
+            "Se um número N for composto, ele possui obrigatoriamente pelo menos um divisor d tal que 2 <= d <= sqrt(N).",
+            "Por que? Se todos os divisores fossem maiores que sqrt(N), o produto de dois divisores seria > sqrt(N) * sqrt(N) = N, uma contradição!",
+            "Teste de primalidade ingênuo: testar divisores até sqrt(N) em tempo O(sqrt(N))."
+          ],
+          "notes": "Verificar até sqrt(N) é a base de testes elementares de primalidade para N até 10^12."
+        },
+        {
+          "title": "Otimizando o Teste de Primalidade Simples",
+          "points": [
+            "Casos especiais: se N <= 1 retorna false; se N <= 3 retorna true; se N % 2 == 0 ou N % 3 == 0 retorna false.",
+            "Todos os primos maiores que 3 são da forma 6k ± 1 (6k + 1 ou 6k + 5).",
+            "Laço com passo 6: for (long long i = 5; i * i <= N; i += 6) if (N % i == 0 || N % (i + 2) == 0) return false;",
+            "Reduz o número de iterações por um fator de 3 em relação ao teste comum."
+          ],
+          "notes": "Para testar se um único número até 10^12 é primo durante a leitura, essa função roda em menos de 1 milissegundo."
+        },
+        {
+          "title": "O Crivo de Eratóstenes: Primos em Massa",
+          "points": [
+            "Problema: encontrar todos os números primos até N (onde N = 10^7).",
+            "Algoritmo: comece assumindo todos primos; para cada primo p, marque todos os seus múltiplos 2p, 3p, 4p... como compostos.",
+            "Otimização 1: comece a marcar múltiplos a partir de p * p (múltiplos menores já foram marcados por primos anteriores).",
+            "Complexidade: O(N * (1/2 + 1/3 + 1/5 + 1/7 + ...)) = O(N log(log N)) — assintoticamente quase linear!"
+          ],
+          "notes": "Com N = 10^7, o crivo roda em cerca de 0.08 segundos em C++ moderno."
+        },
+        {
+          "title": "Crivo Linear e Fatoração em Tempo O(log N)",
+          "points": [
+            "O crivo tradicional marca o mesmo número composto múltiplas vezes (ex: 12 é marcado por 2 e por 3).",
+            "O Crivo Linear (Euler Sieve) marca cada número composto exatamente uma vez pelo seu Menor Fator Primo (SPF - Smallest Prime Factor).",
+            "Mantém o array spf[x] contendo o menor primo que divide x.",
+            "Fatoração instantânea: para fatorar qualquer número N <= 10^7, basta fazer N /= spf[N] repetidamente em tempo O(log N)!"
+          ],
+          "notes": "Fatorar em O(log N) permite decompor 100.000 números em menos de 0.05 segundos em um contest."
+        },
+        {
+          "title": "Fatoração de Inteiros Únicos até 10^12",
+          "points": [
+            "Para fatorar um número N até 10^12 sem pré-calcular crivo:",
+            "Itere d de 2 até d * d <= N. Enquanto d dividir N, incremente o expoente de d e divida N por d.",
+            "Ao final, se N > 1, o que sobrou é obrigatoriamente um número primo!",
+            "Resultado: decomposição canônica N = p1^a1 * p2^a2 * ... * pk^ak em tempo O(sqrt(N))."
+          ],
+          "notes": "Essa decomposição em fatores primos é o ponto de partida para calcular divisores, função totiente e somatórios."
+        },
+        {
+          "title": "Contagem e Soma de Divisores",
+          "points": [
+            "Dada a fatoração prima N = p1^a1 * p2^a2 * ... * pk^ak:",
+            "Número de divisores: d(N) = (a1 + 1) * (a2 + 1) * ... * (ak + 1).",
+            "Soma dos divisores: sigma(N) = (p1^(a1+1) - 1)/(p1 - 1) * ... * (pk^(ak+1) - 1)/(pk - 1).",
+            "Um número com muitos divisores (número altamente composto) até 10^9 possui no máximo 1344 divisores."
+          ],
+          "notes": "Saber que o número de divisores até 10^9 é pequeno permite iterar sobre todos os divisores sem estourar o tempo."
+        },
+        {
+          "title": "Máximo Divisor Comum (MDC / GCD)",
+          "points": [
+            "O maior inteiro positivo que divide simultaneamente A e B.",
+            "Algoritmo de Euclides: gcd(A, B) = gcd(B, A % B) com base gcd(A, 0) = A.",
+            "A cada dois passos, o resto pelo menos se reduz pela metade: A % B < A / 2.",
+            "Complexidade: O(log(min(A, B))). Com números de 64 bits, executa em no máximo ~70 passos!",
+            "Em C++17+: std::gcd(a, b) está disponível nativamente em <numeric>."
+          ],
+          "notes": "O algoritmo de Euclides é um dos algoritmos mais antigos da humanidade (300 a.C.) e continua sendo insuperável em eficiência."
+        },
+        {
+          "title": "Mínimo Múltiplo Comum (MMC / LCM)",
+          "points": [
+            "Identidade fundamental: A * B = gcd(A, B) * lcm(A, B).",
+            "Fórmula de cálculo: lcm(A, B) = (A / gcd(A, B)) * B.",
+            "ATENÇÃO COM OVERFLOW: Divida primeiro e multiplique depois! Se fizer (A * B) / gcd, a multiplicação pode estourar 64 bits antes da divisão.",
+            "Em C++17+: std::lcm(a, b) em <numeric>."
+          ],
+          "notes": "A ordem das operações 'dividir antes de multiplicar' evita overflow em cálculos de MMC com números grandes."
+        },
+        {
+          "title": "Algoritmo Estendido de Euclides",
+          "points": [
+            "Teorema de Bézout: para quaisquer inteiros A e B, existem inteiros x e y tais que: A * x + B * y = gcd(A, B).",
+            "O Algoritmo Estendido de Euclides calcula simultaneamente gcd(A, B) e os coeficientes x e y.",
+            "Recorrência: d = extgcd(B, A % B, x1, y1); x = y1; y = x1 - y1 * (A / B);",
+            "Aplicações: resolver Equações Diofantinas Lineares e encontrar o Inverso Modular quando o módulo não for primo."
+          ],
+          "notes": "Essencial para criptografia RSA e problemas de congruências lineares."
+        },
+        {
+          "title": "Aritmética Modular: Adição e Multiplicação",
+          "points": [
+            "Módulos comuns em competições: 10^9 + 7 e 998244353 (ambos são números primos grandes).",
+            "Propriedades fundamentais:",
+            "(A + B) % M = ((A % M) + (B % M)) % M",
+            "(A * B) % M = ((A % M) * (B % M)) % M",
+            "Em C++: ao multiplicar dois inteiros de 32 bits módulo 10^9+7, converta para long long para evitar overflow no produto intermediário (1LL * a * b) % M."
+          ],
+          "notes": "O módulo 10^9+7 cabe em um inteiro de 32 bits, mas seu produto pode chegar a 10^18, exigindo 64 bits."
+        },
+        {
+          "title": "Aritmética Modular: Subtração Segura",
+          "points": [
+            "Em C++, o operador % com números negativos retorna resultado negativo! Ex: (-5) % 3 = -2.",
+            "Isso gera respostas incorretas em contagens e probabilidades modulares.",
+            "FÓRMULA SEGURA DE SUBTRAÇÃO: ((A - B) % M + M) % M;",
+            "Somar M antes do segundo módulo garante que o resultado seja estritamente não negativo no intervalo [0, M-1]."
+          ],
+          "notes": "Essa fórmula de subtração segura é indispensável para evitar valores negativos em problemas de Programação Dinâmica com módulo."
+        },
+        {
+          "title": "Exponenciação Modular Rápida (Binary Exponentiation)",
+          "points": [
+            "Problema: calcular (A^B) % M onde B pode ser até 10^18.",
+            "Multiplicação sequencial ingênua: B passos -> O(B) -> TLE absoluto.",
+            "Ideia: se B for par, A^B = (A^(B/2))^2; se B for ímpar, A^B = A * A^(B-1).",
+            "Complexidade: O(log B). Para B = 10^18, calcula a potência em apenas 60 multiplicações!"
+          ],
+          "notes": "A exponenciação rápida é a chave para calcular potências astronômicas em menos de um microssegundo."
+        },
+        {
+          "title": "O Pequeno Teorema de Fermat e Divisão Modular",
+          "points": [
+            "Na aritmética modular, a divisão comum (A / B) % M NÃO É IGUAL a ((A % M) / (B % M)) % M!",
+            "Para dividir por B, devemos multiplicar pelo INVERSO MODULAR de B: A * B^(-1) % M.",
+            "Pequeno Teorema de Fermat: se M for um número primo e B não for múltiplo de M, então: B^(M - 1) ≡ 1 (mod M).",
+            "Multiplicando ambos os lados por B^(-1): B^(M - 2) ≡ B^(-1) (mod M)!",
+            "Portanto, o inverso modular de B é simplesmente: binpow(B, M - 2, M)!"
+          ],
+          "notes": "Essa elegância matemática permite calcular divisões modulares em O(log M) usando a mesma função de exponenciação rápida."
+        },
+        {
+          "title": "Análise Combinatória: Coeficientes Binomiais",
+          "points": [
+            "Número de maneiras de escolher K itens entre N itens sem repetição: C(N, K) = N! / (K! * (N - K)!).",
+            "Módulo M: C(N, K) ≡ fact[N] * invFact[K] * invFact[N - K] (mod M).",
+            "Pré-cálculo de fatoriais em O(N): fact[i] = (fact[i-1] * i) % M.",
+            "Pré-cálculo de inversos fatoriais em O(N): invFact[N] = inv(fact[N]); invFact[i-1] = (invFact[i] * i) % M.",
+            "Após o pré-cálculo O(N), QUALQUER consulta C(N, K) é respondida em tempo O(1) puro!"
+          ],
+          "notes": "Com N até 10^6, você pré-calcula os fatoriais no início do programa e responde 10^5 consultas instantaneamente."
+        },
+        {
+          "title": "O Triângulo de Pascal para N Pequeno",
+          "points": [
+            "Se N for pequeno (N <= 2000) e o módulo M NÃO for primo (ou não permitir inverso modular):",
+            "Use a relação fundamental de Stifel: C(N, K) = C(N-1, K-1) + C(N-1, K).",
+            "Construa uma matriz bidimensional C[2005][2005] com dois laços for aninhados.",
+            "Não utiliza nenhuma divisão, funcionando para QUALQUER módulo, mesmo composto!"
+          ],
+          "notes": "O Triângulo de Pascal é a alternativa perfeita quando o módulo M do problema não for um número primo."
+        },
+        {
+          "title": "Princípio de Inclusão-Exclusão (PIE) em Contagem",
+          "points": [
+            "Para calcular o tamanho da união de múltiplos conjuntos: |A U B U C| = soma(|A|) - soma(|A inter B|) + |A inter B inter C|.",
+            "Em geral: somamos as interseções de tamanho ímpar e subtraímos as interseções de tamanho par.",
+            "Implementação em maratona: itere sobre todas as 2^K máscaras de bits de subconjuntos de restrições.",
+            "Aplicações: contar números coprimos com um conjunto de fatores, desarranjos (derangements) e problemas de coloração."
+          ],
+          "notes": "O PIE é a ferramenta que resolve problemas de 'quantos elementos satisfazem pelo menos uma das condições'."
+        },
+        {
+          "title": "Multiplicação e Exponenciação de Matrizes",
+          "points": [
+            "Multiplicação de duas matrizes K x K: leva tempo O(K^3).",
+            "Exponenciação de Matrizes: calcula M^N em tempo O(K^3 * log N) usando o mesmo princípio da exponenciação binária.",
+            "Permite resolver qualquer Recorrência Linear homogênea com coeficientes constantes em tempo logarítmico!",
+            "Se K <= 5 e N = 10^18, calcula o N-ésimo termo da sequência em menos de 0.01 segundo."
+          ],
+          "notes": "Essa técnica transforma problemas de DP linear que levariam O(N) em soluções quase instantâneas O(K^3 log N)."
+        },
+        {
+          "title": "Fibonacci em O(log N) via Matrizes",
+          "points": [
+            "A recorrência F(n) = F(n-1) + F(n-2) pode ser expressa como vetor de estados: [F(n), F(n-1)] = [[1, 1], [1, 0]] * [F(n-1), F(n-2)].",
+            "Aplicando repetidamente: [F(n+1), F(n)] = [[1, 1], [1, 0]]^n * [F(1), F(0)].",
+            "Para encontrar o 10^18-ésimo número de Fibonacci módulo 10^9+7, elevamos a matriz 2x2 à potência 10^18 em ~60 multiplicações!",
+            "Complexidade: O(8 * log N) tempo e O(1) memória."
+          ],
+          "notes": "Um dos problemas clássicos mais recorrentes em seleções de empresas e maratonas de programação."
+        },
+        {
+          "title": "Checklist de Matemática para Maratona",
+          "points": [
+            "1. Declarou todas as variáveis de multiplicação e acumulação como long long?",
+            "2. Aplicou a fórmula de subtração segura com + MOD antes do segundo resto?",
+            "3. Garantiu que o módulo M é primo antes de usar o Pequeno Teorema de Fermat para inverso modular?",
+            "4. Verificou se a base N=0 ou expoente B=0 são tratados corretamente na exponenciação rápida?"
+          ],
+          "notes": "A precisão matemática aliada a tipos de 64 bits garante Accepted limpo em problemas numéricos."
+        }
+      ],
+      "videos": [
+        {
+          "title": "Matemática",
+          "url": "https://www.youtube.com/watch?v=RzPjwv9lFHA",
+          "publisher": "AoCPC Community",
+          "source_url": "https://aocpc-community.github.io/aocpc-guide/guide/aprender/",
+          "language": "Português",
+          "catalog_checked": "2026-10-24"
+        },
+        {
+          "title": "Teoria dos Números",
+          "url": "https://www.youtube.com/watch?v=0IoxQkYQdVM",
+          "publisher": "AoCPC Community",
+          "source_url": "https://aocpc-community.github.io/aocpc-guide/guide/aprender/",
+          "language": "Português",
+          "catalog_checked": "2026-10-24"
+        }
+      ],
+      "questions": [
+        {
+          "kind": "diagnostic",
+          "prompt": "Qual é mdc(48,18)?",
+          "options": [
+            "3",
+            "6",
+            "12",
+            "18"
+          ],
+          "answer": 1,
+          "explanation": "48 mod 18=12; 18 mod 12=6; 12 mod 6=0, portanto o MDC é 6.",
+          "id": "math_1"
+        },
+        {
+          "kind": "diagnostic",
+          "prompt": "Se cada operação aumenta uma soma em 2, qual propriedade é preservada?",
+          "options": [
+            "O valor da soma",
+            "A paridade da soma",
+            "A quantidade de dígitos",
+            "A primalidade"
+          ],
+          "answer": 1,
+          "explanation": "Somar um número par não troca par por ímpar, nem ímpar por par.",
+          "id": "math_2"
+        },
+        {
+          "kind": "review",
+          "prompt": "Para b diferente de zero, qual identidade fundamenta Euclides?",
+          "options": [
+            "mdc(a,b)=a+b",
+            "mdc(a,b)=mdc(b,a%b)",
+            "mdc(a,b)=a*b",
+            "mdc(a,b)=a-b sempre"
+          ],
+          "answer": 1,
+          "explanation": "Os divisores comuns de a e b são exatamente os de b e o resto de a por b.",
+          "id": "math_3"
+        },
+        {
+          "kind": "review",
+          "prompt": "Calcular (a*b)%M garante evitar overflow de a*b?",
+          "options": [
+            "Sim, sempre",
+            "Não: o produto é calculado antes do resto",
+            "Sim, se M for primo",
+            "Somente para arrays"
+          ],
+          "answer": 1,
+          "explanation": "É necessário garantir que o produto intermediário caiba no tipo usado.",
+          "id": "math_4"
+        }
+      ]
+    },
+    {
+      "id": "greedy",
+      "title": "Guloso",
+      "prerequisites": [
+        "fundamentals"
+      ],
+      "minutes": 45,
+      "summary": "Uma estratégia gulosa fixa uma escolha local e segue adiante. A parte essencial não é escolher rapidamente, mas demonstrar que essa decisão permite uma solução global ótima.",
+      "objectives": [
+        "Reconhecer uma escolha que pode ser fixada com segurança.",
+        "Usar um argumento de troca.",
+        "Construir contraexemplos para heurísticas."
+      ],
+      "sections": [
+        {
+          "title": "Escolha local não é garantia",
+          "body": "Pegar o maior valor, o menor custo ou a opção mais próxima pode parecer natural e ainda assim falhar. Antes de implementar, procure um caso pequeno em que a decisão local bloqueia uma combinação melhor. Se não achar um contraexemplo, isso ainda não prova a estratégia. É preciso relacionar a escolha a alguma solução ótima."
+        },
+        {
+          "title": "Seleção de intervalos",
+          "body": "Para maximizar a quantidade de intervalos sem sobreposição, uma escolha útil é o intervalo que termina primeiro entre os disponíveis. Um compromisso longo pode ocupar o espaço de vários curtos, então escolher o que começa primeiro pode ser ruim. Considere intervalos semiabertos [início,fim): um intervalo que começa exatamente no fim do anterior é compatível. A convenção precisa estar clara no enunciado."
+        },
+        {
+          "title": "Argumento de troca",
+          "body": "Tome uma solução ótima e observe seu primeiro intervalo. Se a escolha gulosa termina antes ou no mesmo instante que esse intervalo, podemos substituí-lo pela escolha gulosa sem impedir os intervalos seguintes. A quantidade selecionada não diminui. Assim existe uma solução ótima que começa com a escolha gulosa. Repetir esse argumento sobre o que resta fundamenta o algoritmo."
+        },
+        {
+          "title": "Quando mudar de técnica",
+          "body": "Se a troca não é segura porque o efeito de uma escolha depende de decisões anteriores, talvez seja necessário representar mais estados, como em DP. Não há uma regra universal “guloso é mais fácil”: ambos exigem modelagem. Para intervalos ordenados, a varredura custa O(N); a ordenação domina o total em O(N log N)."
+        }
+      ],
+      "example": {
+        "story": "Entre [0,6), [0,2), [2,4) e [4,6), assistir primeiro ao evento que começa mais cedo pode levar ao intervalo longo. Escolher pelo menor término permite assistir a três eventos.",
+        "code": "// Depois de ordenar pelo término, mantenha o fim do último aceito.\n// A compatibilidade depende da convenção: início >= últimoFim.",
+        "trace": [
+          "O evento [0,2) termina primeiro.",
+          "[2,4) é compatível: começa quando o anterior termina.",
+          "[4,6) também é compatível.",
+          "Resultado dessa seleção: três eventos."
+        ]
+      },
+      "pitfalls": [
+        "Ordenar pelo início sem provar essa escolha.",
+        "Usar > quando igualdade é compatível.",
+        "Generalizar a regra para intervalos com pesos sem nova prova."
+      ],
+      "challenge": "Crie um conjunto de intervalos em que escolher o que começa primeiro produz uma solução pior que escolher pelo menor término.",
+      "slides": [
+        {
+          "title": "O Paradigma dos Algoritmos Gulosos (Greedy)",
+          "points": [
+            "Um algoritmo guloso constrói a solução passo a passo, sempre fazendo a escolha que parece MELHOR NO MOMENTO (ótimo local).",
+            "Diferença da Programação Dinâmica: o guloso NUNCA volta atrás e nunca reconsidera escolhas passadas (não há backtracking).",
+            "Vantagem: algoritmos gulosos costumam ser extremamente rápidos (O(N) ou O(N log N)) e simples de codificar.",
+            "Perigo: uma escolha local atraente pode levar a um beco sem saída ou a um resultado subótimo global."
+          ],
+          "notes": "A maior dificuldade de problemas gulosos não é a implementação, mas provar que a intuição gulosa está matematicamente correta."
+        },
+        {
+          "title": "As Duas Condições de Ouro da Estratégia Gulosa",
+          "points": [
+            "1. Propriedade da Escolha Gulosa: uma solução ótima global pode ser alcançada fazendo uma escolha ótima local.",
+            "2. Subestrutura Ótima: a solução ótima para o problema contém em si as soluções ótimas para os subproblemas restantes.",
+            "Se qualquer uma dessas duas propriedades falhar, a abordagem gulosa está condenada ao fracasso e o problema exige DP ou Fluxo.",
+            "Sempre tente criar contraexemplos manuais antes de começar a codificar uma ideia gulosa."
+          ],
+          "notes": "Tentar 'enganar' sua própria ideia com casos pequenos adversariais é o melhor teste de fogo durante a competição."
+        },
+        {
+          "title": "A Técnica do Argumento de Troca (Exchange Argument)",
+          "points": [
+            "O método de prova formal mais usado em competições para demonstrar a corretude de um algoritmo guloso.",
+            "Suponha que exista uma solução ótima hipotética OPT que difere da solução GULOSA (G).",
+            "Mostre que podemos TROCAR um elemento de OPT pelo elemento escolhido por G sem piorar o valor da resposta.",
+            "Repetindo a troca indutivamente, transformamos OPT em G sem perda de qualidade, provando que G é tão bom quanto o melhor ótimo possível!"
+          ],
+          "notes": "Dominar o argumento de troca permite validar ordenações gulosas com certeza matemática absoluta."
+        },
+        {
+          "title": "Problema Clássico 1: Agendamento de Intervalos (Interval Scheduling)",
+          "points": [
+            "Problema: dadas N tarefas com início s[i] e fim e[i], selecione o maior número de tarefas compatíveis sem sobreposição.",
+            "Tentativa 1: Escolher menor duração? Falha (pode bloquear duas tarefas longas).",
+            "Tentativa 2: Escolher menor início? Falha (uma tarefa longa no início bloqueia todas as outras).",
+            "ESTRATÉGIA GULOSA CORRETA: Ordene as tarefas pelo TEMPO DE TÉRMINO (e[i]) em ordem crescente!",
+            "Sempre pegue a tarefa que termina mais cedo e que não colide com a anterior."
+          ],
+          "notes": "Terminar mais cedo é ótimo porque libera o recurso o mais rápido possível para acomodar futuras tarefas."
+        },
+        {
+          "title": "Prova do Agendamento de Intervalos por Argumento de Troca",
+          "points": [
+            "Seja g1 a primeira tarefa escolhida pelo guloso (menor fim) e o1 a primeira tarefa de uma solução ótima OPT.",
+            "Como g1 termina antes ou junto com o1, podemos substituir o1 por g1 em OPT.",
+            "Todas as tarefas restantes de OPT continuam compatíveis porque g1 termina antes de o1 começar a liberar tempo!",
+            "Portanto, a solução gulosa tem pelo menos tantas tarefas quanto qualquer solução ótima."
+          ],
+          "notes": "Uma das demonstrações mais elegantes e didáticas de toda a teoria da computação."
+        },
+        {
+          "title": "Problema Clássico 2: Particionamento de Intervalos",
+          "points": [
+            "Problema: qual o número mínimo de salas necessárias para acomodar N palestras com horários [inicio, fim]?",
+            "Abordagem: ordene todos os eventos de início e fim cronologicamente.",
+            "Ao iniciar uma palestra: salas_ativas++ (se salas_ativas > max_salas, max_salas = salas_ativas).",
+            "Ao terminar uma palestra: salas_ativas--.",
+            "Equivalente a encontrar a sobreposição máxima em qualquer ponto da linha do tempo (resolvido em O(N log N))."
+          ],
+          "notes": "Também pode ser resolvido com std::priority_queue armazenando os tempos de liberação das salas ativas."
+        },
+        {
+          "title": "Problema Clássico 3: Mochila Fracionária (Fractional Knapsack)",
+          "points": [
+            "Problema: itens com valor v[i] e peso w[i]; podemos levar frações de itens. Capacidade máxima W.",
+            "Estratégia gulosa: ordene os itens pela densidade de valor por quilo: densidade = v[i] / w[i].",
+            "Coloque o máximo que puder do item de maior densidade até encher a mochila.",
+            "Complexidade: O(N log N) para ordenar.",
+            "CUIDADO: Se os itens forem inteiros (Mochila 0-1, onde só pode levar 0% ou 100%), o guloso FALHA e exige Programação Dinâmica!"
+          ],
+          "notes": "A distinção entre mochila fracionária (guloso) e mochila 0-1 (DP) é a clássica questão conceitual de entrevistas e maratonas."
+        },
+        {
+          "title": "Problema Clássico 4: Codificação de Huffman",
+          "points": [
+            "Problema: comprimir dados atribuindo códigos binários de tamanho variável para caracteres de acordo com sua frequência.",
+            "Caracteres mais frequentes devem receber códigos mais curtos; nenhum código pode ser prefixo de outro (Prefix-Free Code).",
+            "Algoritmo Guloso: coloque todas as frequências em um Min-Heap (priority_queue).",
+            "Retire os dois menores nós, crie um nó pai com a soma das frequências e reinsira no heap até sobrar uma única árvore.",
+            "Complexidade: O(N log N). Produz a compressão prefixada comprovadamente ótima."
+          ],
+          "notes": "David Huffman inventou esse algoritmo enquanto era estudante de doutorado no MIT em 1952 para um trabalho de disciplina."
+        },
+        {
+          "title": "Guloso em Grafos: Algoritmo de Kruskal (MST)",
+          "points": [
+            "Objetivo: encontrar a Árvore Geradora Mínima (Minimum Spanning Tree) de um grafo ponderado conectado.",
+            "Estratégia gulosa pura: ordene todas as arestas em ordem crescente de peso.",
+            "Para cada aresta (u, v): se u e v já estiverem conectados no mesmo conjunto, descarte; senão, adicione a aresta à MST e una os conjuntos com DSU!",
+            "Complexidade: O(E log E) para ordenar as arestas + O(E * α(V)) para as operações de DSU."
+          ],
+          "notes": "A simplicidade de Kruskal combinada com DSU faz dele a implementação favorita de MST em maratonas."
+        },
+        {
+          "title": "Guloso em Grafos: Algoritmo de Prim (MST)",
+          "points": [
+            "Constrói a MST crescendo a partir de um vértice inicial.",
+            "Mantém um Min-Heap com todas as arestas que conectam a árvore atual a vértices ainda não visitados.",
+            "A cada passo: retira a aresta mais leve que conecta a um vértice novo e marca como visitado.",
+            "Complexidade: O(E log V) usando std::priority_queue.",
+            "Mais rápido que Kruskal em grafos muito densos onde E aproxima-se de V^2."
+          ],
+          "notes": "Prim e Dijkstra compartilham exatamente a mesma estrutura algorítmica, diferindo apenas na função de relaxamento da prioridade."
+        },
+        {
+          "title": "Guloso em Grafos: O Algoritmo de Dijkstra",
+          "points": [
+            "Dijkstra é fundamentalmente um algoritmo GULOSO!",
+            "Invariante: no momento em que um vértice u é retirado do Min-Heap com menor distância temporária, sua distância real está DEFINITIVAMENTE CONSOLIDADA.",
+            "Por que falha com arestas negativas? Porque arestas negativas violam a invariante gulosa de que avançar no caminho só pode aumentar a distância!",
+            "Para arestas negativas, a abordagem gulosa deve ser substituída por Programação Dinâmica (Bellman-Ford / SPFA)."
+          ],
+          "notes": "Compreender por que Dijkstra é guloso esclarece de uma vez por todas por que pesos negativos quebram o algoritmo."
+        },
+        {
+          "title": "Minimizando Somas de Distâncias: A Mediana",
+          "points": [
+            "Problema: escolher um ponto X que minimize a soma das distâncias |x[i] - X| para N pontos em uma reta.",
+            "Tentativa errada: escolher a média aritmética (a média minimiza a soma dos quadrados das distâncias, não o valor absoluto!).",
+            "ESCOLHA GULOSA CORRETA: A MEDIANA dos pontos!",
+            "Ordene o array; se N for ímpar, X = arr[N / 2]. Mover X para a esquerda ou direita a partir da mediana sempre aumenta mais distâncias do que diminui."
+          ],
+          "notes": "Problema extremamente frequente em maratona disfarçado de 'ponto de encontro ideal' ou 'depósito central'."
+        },
+        {
+          "title": "O Truque do Guloso com Reembolso (Regret Greedy)",
+          "points": [
+            "Problema avançado: tomamos uma decisão gulosa agora, mas guardamos a opção de DESFAZER a decisão mais tarde se surgir algo melhor.",
+            "Implementação: use uma std::priority_queue para rastrear as escolhas anteriores.",
+            "Se encontrarmos um elemento no futuro que oferece benefício superior ao pior elemento escolhido anteriormente, trocamos!",
+            "Mantém a complexidade O(N log N) e resolve problemas que pareciam exigir DP com limites grandes."
+          ],
+          "notes": "Técnica favorita do Codeforces Div. 1 para problemas de compra e venda de ações ou consumo de poções de vida."
+        },
+        {
+          "title": "O Problema do Troco: Canônico vs Não-Canônico",
+          "points": [
+            "Para sistemas de moedas canônicos (como o Real brasileiro: 100, 50, 20, 10, 5, 2, 1), o algoritmo guloso sempre dá o menor número de moedas.",
+            "MAS para sistemas arbitrários, o guloso pode falhar espetacularmente!",
+            "Exemplo: moedas de {1, 3, 4} e troco 6. Guloso escolhe 4 + 1 + 1 = 3 moedas. A solução ótima real é 3 + 3 = 2 moedas!",
+            "Moral da história: em sistemas de moedas arbitrários, SEMPRE use Programação Dinâmica."
+          ],
+          "notes": "Sempre verifique se o sistema de moedas do problema tem garantia canônica antes de aplicar a estratégia gulosa."
+        },
+        {
+          "title": "Problema de Minimizar o Maior Atraso (Lateness)",
+          "points": [
+            "Tarefas com duração p[i] e prazo limite d[i]. Queremos minimizar o atraso máximo: max(0, conclusao[i] - d[i]).",
+            "Regra de Jackson: ordene as tarefas por PRAZO LIMITE (Earliest Deadline First - EDF) em ordem crescente.",
+            "Demonstração por troca: se duas tarefas adjacentes estiverem fora da ordem de prazo, trocá-las nunca aumenta o atraso máximo entre elas.",
+            "Complexidade: O(N log N) para ordenar e O(N) para simular."
+          ],
+          "notes": "A regra EDF é aplicada em sistemas operacionais de tempo real para escalonamento ótimo de tarefas."
+        },
+        {
+          "title": "Gulosos em Strings e Rearranjos",
+          "points": [
+            "Problema: reorganizar caracteres de uma string para que nenhum caractere adjacente seja repetido.",
+            "Estratégia gulosa: use um Max-Heap com a contagem de cada caractere.",
+            "A cada passo: retire o caractere mais frequente, coloque na string, e mantenha-o em espera até o próximo caractere ser colocado para não repetir.",
+            "Se em algum momento o caractere mais frequente tiver frequência > (N + 1) / 2, é matematicamente impossível."
+          ],
+          "notes": "Acompanhar a frequência máxima com priority queue resolve problemas de intercalação em tempo O(N log(alfabeto))."
+        },
+        {
+          "title": "Quando Desconfiar de uma Abordagem Gulosa",
+          "points": [
+            "Desconfie imediatamente se: você precisa fazer uma escolha sem saber o que vem pela frente, e escolhas passadas limitam opções futuras.",
+            "Desconfie se o problema tem restrições de 'capacidade exata' (como a Mochila 0-1).",
+            "Desconfie se você não consegue articular um argumento de troca sólido no papel.",
+            "Se você criar um caso de teste pequeno de 4 números onde a lógica falha, pare imediatamente e pense em DP."
+          ],
+          "notes": "Saber quando NÃO usar guloso economiza horas preciosas de contest evitando implementar heurísticas furadas."
+        },
+        {
+          "title": "Como Validar o Guloso com Stress Testing",
+          "points": [
+            "Em caso de dúvida durante o contest:",
+            "1. Escreva uma solução de força bruta com busca recursiva em 10 linhas.",
+            "2. Escreva sua solução gulosa candidata.",
+            "3. Gere 10.000 testes aleatórios pequenos (N=5 a 10) e compare as duas respostas.",
+            "Se as respostas baterem em 10.000 testes aleatórios, sua intuição gulosa tem 99.9% de chance de estar correta. Submeta com confiança!"
+          ],
+          "notes": "Stress testing é a rede de segurança dos maratonistas veteranos para submeter soluções gulosas sem medo de WA."
+        },
+        {
+          "title": "Resumo de Padrões Gulosos Mais Frequentes",
+          "points": [
+            "1. Interval Scheduling: ordenar pelo fim do intervalo.",
+            "2. Interval Partitioning: ordenar pelo início e usar priority_queue para recursos livres.",
+            "3. Minimização de atraso: ordenar pelo prazo limite (EDF).",
+            "4. Huffman / Agrupamento de menores: Min-Heap para fundir os 2 menores recursivamente.",
+            "5. Mediana: minimizar soma de distâncias absolutas em uma dimensão."
+          ],
+          "notes": "Decorar esses 5 padrões clássicos permite reconhecer soluções gulosas em segundos durante a leitura do caderno."
+        },
+        {
+          "title": "Matróides: O Fundamento Teórico dos Algoritmos Gulosos",
+          "points": [
+            "Matróide: par M = (S, I) satisfazendo Propriedade Hereditária e Propriedade de Troca.",
+            "Teorema de Rado-Edmonds: O algoritmo guloso sempre acha o peso máximo sse (S, I) for matróide.",
+            "Matróide Gráfico: arestas de um grafo e florestas acíclicas -> prova formal do Algoritmo de Kruskal.",
+            "Matróide Vetorial: independência linear de vetores (útil para problemas de base com XOR em CP)."
+          ],
+          "notes": "CLRS Capítulo 16 formaliza a estrutura algébrica de matróides que garante a corretude do paradigma guloso."
+        },
+        {
+          "title": "Checklist de Decisão Gulosa em Competição",
+          "points": [
+            "Critério de ordenação: maior valor/custo, menor término, menor deadline ou prioridade.",
+            "Contraexemplo pequeno: desenhe casos de teste com N=3 ou N=4 antes de codificar.",
+            "Irreversibilidade: a escolha gulosa atual não pode eliminar soluções viáveis futuras sem troca.",
+            "Argumento de troca: provar que trocar a decisão do ótimo por nossa escolha não piora o custo.",
+            "Complexidade: O(N log N) com ordenação e priority_queue cabe confortavelmente no limite de 1s a 2s."
+          ],
+          "notes": "Checklist mental rápido para competidores validarem a viabilidade gulosa antes de gastar tempo na submissão."
+        }
+      ],
+      "videos": [
+        {
+          "title": "Greedy",
+          "url": "https://www.youtube.com/watch?v=6ePTnxNZbO0",
+          "publisher": "AoCPC Community",
+          "source_url": "https://aocpc-community.github.io/aocpc-guide/guide/aprender/",
+          "language": "Português",
+          "catalog_checked": "2026-10-24"
+        },
+        {
+          "title": "Greedy vs Programação Dinâmica",
+          "url": "https://www.youtube.com/watch?v=-NEyxkz3Uvs",
+          "publisher": "AoCPC Community",
+          "source_url": "https://aocpc-community.github.io/aocpc-guide/guide/aprender/",
+          "language": "Português",
+          "catalog_checked": "2026-10-24"
+        }
+      ],
+      "questions": [
+        {
+          "kind": "diagnostic",
+          "prompt": "Na seleção clássica do maior número de intervalos compatíveis, qual chave guia o guloso?",
+          "options": [
+            "Menor instante de término",
+            "Maior duração",
+            "Menor início sempre",
+            "Maior instante de término"
+          ],
+          "answer": 0,
+          "explanation": "Terminar o mais cedo possível permite trocar a primeira escolha de uma solução ótima sem bloquear o restante.",
+          "id": "greedy_1"
+        },
+        {
+          "kind": "diagnostic",
+          "prompt": "O que torna uma regra gulosa confiável?",
+          "options": [
+            "Ser intuitiva",
+            "Passar em dois exemplos",
+            "Um argumento de correção para todas as entradas válidas",
+            "Ter apenas um laço"
+          ],
+          "answer": 2,
+          "explanation": "Um argumento de troca ou outro invariante precisa justificar que a escolha local preserva uma solução ótima.",
+          "id": "greedy_2"
+        },
+        {
+          "kind": "review",
+          "prompt": "Para intervalos [início,fim), o próximo início igual ao último fim é:",
+          "options": [
+            "Incompatível sempre",
+            "Compatível",
+            "Compatível só se ambos tiverem duração 1",
+            "Uma entrada inválida"
+          ],
+          "answer": 1,
+          "explanation": "Intervalos semiabertos não compartilham o instante final do anterior.",
+          "id": "greedy_3"
+        },
+        {
+          "kind": "review",
+          "prompt": "Selecionar intervalos após ordená-los pelo fim custa, no total:",
+          "options": [
+            "O(1)",
+            "O(N log N)",
+            "O(2^N)",
+            "O(log N)"
+          ],
+          "answer": 1,
+          "explanation": "A ordenação custa O(N log N) e a varredura posterior custa O(N).",
+          "id": "greedy_4"
+        }
+      ]
+    },
+    {
+      "id": "dp",
+      "title": "DP",
+      "prerequisites": [
+        "fundamentals",
+        "prefix"
+      ],
+      "minutes": 60,
+      "summary": "Programação dinâmica reaproveita subproblemas e organiza dependências. O trabalho principal é definir o que cada estado significa e provar que as transições consideram todas as possibilidades relevantes.",
+      "objectives": [
+        "Descrever estado, transição e caso base.",
+        "Ordenar cálculos pelas dependências.",
+        "Estimar custo contando estados e transições."
+      ],
+      "sections": [
+        {
+          "title": "O estado precisa dizer algo preciso",
+          "body": "Um estado não é apenas uma posição em uma tabela. Ele responde a uma pergunta menor. Por exemplo, formas[i] pode significar o número de maneiras de alcançar o degrau i com passos de tamanho 1 ou 2. Se duas situações com o mesmo índice exigem respostas diferentes, o estado não contém informação suficiente. Escreva seu significado em uma frase antes da recorrência."
+        },
+        {
+          "title": "Transição e casos base",
+          "body": "Para alcançar o degrau i, o último passo veio de i-1 ou de i-2. Essas alternativas são distintas e cobrem todas as possibilidades. Assim formas[i]=formas[i-1]+formas[i-2]. Defina formas[0]=1 para representar o caminho vazio e formas[1]=1. Os casos base precisam combinar com o significado do estado; escolher zero automaticamente pode apagar soluções válidas."
+        },
+        {
+          "title": "Ordem de cálculo e memória",
+          "body": "Na abordagem bottom-up, calcule os estados dos quais os próximos dependem. Neste exemplo, índices crescentes funcionam. Memoização resolve sob demanda e guarda resultados, mas também precisa evitar dependências cíclicas indevidas. Se apenas os dois valores anteriores forem necessários e você não precisar reconstruir uma solução, pode reduzir a memória. Preserve os estados antigos antes de sobrescrever variáveis."
+        },
+        {
+          "title": "Análise e reconhecimento",
+          "body": "Conte estados e o trabalho de cada transição. N estados com duas transições de custo constante resultam em O(N). Se cada estado percorre todos os anteriores, o custo pode ser O(N²). DP é apropriada quando subproblemas se repetem e as respostas menores permitem compor a maior. Não transforme toda recursão em DP sem verificar se há reaproveitamento."
+        }
+      ],
+      "example": {
+        "story": "Com passos de 1 ou 2 degraus, as quantidades para os degraus de 0 a 5 são 1,1,2,3,5,8. Para o degrau 5, cinco caminhos chegam do degrau 4 e três do degrau 3.",
+        "code": "// Cada posição representa uma pergunta menor já resolvida.\nvector<long long> formas(n + 1);\nformas[0] = 1; // Uma maneira de não dar nenhum passo.",
+        "trace": [
+          "Base: formas[0]=1 e formas[1]=1.",
+          "formas[2]=1+1=2.",
+          "formas[3]=2+1=3; formas[4]=3+2=5.",
+          "formas[5]=5+3=8."
+        ]
+      },
+      "pitfalls": [
+        "Usar uma recorrência sem explicar o estado.",
+        "Inicializar o caminho vazio com o valor errado.",
+        "Reduzir memória e sobrescrever uma dependência ainda necessária."
+      ],
+      "challenge": "Liste os caminhos para subir três degraus com passos de 1 ou 2. Explique por que as alternativas do último passo não se sobrepõem.",
+      "slides": [
+        {
+          "title": "O que é Programação Dinâmica (DP)?",
+          "points": [
+            "Programação Dinâmica é uma técnica que resolve problemas complexos quebrando-os em subproblemas sobrepostos e memorizando seus resultados.",
+            "O nome 'Programação' vem do termo matemático original (planejamento de tabelas), não de programação de computadores.",
+            "A regra de ouro: NUNCA RESOLVA O MESMO SUBPROBLEMA DUAS VEZES!",
+            "Transforma algoritmos de tempo exponencial O(2^N) em algoritmos polinomiais O(N), O(N^2) ou O(N * W)."
+          ],
+          "notes": "Richard Bellman cunhou o termo na década de 1950 enquanto trabalhava na RAND Corporation."
+        },
+        {
+          "title": "As Duas Propriedades Obrigatórias de DP",
+          "points": [
+            "1. Subestrutura Ótima: a solução ótima para o problema pode ser construída a partir das soluções ótimas de seus subproblemas.",
+            "2. Subproblemas Sobrepostos (Overlapping Subproblems): a recursão ingênua visita os mesmos estados repetidas vezes.",
+            "Exemplo de Fibonacci ingênuo: fib(5) chama fib(4) e fib(3); fib(4) chama fib(3) e fib(2). fib(3) é recalculado do zero!",
+            "Com DP, armazenamos o valor de fib(3) na primeira vez que ele é calculado e o reutilizamos em O(1)."
+          ],
+          "notes": "Se os subproblemas não se sobrepuserem (como no Merge Sort), trata-se de Divisão e Conquista simples, não de DP."
+        },
+        {
+          "title": "Abordagem 1: Top-Down (Recursão com Memorização)",
+          "points": [
+            "Escreva a solução recursiva natural baseada na definição matemática do problema.",
+            "Crie uma tabela de memória (ex: int memo[N][M]) inicializada com -1 (indicando 'não calculado').",
+            "No início da função: if (memo[estado] != -1) return memo[estado];",
+            "Antes de retornar: return memo[estado] = calculo_recursivo;",
+            "Vantagem: só calcula os estados que são estritamente necessários para alcançar a resposta."
+          ],
+          "notes": "A abordagem Top-Down é muito intuitiva para começar a pensar porque segue diretamente a intuição recursiva."
+        },
+        {
+          "title": "Abordagem 2: Bottom-Up (Tabulação Iterativa)",
+          "points": [
+            "Preencha a tabela de DP iterativamente usando laços for, começando dos casos base até o estado final.",
+            "Não utiliza recursão nem consome memória de pilha de chamadas.",
+            "Vantagens: mais rápida (sem overhead de chamadas de função), melhor localidade de cache e imune a Stack Overflow.",
+            "Permite otimizações fáceis de memória (como descartar linhas antigas)."
+          ],
+          "notes": "Em maratona, a abordagem Bottom-Up é frequentemente preferida por sua velocidade e segurança de memória."
+        },
+        {
+          "title": "As Quatro Etapas de Ouro para Modelar Qualquer DP",
+          "points": [
+            "1. Definição do Estado: O que dp[i][j] significa em português claro? (Ex: 'o menor custo usando os primeiros i itens com peso j').",
+            "2. Transição: Como calcular dp[i][j] usando estados menores já resolvidos?",
+            "3. Casos Base: Quais são as respostas triviais iniciais? (Ex: dp[0] = 0).",
+            "4. Ordem de Avaliação: Em qual ordem os laços devem rodar para que os estados menores já estejam prontos ao calcular os maiores?"
+          ],
+          "notes": "Se você não conseguir definir o significado do estado em uma frase clara de português, você ainda não entendeu a DP."
+        },
+        {
+          "title": "O DAG dos Estados de Programação Dinâmica",
+          "points": [
+            "Toda Programação Dinâmica é matematicamente equivalente a encontrar o menor ou maior caminho em um DAG (Grafo Acíclico Dirigido)!",
+            "Cada estado da DP é um vértice do DAG.",
+            "Cada transição é uma aresta direcionada conectando o estado dependente ao estado menor.",
+            "A ordem de avaliação dos laços no Bottom-Up nada mais é do que uma Ordenação Topológica desse DAG!"
+          ],
+          "notes": "Essa equivalência entre DP e caminhos em DAGs é uma das conexões mais profundas da ciência da computação."
+        },
+        {
+          "title": "Problema Clássico 1: 0-1 Knapsack (Mochila 0-1)",
+          "points": [
+            "Problema: N itens com peso w[i] e valor v[i]. Mochila com capacidade máxima W. Cada item pode ser levado 0 ou 1 vez.",
+            "Estado: dp[i][c] = valor máximo usando um subconjunto dos primeiros i itens com peso total <= c.",
+            "Transição: para o item i, temos duas opções:",
+            "- Não levar o item: dp[i-1][c]",
+            "- Levar o item (se w[i] <= c): dp[i-1][c - w[i]] + v[i]",
+            "dp[i][c] = max(dp[i-1][c], dp[i-1][c - w[i]] + v[i])."
+          ],
+          "notes": "Complexidade: O(N * W) tempo e O(N * W) memória. Trata-se de um problema pseudo-polinomial (NP-completo no tamanho dos bits)."
+        },
+        {
+          "title": "Otimização de Espaço da Mochila para O(W)",
+          "points": [
+            "Observe que a linha dp[i] só depende diretamente da linha imediatamente anterior dp[i-1]!",
+            "Podemos usar um único vetor unidimensional dp[c] de tamanho W + 1.",
+            "PONTO CRÍTICO: Itere a capacidade c DE TRÁS PARA FRENTE (de W descendo até w[i])!",
+            "for (int c = W; c >= w[i]; c--) dp[c] = max(dp[c], dp[c - w[i]] + v[i]);",
+            "Por que de trás para frente? Para que dp[c - w[i]] ainda represente o valor da iteração anterior, impedindo que o mesmo item seja reutilizado!"
+          ],
+          "notes": "Se você iterar de frente para trás (c de w[i] até W), você resolve a Mochila Ilimitada (Unbounded Knapsack), onde itens podem ser repetidos infinitamente."
+        },
+        {
+          "title": "Problema Clássico 2: Problema do Troco (Coin Change)",
+          "points": [
+            "Problema: moedas com valores {c1, c2, ..., ck}. Qual o MENOR número de moedas para somar o valor X?",
+            "Estado: dp[s] = menor número de moedas para formar a soma s.",
+            "Base: dp[0] = 0; todos os outros inicializados com infinito.",
+            "Transição: dp[s] = min_{c in moedas} (dp[s - c] + 1) para todo c <= s.",
+            "Complexidade: O(K * X) tempo e O(X) memória."
+          ],
+          "notes": "Para contar o número de MANEIRAS distintas de dar o troco: dp[s] = soma(dp[s - c])."
+        },
+        {
+          "title": "A Ordem dos Laços Muda a Contagem de Maneiras!",
+          "points": [
+            "Se o laço de moedas estiver FORA e o de valores DENTRO: conta COMBINAÇÕES (ordem das moedas não importa: 1+2 é o mesmo que 2+1).",
+            "for (int c : coins) for (int s = c; s <= X; s++) dp[s] = (dp[s] + dp[s - c]) % MOD;",
+            "Se o laço de valores estiver FORA e o de moedas DENTRO: conta PERMUTAÇÕES (ordem importa: 1+2 é diferente de 2+1)!",
+            "for (int s = 1; s <= X; s++) for (int c : coins) if (s >= c) dp[s] = (dp[s] + dp[s - c]) % MOD;"
+          ],
+          "notes": "Esse é um dos testes conceituais mais famosos de maratona: a simples inversão de dois laços altera a semântica de combinações para permutações."
+        },
+        {
+          "title": "Problema Clássico 3: Longest Increasing Subsequence (LIS)",
+          "points": [
+            "Problema: encontrar o comprimento da maior subsequência estritamente crescente de um array A.",
+            "Abordagem O(N^2): dp[i] = comprimento da maior LIS que termina no elemento A[i].",
+            "Transição: dp[i] = 1 + max_{j < i e A[j] < A[i]} (dp[j]).",
+            "Base: dp[i] = 1 para todo i.",
+            "Resposta global: max(dp[1], dp[2], ..., dp[N])."
+          ],
+          "notes": "A abordagem O(N^2) é intuitiva e aceita até N = 5000."
+        },
+        {
+          "title": "Otimizando LIS para O(N log N) com Busca Binária",
+          "points": [
+            "Para N = 2 * 10^5, O(N^2) dá TLE! Precisamos de O(N log N).",
+            "Mantenha um vetor tails[], onde tails[len] guarda o MENOR elemento final de todas as subsequências crescentes de tamanho len vistas até agora.",
+            "Invariante crucial: o vetor tails[] é estritamente crescente!",
+            "Para cada elemento x de A: use std::lower_bound para encontrar a primeira posição em tails com valor >= x e substitua-o por x (ou insira no fim se x for maior que todos).",
+            "Tamanho final de tails é o comprimento exato da LIS!"
+          ],
+          "notes": "A substituição com lower_bound torna a subsequência futura mais promissora para aceitar novos elementos menores."
+        },
+        {
+          "title": "Problema Clássico 4: Caminhos em Grid 2D",
+          "points": [
+            "Problema: em uma matriz N x M, você começa em (1, 1) e só pode mover para a Direita ou para Baixo. Quantos caminhos levam a (N, M)?",
+            "Estado: dp[r][c] = número de caminhos de (1, 1) até (r, c).",
+            "Transição: dp[r][c] = dp[r - 1][c] + dp[r][c - 1] (se a célula não for obstáculo).",
+            "Base: dp[1][1] = 1.",
+            "Se cada célula tiver um custo: dp[r][c] = min(dp[r - 1][c], dp[r][c - 1]) + custo[r][c]."
+          ],
+          "notes": "Caminhos em grids são a porta de entrada visual para compreender DP bidimensional."
+        },
+        {
+          "title": "Problema Clássico 5: Distância de Edição (Edit Distance)",
+          "points": [
+            "Problema: menor número de operações (inserir, deletar, substituir) para transformar a string A de tamanho N na string B de tamanho M.",
+            "Estado: dp[i][j] = menor custo para converter o prefixo A[1..i] no prefixo B[1..j].",
+            "Se A[i] == B[j]: dp[i][j] = dp[i-1][j-1] (sem custo adicional).",
+            "Se A[i] != B[j]: dp[i][j] = 1 + min({dp[i-1][j] (deletar), dp[i][j-1] (inserir), dp[i-1][j-1] (substituir)}).",
+            "Complexidade: O(N * M) tempo e memória."
+          ],
+          "notes": "Esse algoritmo de Levenshtein (1965) é usado até hoje em corretores ortográficos e ferramentas como git diff."
+        },
+        {
+          "title": "Reconstrução da Resposta (Backtracking na DP)",
+          "points": [
+            "Muitas vezes o problema não quer apenas o valor máximo (ex: lucro 42), mas QUUAIS ITENS foram escolhidos.",
+            "Método 1: tabela de pais parent[i][j] que guarda qual transição produziu o ótimo.",
+            "Método 2 (sem memória extra): após preencher a tabela de DP, comece do estado final e compare com os estados anteriores:",
+            "Se dp[i][c] == dp[i-1][c - w[i]] + v[i], o item i com certeza foi incluído! Recue para dp[i-1][c - w[i]].",
+            "Senão, o item i foi ignorado: recue para dp[i-1][c]."
+          ],
+          "notes": "Reconstruir a resposta comparando com a tabela dispensa armazenar matrizes extras de ponteiros."
+        },
+        {
+          "title": "Introdução a Bitmask DP (DP com Máscaras de Bits)",
+          "points": [
+            "Quando o tamanho N for pequeno (N <= 20), podemos representar subconjuntos usando inteiros de 32 bits!",
+            "Se o i-ésimo bit estiver ligado ((mask >> i) & 1), o elemento i pertence ao subconjunto.",
+            "Estado típico: dp[mask][u] = menor custo visitando o conjunto de vértices representado por mask terminando no nó u.",
+            "Problema do Caixeiro Viajante (TSP): resolvido em O(N^2 * 2^N) em vez do fatorial O(N!)."
+          ],
+          "notes": "Com N = 20, 2^20 é cerca de 10^6, permitindo resolver o problema NP-difícil do caixeiro viajante em menos de 0.2 segundos."
+        },
+        {
+          "title": "Otimizações de Memória em DP: A Técnica de Rolagem",
+          "points": [
+            "Se a linha dp[i] só depende da linha dp[i-1], não precisamos manter todas as N linhas na memória!",
+            "Use apenas duas linhas: dp[2][M] com indexação modular dp[i % 2][j].",
+            "Reduz o consumo de memória de O(N * M) para O(M).",
+            "Essencial quando N = 10^5 e M = 10^4, onde a matriz completa consumiria 4 GB de RAM (MLE)."
+          ],
+          "notes": "O operador de módulo binário i & 1 é ainda mais rápido que i % 2 para alternar entre as linhas 0 e 1."
+        },
+        {
+          "title": "Digit DP (DP em Dígitos)",
+          "points": [
+            "Problema: contar quantos números entre A e B satisfazem uma certa propriedade (ex: soma dos dígitos é prima).",
+            "Abordagem: resolva para [0, B] e subtraia o resultado para [0, A - 1].",
+            "Estado: dp[pos][soma][tight][leading_zeros].",
+            "tight = 1 significa que os dígitos anteriores coincidem com o prefixo de B (o próximo dígito não pode passar do dígito de B).",
+            "tight = 0 significa que o número já é estritamente menor que B e podemos colocar qualquer dígito de 0 a 9."
+          ],
+          "notes": "Digit DP resolve problemas com limites de números até 10^18 em menos de 18 passos de recursão."
+        },
+        {
+          "title": "Erros Fatais de DP em Maratonas",
+          "points": [
+            "1. Ordem incorreta de avaliação: usar um estado antes dele ter sido computado (gera lixo ou 0).",
+            "2. Não inicializar com -1 no Top-Down (faz a função recalcular estados que retornam 0 repetidamente, dando TLE).",
+            "3. Esquecer os casos base (gera chamadas recursivas com índices negativos e RTE).",
+            "4. Não usar long long quando as somas ou contagens de DP podem crescer até 10^18."
+          ],
+          "notes": "Sempre certifique-se de que a tabela de memorização é inicializada com memset(memo, -1, sizeof(memo)) antes de cada caso de teste."
+        },
+        {
+          "title": "Checklist Definitivo de Programação Dinâmica",
+          "points": [
+            "1. Definiu com clareza em português o significado de dp[i][j]?",
+            "2. Identificou todas as transições possíveis com custo/ganho?",
+            "3. Escreveu os casos base antes de qualquer laço?",
+            "4. A ordem dos laços garante que subproblemas menores são processados primeiro?",
+            "5. Se o problema pede resposta módulo M, aplicou o módulo em todas as adições de estados?"
+          ],
+          "notes": "Com esse checklist rigoroso, DP deixa de ser um mistério e se torna um método determinístico de resolução."
+        }
+      ],
+      "videos": [
+        {
+          "title": "Programação Dinâmica",
+          "url": "https://www.youtube.com/watch?v=qHnUougiq60",
+          "publisher": "AoCPC Community",
+          "source_url": "https://aocpc-community.github.io/aocpc-guide/guide/aprender/",
+          "language": "Português",
+          "catalog_checked": "2026-10-24"
+        },
+        {
+          "title": "Resolução de Problemas de Programação Dinâmica",
+          "url": "https://www.youtube.com/watch?v=GhFcAXecjPM",
+          "publisher": "AoCPC Community",
+          "source_url": "https://aocpc-community.github.io/aocpc-guide/guide/aprender/",
+          "language": "Português",
+          "catalog_checked": "2026-10-24"
+        }
+      ],
+      "questions": [
+        {
+          "kind": "diagnostic",
+          "prompt": "Na DP, o que um estado deve representar?",
+          "options": [
+            "Uma pergunta menor bem definida",
+            "Um número escolhido ao acaso",
+            "Sempre a resposta completa",
+            "Somente uma variável global"
+          ],
+          "answer": 0,
+          "explanation": "O significado do estado determina os casos base, as transições e as dependências.",
+          "id": "dp_1"
+        },
+        {
+          "kind": "diagnostic",
+          "prompt": "Há N estados e cada um faz duas transições O(1). Qual é o tempo?",
+          "options": [
+            "O(N²)",
+            "O(N)",
+            "O(log N)",
+            "O(2^N)"
+          ],
+          "answer": 1,
+          "explanation": "Cada estado exige trabalho constante; o total é proporcional à quantidade de estados.",
+          "id": "dp_2"
+        },
+        {
+          "kind": "review",
+          "prompt": "Com passos de 1 ou 2, formas[0]=1 e formas[1]=1. Quantas formas há de chegar ao degrau 4?",
+          "options": [
+            "3",
+            "4",
+            "5",
+            "8"
+          ],
+          "answer": 2,
+          "explanation": "Os valores são 1,1,2,3,5; logo formas[4]=5.",
+          "id": "dp_3"
+        },
+        {
+          "kind": "review",
+          "prompt": "Quando é seguro guardar só dois estados anteriores?",
+          "options": [
+            "Sempre em qualquer DP",
+            "Quando todas as dependências futuras usam só esses estados e não é preciso reconstruir o caminho",
+            "Apenas se N for par",
+            "Nunca"
+          ],
+          "answer": 1,
+          "explanation": "A redução de memória depende exatamente das dependências e das informações necessárias na saída.",
+          "id": "dp_4"
+        }
+      ]
+    },
+    {
+      "id": "graph",
+      "title": "Grafos",
+      "prerequisites": [
+        "fundamentals",
+        "structures"
+      ],
+      "minutes": 55,
+      "summary": "Grafos representam relações entre objetos. Antes de escolher BFS ou DFS, precisamos entender o significado das arestas, se há direção e se os custos são iguais. A modelagem determina quais algoritmos têm garantia.",
+      "objectives": [
+        "Representar um grafo por adjacências.",
+        "Entender as camadas da BFS.",
+        "Saber quando BFS fornece distâncias mínimas."
+      ],
+      "sections": [
+        {
+          "title": "Modelagem e representação",
+          "body": "Vértices representam objetos e arestas representam relações. Uma rua de mão dupla exige conexões nos dois sentidos; uma dependência pode ser dirigida. A lista de adjacências armazena os vizinhos de cada vértice em O(N+M) espaço, enquanto uma matriz usa O(N²), mesmo com poucas arestas. Estados de um jogo também podem formar um grafo implícito, com movimentos gerando os vizinhos."
+        },
+        {
+          "title": "A fronteira da BFS",
+          "body": "A busca em largura começa na origem com distância zero. Uma fila mantém a ordem de descoberta. Ao retirar um vértice com distância d, seus vizinhos não descobertos recebem d+1 e entram no fim da fila. Marque um vértice quando o coloca na fila; adiar a marcação permite inserções repetidas em grafos com ciclos e pode aumentar muito o trabalho."
+        },
+        {
+          "title": "Por que as distâncias são mínimas",
+          "body": "Quando todas as arestas têm custo unitário, a fila explora primeiro os vértices a uma aresta da origem, depois os a duas, e assim por diante. Uma descoberta posterior não pode oferecer menos arestas, porque viria de uma camada igual ou mais distante. Essa garantia não se aplica diretamente a pesos arbitrários. Para arestas com pesos gerais não negativos, um algoritmo como Dijkstra considera os custos de outra forma."
+        },
+        {
+          "title": "Custo e casos especiais",
+          "body": "Com listas de adjacências e controle de visitados, cada vértice entra na fila no máximo uma vez e cada aresta é examinada um número constante de vezes: O(N+M). Um vértice sem rota permanece com distância -1. Teste origem igual ao destino, componentes desconectados e ciclos. O maior caminho simples de um grafo geral não é resolvido pela mesma BFS."
+        }
+      ],
+      "example": {
+        "story": "No grafo com A-B, A-C, B-D, C-E e E-F, a BFS de A descobre B e C na camada 1, D e E na camada 2 e F na camada 3.",
+        "code": "vector<int> distancia(n, -1);\nqueue<int> fila;\ndistancia[origem] = 0;\nfila.push(origem); // A fronteira começa com a origem.",
+        "trace": [
+          "Camada 0: A.",
+          "Camada 1: B e C.",
+          "Camada 2: D e E.",
+          "Camada 3: F."
+        ]
+      },
+      "pitfalls": [
+        "Esquecer a aresta inversa em grafo não direcionado.",
+        "Marcar visitados tarde e repetir trabalho.",
+        "Usar BFS comum como se ignorar pesos preservasse a distância mínima."
+      ],
+      "challenge": "Adicione uma aresta entre B e F ao exemplo. Como muda a distância mínima de A a F? Justifique pelas camadas.",
+      "slides": [
+        {
+          "title": "Grafos na Maratona de Programação",
+          "points": [
+            "Definição matemática formal: G = (V, E), onde V é o conjunto de vértices e E o de arestas.",
+            "Grafos modelam estados e transições em problemas de busca, dependência, conectividade e rotas.",
+            "A primeira decisão do maratonista é identificar o que é vértice e o que é aresta.",
+            "Complexidade alvo clássica: algoritmos lineares no tamanho do grafo, O(V + E)."
+          ],
+          "notes": "Em programação competitiva, grafos raramente vêm explícitos com 'vértices e arestas'. Eles aparecem como labirintos, palavras com trocas de letras, dependências de tarefas ou estados de jogos."
+        },
+        {
+          "title": "Grafo Simples vs Multigrafo vs Pseudografo",
+          "points": [
+            "Grafo Simples: não possui laços (arestas de um vértice para ele mesmo) nem arestas paralelas.",
+            "Multigrafo: permite múltiplas arestas conectando o mesmo par de vértices (pesos diferentes).",
+            "Pseudografo: permite arestas paralelas e laços (loops reflexivos).",
+            "Cuidado em maratona: ao ler multigrafos com lista de adjacência, você pode ter arestas repetidas que afetam algoritmos ingênuos."
+          ],
+          "notes": "Se o enunciado diz 'existe no máximo uma aresta entre cada par de cidades', é um grafo simples. Se diz 'estradas com pedágios diferentes entre as mesmas cidades', trata-se de um multigrafo e você geralmente só quer guardar a menor aresta."
+        },
+        {
+          "title": "Grafo Não-Direcionado vs Dígrafo (Direcionado)",
+          "points": [
+            "Grafo Não-Direcionado: arestas são bidirecionais ({u, v}). Se u conecta a v, v conecta a u.",
+            "Dígrafo (Directed Graph): arestas possuem sentido (u -> v). A existência de u -> v não implica v -> u.",
+            "Grau de entrada (in-degree) vs Grau de saída (out-degree) em dígrafos.",
+            "Na implementação: grafos não-direcionados exigem adicionar a aresta em ambas as listas: adj[u].push_back(v) e adj[v].push_back(u)."
+          ],
+          "notes": "O esquecimento de duplicar a aresta na lista de adjacência em grafos não-direcionados é um dos erros mais comuns de iniciantes, gerando desconexão e Wrong Answer (WA)."
+        },
+        {
+          "title": "DAG: Grafo Acíclico Dirigido (Directed Acyclic Graph)",
+          "points": [
+            "Definição: Dígrafo que não possui nenhum ciclo direcionado.",
+            "Propriedade vital: Em um DAG, sempre existe pelo menos um vértice com in-degree 0 (fonte) e um com out-degree 0 (sumidouro).",
+            "A espinha dorsal da Programação Dinâmica: toda transição de estados de DP forma um caminho em um DAG.",
+            "Aplicações: Pré-requisitos de disciplinas, sistemas de compilação (Makefile) e escalonamento de processos."
+          ],
+          "notes": "Se um problema envolve tarefas que dependem de outras e não podem ter dependência circular, o grafo é garantidamente um DAG e admite Ordenação Topológica."
+        },
+        {
+          "title": "Modelagem e Representações em Memória",
+          "points": [
+            "Lista de Adjacência: vector<int> adj[N] — padrão absoluto de maratona.",
+            "Matriz de Adjacência: bool adj[N][N] ou int adj[N][N] para grafos com peso.",
+            "Lista de Arestas: vector<pair<int, int>> edges — ideal para ordenação global de arestas (Kruskal).",
+            "A escolha depende do número de vértices V e da densidade de arestas E."
+          ],
+          "notes": "Lista de adjacência usa espaço proporcional ao número real de arestas. Matriz usa espaço quadrático independentemente de haver arestas ou não."
+        },
+        {
+          "title": "Comparativo de Espaço e Tempo das Representações",
+          "points": [
+            "Lista de Adjacência: Espaço O(V + E). Iterar vizinhos de u leva O(grau(u)). Checar se existe (u, v) é O(grau(u)).",
+            "Matriz de Adjacência: Espaço O(V^2). Checar se existe (u, v) é O(1). Iterar vizinhos leva O(V).",
+            "Limite prático: Se V = 10^5, matriz exige 10^10 bytes (~10 GB de RAM), estourando o limite de 256 MB (MLE).",
+            "Regra geral: Use matriz apenas se V <= 2000. Para V > 2000, use estritamente lista de adjacência."
+          ],
+          "notes": "Um grafo com 10^5 vértices e 2*10^5 arestas cabe com folga em 20 MB com lista de adjacência, mas estoura qualquer juiz online se implementado em matriz."
+        },
+        {
+          "title": "Busca em Largura (BFS): Intuição Física",
+          "points": [
+            "A metáfora da pedra na água: ondas concêntricas se propagando a partir da fonte.",
+            "Visita todos os vértices a distância 1, depois todos a distância 2, depois distância 3, e assim por diante.",
+            "Garante o MENOR CAMINHO em número de arestas em qualquer grafo não ponderado (ou com pesos unitários).",
+            "Estrutura essencial: FILA (Queue) com política FIFO (First-In, First-Out)."
+          ],
+          "notes": "A BFS explora a fronteira de estados em ordem estrita de proximidade da origem. Por isso, a primeira vez que um nó é alcançado, o caminho até ele é comprovadamente o mais curto possível."
+        },
+        {
+          "title": "A Invariante da Fila FIFO na BFS",
+          "points": [
+            "Em qualquer instante, a fila contém vértices de no máximo duas distâncias consecutivas: d e d+1.",
+            "Todos os nós de distância d são desenfileirados antes de qualquer nó de distância d+1 ser processado.",
+            "Vetor de distâncias: dist[s] = 0 e dist[v] = -1 para não visitados.",
+            "Transição fundamental: dist[v] = dist[u] + 1 para cada vizinho v não visitado."
+          ],
+          "notes": "A propriedade de monotonia da fila é a demonstração formal da corretude da BFS. Ela garante que nenhum caminho mais longo seja explorado antes de um mais curto."
+        },
+        {
+          "title": "Árvore de Busca BFS e Camadas de Nível",
+          "points": [
+            "A BFS induz uma árvore enraizada na origem (BFS Tree).",
+            "Cada nível da árvore corresponde exatamente ao vetor de distância dist[v].",
+            "Arestas do grafo original que não estão na árvore conectam nós do mesmo nível ou de níveis adjacentes (|dist[u] - dist[v]| <= 1).",
+            "Nunca existem arestas cruzando dois ou mais níveis de distância em um grafo não direcionado."
+          ],
+          "notes": "A árvore BFS decompõe o grafo em estratos horizontais. Isso é útil para provar propriedades de diâmetro e caminhos mínimos."
+        },
+        {
+          "title": "Rastreamento Passo a Passo da BFS (Tabela de Estados)",
+          "points": [
+            "Passo 0: Fila=[1], dist[1]=0. Outros -1. Enfileira 1 e marca visitado.",
+            "Passo 1: Retira 1. Vizinhos 2 e 3 descobertos. dist[2]=1, dist[3]=1. Fila=[2, 3].",
+            "Passo 2: Retira 2. Vizinhos 4 e 5 descobertos. dist[4]=2, dist[5]=2. Fila=[3, 4, 5].",
+            "Passo 3: Retira 3. Vizinho 6 descoberto. dist[6]=2. Fila=[4, 5, 6].",
+            "A busca termina quando a fila fica vazia: todos os nós alcançáveis foram explorados."
+          ],
+          "notes": "Visualizar a tabela de estados passo a passo ajuda a fixar que nós no mesmo nível são processados juntos."
+        },
+        {
+          "title": "A Armadilha Fatal de Maratona: Push vs Pop",
+          "points": [
+            "ERRO CLÁSSICO: Marcar o nó como visitado apenas ao retirá-lo da fila (q.pop()).",
+            "O QUE ACONTECE: Múltiplos vizinhos podem enfileirar o mesmo nó antes que ele saia da fila.",
+            "CONSEQUÊNCIA: A fila cresce exponencialmente, gerando Time Limit Exceeded (TLE) e Memory Limit Exceeded (MLE).",
+            "REGRA DE OURO: Sempre marque como visitado IMEDIATAMENTE ao inserir na fila (q.push())."
+          ],
+          "notes": "Esse é o bug que mais elimina competidores em problemas de BFS em matriz/grid. Se você marca no pop em uma matriz 1000x1000, o mesmo nó pode ser enfileirado 4 vezes por passos vizinhos, explodindo a memória."
+        },
+        {
+          "title": "BFS em Matriz / Grid 2D (Labirintos)",
+          "points": [
+            "Cada célula (r, c) é um vértice. As arestas são os movimentos para as 4 direções.",
+            "Vetores de deslocamento: int dr[] = {-1, 1, 0, 0}; int dc[] = {0, 0, -1, 1};",
+            "Fila armazena pares de coordenadas: queue<pair<int, int>> q;",
+            "Matriz de distâncias e visitados: int dist[N][M]; inicializada com -1."
+          ],
+          "notes": "A verificação dos limites (0 <= nr < N && 0 <= nc < M) e se a célula não é parede (#) deve ser feita antes de enfileirar."
+        },
+        {
+          "title": "Busca em Profundidade (DFS): O Fio de Teseu",
+          "points": [
+            "A estratégia de ir o mais fundo possível por um caminho até atingir um beco sem saída.",
+            "Ao encontrar um nó sem vizinhos não visitados, realiza o retrocesso (backtracking).",
+            "Estrutura essencial: PILHA (Stack) com política LIFO (Last-In, First-Out).",
+            "Na prática: implementada elegantemente pela própria PILHA DE CHAMADAS da recursão."
+          ],
+          "notes": "A DFS não encontra caminhos mínimos em arestas, mas é a ferramenta definitiva para analisar a conectividade estrutural, componentes e ciclos de um grafo."
+        },
+        {
+          "title": "A Pilha de Recursão e o Risco de Stack Overflow",
+          "points": [
+            "Cada chamada dfs(u) aloca um registro de ativação na pilha do sistema.",
+            "Se o grafo for uma linha de V = 2 * 10^5 vértices, a profundidade de recursão chega a 200.000 chamadas.",
+            "O limite padrão de pilha do Linux é de 8 MB; chamadas profundas podem estourar a pilha, gerando Runtime Error (RTE / SIGSEGV).",
+            "Solução em maratona: Em C++, aumente o limite da pilha com setrlimit() ou use uma pilha explícita std::stack."
+          ],
+          "notes": "Em problemas da Codeforces ou maratonas da SBC com grafos grandes em árvore ou linha, a recursão profunda sem cuidados pode abortar submissões corretas."
+        },
+        {
+          "title": "Os Três Estados dos Vértices na DFS (Cores)",
+          "points": [
+            "Branco (White / 0): Vértice ainda não descoberto/visitado.",
+            "Cinza (Gray / 1): Vértice descoberto, ATUALMENTE na pilha ativa de recursão (seus descendentes estão sendo explorados).",
+            "Preto (Black / 2): Vértice totalmente concluído (todos os seus vizinhos e subárvore foram explorados e desempilhados).",
+            "Esse esquema de 3 cores é a chave para classificar arestas e detectar ciclos."
+          ],
+          "notes": "Um array int cor[N] com valores 0, 1 e 2 permite que a DFS identifique exatamente a topologia do grafo."
+        },
+        {
+          "title": "Tempos de Entrada e Saída (tin e tout)",
+          "points": [
+            "Contador de tempo global iniciado em 0 que incrementa a cada evento de entrada e saída.",
+            "tin[u]: instante em que dfs(u) é chamada (o nó entra na pilha).",
+            "tout[u]: instante em que dfs(u) termina (o nó sai da pilha).",
+            "Propriedade de Parênteses: O nó v é descendente de u na árvore DFS se e somente se [tin[v], tout[v]] está contido dentro de [tin[u], tout[u]]."
+          ],
+          "notes": "Os intervalos de tempo [tin, tout] permitem responder se u é ancestral de v em O(1), sendo a base da subida binária para Lowest Common Ancestor (LCA)."
+        },
+        {
+          "title": "A Árvore DFS e os 4 Tipos de Arestas",
+          "points": [
+            "Durante a execução da DFS em um dígrafo, cada aresta (u -> v) pertence a uma de 4 categorias:",
+            "1. Tree Edge: Leva a um nó Branco (novo nó na árvore DFS).",
+            "2. Back Edge: Leva a um nó Cinza (ancestral ativo na pilha de chamadas).",
+            "3. Forward Edge: Leva a um nó Preto que é descendente de u na árvore DFS.",
+            "4. Cross Edge: Leva a um nó Preto que NÃO é ancestral nem descendente de u (ramos distintos)."
+          ],
+          "notes": "Essa classificação clássica (Erickson / Cormen) é a base de quase todos os teoremas avançados de grafos."
+        },
+        {
+          "title": "Detecção de Ciclos: O Teorema da Back-Edge",
+          "points": [
+            "Teorema Fundamental: Um grafo direcionado possui um ciclo se e somente se a DFS encontra pelo menos uma Back Edge.",
+            "Por que? Porque uma Back Edge aponta de volta para um nó que já está no caminho ativo da pilha de recursão.",
+            "Em grafos NÃO direcionados: basta verificar se existe aresta para um nó já visitado que NÃO seja o pai direto na árvore DFS.",
+            "Complexidade: O(V + E) para certificar se o grafo é acíclico ou cíclico."
+          ],
+          "notes": "A presença de uma aresta apontando para um vértice no estado Cinza prova sem ambiguidade a existência de ciclo direcionado."
+        },
+        {
+          "title": "Ordenação Topológica em DAGs",
+          "points": [
+            "Objetivo: Ordenar os vértices de forma que para toda aresta u -> v, u apareça antes de v na lista.",
+            "Método 1 (DFS): Execute DFS. Ao finalizar cada nó (quando ele fica Preto), adicione-o a uma lista. Inverta a lista no final.",
+            "Por que funciona? Porque se u -> v, v termina e fica Preto antes de u terminar (pois não há ciclos). Logo, u precede v na ordem inversa.",
+            "Método 2 (Algoritmo de Kahn): Fila com nós de grau de entrada (in-degree) zero. Remove nós e decrementa graus dos vizinhos."
+          ],
+          "notes": "Se o algoritmo de Kahn não processar todos os N vértices, o grafo possui um ciclo e a ordenação topológica é impossível."
+        },
+        {
+          "title": "Componentes Conexas e Fortemente Conexas (SCC)",
+          "points": [
+            "Componentes Conexas (Não-direcionados): laço externo 'for (int i = 1; i <= n; i++) if (!vis[i]) dfs(i);'. Cada chamada cobre uma componente inteira.",
+            "Componentes Fortemente Conexas (Dígrafos): subgrafos máximos onde todo par de vértices é mutuamente alcançável.",
+            "Algoritmo de Kosaraju: duas passadas de DFS (uma no grafo original e outra no grafo transposto/invertido).",
+            "Algoritmo de Tarjan: uma única passada de DFS rastreando tin e valores low[u]."
+          ],
+          "notes": "Condensar um dígrafo em suas SCCs produz um DAG de componentes, permitindo aplicar DP sobre as componentes."
+        },
+        {
+          "title": "Grafos Bipartidos e 2-Coloração",
+          "points": [
+            "Grafo Bipartido: os vértices podem ser divididos em dois conjuntos independentes L e R, sem arestas internas.",
+            "Teorema de König: Um grafo é bipartido se e somente se NÃO possui ciclos de comprimento ímpar.",
+            "Teste de Bipartição: use BFS ou DFS alternando cores (0 e 1). Se um vizinho já colorido tiver a mesma cor do nó atual, o grafo não é bipartido.",
+            "Aplicações: Emparelhamento máximo (Maximum Matching) e problemas de atribuição de tarefas."
+          ],
+          "notes": "Se o teste com 2 cores encontrar conflito, você achou um ciclo ímpar e provou que a bipartição é inviável."
+        },
+        {
+          "title": "BFS 0-1 com Deque (Pesos 0 e 1)",
+          "points": [
+            "Quando as arestas possuem peso 0 ou 1, a BFS clássica falha, mas Dijkstra O(E log V) é excessivo.",
+            "A solução ótima é a BFS 0-1 usando std::deque<int> em O(V + E) tempo linear.",
+            "Se a aresta tem peso 0: insere na frente da deque (q.push_front(v)) com a mesma distância.",
+            "Se a aresta tem peso 1: insere no fundo da deque (q.push_back(v)) com dist + 1.",
+            "A invariante de monotonicidade da fila é perfeitamente preservada."
+          ],
+          "notes": "Técnica muito frequente em maratona para labirintos com portas que podem ser abertas sem custo ou com custo unitário."
+        }
+      ],
+      "videos": [
+        {
+          "title": "Grafos",
+          "url": "https://www.youtube.com/watch?v=jg4R9RoQv6Y",
+          "publisher": "AoCPC Community",
+          "source_url": "https://aocpc-community.github.io/aocpc-guide/guide/aprender/",
+          "language": "Português",
+          "catalog_checked": "2026-10-24"
+        },
+        {
+          "title": "Prática: Grafos",
+          "url": "https://www.youtube.com/watch?v=a6LUbD118E8",
+          "publisher": "AoCPC Community",
+          "source_url": "https://aocpc-community.github.io/aocpc-guide/guide/aprender/",
+          "language": "Português",
+          "catalog_checked": "2026-10-24"
+        }
+      ],
+      "questions": [
+        {
+          "kind": "diagnostic",
+          "prompt": "Qual estrutura mantém a fronteira de uma BFS comum?",
+          "options": [
+            "Pilha",
+            "Fila FIFO",
+            "Árvore de busca",
+            "Somente uma variável"
+          ],
+          "answer": 1,
+          "explanation": "A fila garante a ordem por camadas necessária à BFS.",
+          "id": "graph_1"
+        },
+        {
+          "kind": "diagnostic",
+          "prompt": "Em qual cenário a BFS comum garante o menor número de arestas até um destino?",
+          "options": [
+            "Arestas de custo unitário",
+            "Pesos negativos arbitrários",
+            "Qualquer grafo ponderado sem condições",
+            "Somente grafos completos"
+          ],
+          "answer": 0,
+          "explanation": "Com custo unitário, avançar uma camada equivale a acrescentar uma aresta ao caminho mínimo.",
+          "id": "graph_2"
+        },
+        {
+          "kind": "review",
+          "prompt": "Um vértice não é alcançado pela BFS iniciada em s. Uma representação usual da distância é:",
+          "options": [
+            "0 sempre",
+            "-1 como marcador de inalcançável",
+            "O grau do vértice",
+            "N² obrigatoriamente"
+          ],
+          "answer": 1,
+          "explanation": "O marcador distingue vértices não descobertos da origem, cuja distância é zero.",
+          "id": "graph_3"
+        },
+        {
+          "kind": "review",
+          "prompt": "Com lista de adjacências e visitados, o custo de BFS é:",
+          "options": [
+            "O(NM)",
+            "O(N+M)",
+            "O(2^N)",
+            "O(log M)"
+          ],
+          "answer": 1,
+          "explanation": "Cada vértice e cada aresta são processados um número limitado de vezes.",
+          "id": "graph_4"
+        }
+      ]
+    },
+    {
+      "id": "tree",
+      "title": "Árvores",
+      "prerequisites": [
+        "graph"
+      ],
+      "minutes": 55,
+      "summary": "Uma árvore não direcionada é um grafo conectado sem ciclos. A existência de um caminho simples único entre cada par de vértices permite raciocínios que não valem para grafos gerais, como encontrar um diâmetro com duas buscas.",
+      "objectives": [
+        "Reconhecer as propriedades de uma árvore.",
+        "Distinguir profundidade, altura e diâmetro.",
+        "Justificar o uso de duas buscas em árvore não ponderada."
+      ],
+      "sections": [
+        {
+          "title": "Uma estrutura com caminhos únicos",
+          "body": "Em uma árvore conectada de N vértices existem N-1 arestas. Entre quaisquer dois vértices há um único caminho simples. Ao remover uma aresta, a estrutura se desconecta; ao adicionar uma ligação entre dois vértices já existentes, aparece um ciclo. Essas propriedades permitem separar subárvores a partir de uma raiz, mas a raiz é uma escolha de interpretação e não uma exigência da árvore não direcionada."
+        },
+        {
+          "title": "Profundidade, altura e diâmetro",
+          "body": "A profundidade mede a distância da raiz a um vértice. A altura da árvore enraizada é a maior profundidade. O diâmetro é a maior distância entre quaisquer dois vértices e pode não começar na raiz escolhida. Em uma estrela, a altura a partir do centro é 1, mas o diâmetro é 2. Declare se as distâncias contam arestas ou vértices."
+        },
+        {
+          "title": "Duas buscas para o diâmetro",
+          "body": "Em uma árvore não ponderada, faça uma BFS de um vértice qualquer e escolha um extremo mais distante u. Uma BFS a partir de u encontra um vértice v cuja distância é o diâmetro. O argumento usa caminhos únicos e a estrutura sem ciclos; não generalize o procedimento para um grafo arbitrário. A segunda busca não deve reusar distâncias da primeira sem reinicialização."
+        },
+        {
+          "title": "Limites e implementação",
+          "body": "Duas BFS ainda custam O(N), pois a árvore tem N-1 arestas. Uma árvore em cadeia pode ter profundidade N-1; uma DFS recursiva nessa entrada pode exceder a pilha de execução. A versão iterativa evita esse problema específico. Para N=1, não há arestas e o diâmetro em arestas é zero. Não confunda árvores comuns com segment trees: essa última é uma estrutura de consulta construída sobre intervalos."
+        }
+      ],
+      "example": {
+        "story": "Uma estrela com centro C e folhas A, B e D tem altura 1 quando enraizada em C. Uma busca encontra uma folha; outra busca dessa folha chega às demais com distância 2, o diâmetro.",
+        "code": "// Cada busca deve começar com distâncias novas.\nvector<int> distancia(n, -1);\n// Em árvores grandes, uma fila permite explorar sem recursão profunda.",
+        "trace": [
+          "Raiz C: folhas na profundidade 1.",
+          "Escolha uma folha distante, por exemplo A.",
+          "A partir de A: C está a 1 aresta.",
+          "B e D estão a 2 arestas: diâmetro = 2."
+        ]
+      },
+      "pitfalls": [
+        "Confundir altura a partir da raiz com diâmetro.",
+        "Aplicar o método de duas BFS a qualquer grafo.",
+        "Usar recursão profunda sem considerar o limite da pilha."
+      ],
+      "challenge": "Desenhe uma cadeia com cinco vértices e uma estrela com cinco vértices. Compare altura a partir de uma raiz escolhida e diâmetro em arestas.",
+      "slides": [
+        {
+          "title": "Árvores na Teoria dos Grafos",
+          "points": [
+            "Uma árvore é um grafo conexo e acíclico.",
+            "Propriedades equivalentes fundamentais para um grafo de V vértices:",
+            "- G é conexo e possui exatamente V - 1 arestas.",
+            "- G é acíclico e possui exatamente V - 1 arestas.",
+            "- Existe exatamente UM caminho simples entre qualquer par de vértices u e v.",
+            "- Adicionar qualquer aresta nova cria exatamente um ciclo."
+          ],
+          "notes": "Essa unicidade do caminho entre quaisquer dois nós torna algoritmos em árvores muito mais simples e eficientes que em grafos gerais."
+        },
+        {
+          "title": "Árvores com Raiz (Rooted Trees)",
+          "points": [
+            "Fixar um vértice como RAIZ estabelece uma hierarquia orientada natural sobre toda a árvore.",
+            "Relações familiares: Pai (parent), Filhos (children), Ancestrais e Descendentes.",
+            "Vértices sem filhos são chamados de FOLHAS (leaves).",
+            "Subárvore de u: o subgrafo composto por u e todos os seus descendentes."
+          ],
+          "notes": "A maioria dos algoritmos de programação competitiva trata árvores como enraizadas em um nó conveniente (geralmente o nó 1)."
+        },
+        {
+          "title": "Representação de Árvores em C++",
+          "points": [
+            "Armazene a árvore como uma lista de adjacência não-direcionada: vector<int> adj[N];",
+            "A GRANDE VANTAGEM: em árvores, NÃO precisamos de array de visitados (visited[])!",
+            "Basta passar o PAI como parâmetro na recursão: void dfs(int u, int p) { for (int v : adj[u]) if (v != p) dfs(v, u); }",
+            "A condição 'v != p' impede que a busca retorne pelo caminho de onde veio, garantindo visita linear O(V)."
+          ],
+          "notes": "Eliminar o array visited passando o pai economiza memória e deixa o código extremamente conciso."
+        },
+        {
+          "title": "Travessias Clássicas em Árvores",
+          "points": [
+            "Pré-Ordem (Pre-Order): visita a raiz antes dos filhos (u -> filhos).",
+            "Pós-Ordem (Post-Order): visita todos os filhos antes da raiz (filhos -> u). Ideal para calcular propriedades de subárvores de baixo para cima.",
+            "Em-Ordem (In-Order): aplicável a árvores binárias (filho esquerdo -> raiz -> filho direito). Produz elementos em ordem crescente em BSTs.",
+            "Todas as travessias executam em tempo O(V) estritamente linear."
+          ],
+          "notes": "A pós-ordem é o coração da Tree DP: você resolve os filhos primeiro e combina seus resultados para resolver o pai."
+        },
+        {
+          "title": "Cálculo de Tamanhos e Alturas de Subárvores",
+          "points": [
+            "sz[u]: número de nós na subárvore de u. Inicializa sz[u] = 1; para cada filho v, sz[u] += sz[v].",
+            "depth[u]: distância da raiz até o nó u. depth[u] = depth[p] + 1 com depth[raiz] = 0.",
+            "height[u]: maior distância de u até uma folha de sua subárvore. height[u] = 1 + max(height[v]).",
+            "Todas essas grandezas fundamentais são calculadas em uma única passada de DFS em O(V)."
+          ],
+          "notes": "Saber o tamanho de cada subárvore é o pré-requisito para decomposições pesadas (Centroid Decomposition e HLD)."
+        },
+        {
+          "title": "O Euler Tour (Achatamento de Árvores)",
+          "points": [
+            "Técnica genial que mapeia uma árvore hierárquica em um array unidimensional simples!",
+            "Registre o tempo de entrada tin[u] e de saída tout[u] com um contador global durante a DFS.",
+            "PROPRIEDADE MÁGICA: Todos os nós da subárvore de u caem exatamente no intervalo contíguo [tin[u], tout[u]] do Euler Tour!",
+            "Isso transforma qualquer consulta ou atualização em subárvores em uma consulta de intervalo 1D (usando Prefix Sums ou SegTree)!"
+          ],
+          "notes": "Achatamento de árvores com Euler Tour é um dos tópicos favoritos das etapas nacionais da Maratona e OBI."
+        },
+        {
+          "title": "Diâmetro de uma Árvore: Definição",
+          "points": [
+            "O diâmetro de uma árvore é o comprimento do MAIOR caminho simples entre quaisquer dois vértices da árvore.",
+            "É a maior distância entre dois nós na árvore inteira.",
+            "Aplicações: encontrar a rede de menor latência máxima, balanceamento de servidores e raio de cobertura."
+          ],
+          "notes": "Em árvores ponderadas, o diâmetro considera a soma dos pesos das arestas."
+        },
+        {
+          "title": "O Algoritmo dos Dois BFS/DFS para Diâmetro",
+          "points": [
+            "Algoritmo extremamente simples e elegante em O(V):",
+            "Passo 1: Escolha um nó inicial arbitrário qualquer (ex: nó 1). Execute uma BFS/DFS e encontre o nó 'A' mais distante de 1.",
+            "Passo 2: Execute uma segunda BFS/DFS a partir do nó 'A' e encontre o nó 'B' mais distante de A.",
+            "A distância entre A e B é GARANTIDAMENTE o diâmetro da árvore, e o caminho entre eles é o caminho diametral!"
+          ],
+          "notes": "Funciona para qualquer árvore com pesos de arestas não negativos em tempo linear O(V + E)."
+        },
+        {
+          "title": "Por que o Algoritmo dos Dois BFS Funciona? (Demonstração)",
+          "points": [
+            "Teorema: A partir de qualquer nó inicial x, o nó mais distante y pertence a uma das extremidades de algum diâmetro da árvore.",
+            "Intuição geométrica: o caminho de x até o diâmetro intercepta o diâmetro em algum nó intermediário.",
+            "Para maximizar a distância a partir de x, o caminho mais longo é forçado a seguir até uma das pontas do diâmetro.",
+            "Portanto, a segunda busca partindo da ponta A necessariamente alcança a ponta oposta B."
+          ],
+          "notes": "Essa prova é um clássico de teoria dos grafos e garante a corretude do método."
+        },
+        {
+          "title": "O Centro de uma Árvore",
+          "points": [
+            "O centro de uma árvore é o vértice que MINIMIZA a maior distância até qualquer outro nó (o nó mais 'central' da rede).",
+            "Toda árvore possui exatamente UM ou DOIS centros.",
+            "Como encontrar: o(s) centro(s) é(são) exatamente o(s) nó(s) no MEIO do caminho diametral!",
+            "Se o diâmetro tiver comprimento par D = 2k, o centro é único a k passos de A. Se for ímpar D = 2k + 1, existem dois centros adjacentes."
+          ],
+          "notes": "Enraizar uma árvore em seu centro produz a menor altura possível da árvore (altura = ceil(D / 2))."
+        },
+        {
+          "title": "Tree DP: Programação Dinâmica em Árvores",
+          "points": [
+            "Problema clássico: Maior Conjunto Independente em Árvore (Maximum Independent Set).",
+            "Conjunto de nós sem arestas entre si. Cada nó tem peso. Queremos a maior soma de pesos.",
+            "Estado para cada nó u: dp[u][0] (u NÃO é incluído) e dp[u][1] (u É incluído).",
+            "Transições: se u não é incluído, os filhos podem ou não ser incluídos: dp[u][0] = soma(max(dp[v][0], dp[v][1])).",
+            "Se u é incluído, NENHUM filho pode ser incluído: dp[u][1] = peso[u] + soma(dp[v][0])."
+          ],
+          "notes": "Tree DP é resolvida em O(V) com uma simples DFS em pós-ordem que combina os valores dos filhos."
+        },
+        {
+          "title": "Re-enraizamento em Árvores (Rerooting DP)",
+          "points": [
+            "Problema: para CADA vértice u da árvore, calcular a soma das distâncias de u para todos os outros nós.",
+            "Abordagem ingênua: rodar uma BFS para cada nó -> O(V^2) -> TLE para V = 2 * 10^5.",
+            "Abordagem de Rerooting em O(V):",
+            "Passo 1: Calcule a resposta para a raiz arbitrária 1 com uma DFS subindo.",
+            "Passo 2: Com uma segunda DFS descendo, transfira a raiz de pai para filho em O(1): ao descer para o filho v, nós na subárvore de v ficam 1 passo mais perto, e nós fora da subárvore ficam 1 passo mais longe!",
+            "Fórmula de transição: ans[v] = ans[u] - sz[v] + (N - sz[v])."
+          ],
+          "notes": "O padrão de Rerooting em duas passadas é um dos tópicos de nível avançado mais bonitos de maratonas internacionais."
+        },
+        {
+          "title": "O Problema do Menor Ancestral Comum (LCA)",
+          "points": [
+            "LCA(u, v): o nó mais profundo na árvore que é ancestral simultaneamente de u e de v.",
+            "É o ponto onde os caminhos da raiz até u e da raiz até v divergem.",
+            "Fundamental para calcular distâncias entre nós em O(log N): dist(u, v) = depth[u] + depth[v] - 2 * depth[LCA(u, v)].",
+            "Aplicações: consultas em caminhos, menor caminho em redes, genealogia."
+          ],
+          "notes": "Quase qualquer problema de consultas em caminhos de árvore se reduz a encontrar o LCA dos nós."
+        },
+        {
+          "title": "Abordagem Ingênua de LCA e seus Limites",
+          "points": [
+            "Abordagem 1: suba o nó mais profundo até que u e v estejam na mesma profundidade. Depois, suba ambos nó a nó até que se encontrem.",
+            "No melhor caso (árvore perfeitamente balanceada): O(log N).",
+            "No pior caso (árvore degenerada em linha reta): a profundidade é O(N). Para Q consultas, o tempo total é O(Q * N) -> TLE!",
+            "Precisamos de uma técnica que responda cada consulta em tempo O(log N) independente do formato da árvore."
+          ],
+          "notes": "Em maratona, juízes com testes adversariais sempre incluem árvores em linha para derrubar o LCA ingênuo."
+        },
+        {
+          "title": "Subida Binária (Binary Lifting para LCA)",
+          "points": [
+            "A técnica padrão absoluta para responder consultas de LCA em O(log N).",
+            "Pré-cálculo: matriz up[N][20], onde up[u][i] é o 2^i-ésimo ancestral do nó u.",
+            "Recorrência: up[u][0] = pai[u]; up[u][i] = up[up[u][i-1]][i-1] (saltar 2^i passos é o mesmo que saltar 2^(i-1) passos duas vezes!).",
+            "Tempo de pré-cálculo: O(N log N) com uma DFS inicial."
+          ],
+          "notes": "Como 2^19 > 5 * 10^5, uma tabela com 20 colunas é suficiente para qualquer árvore com até 500.000 nós."
+        },
+        {
+          "title": "Como Responder a Consulta de LCA em O(log N)",
+          "points": [
+            "Passo 1: Suponha depth[u] >= depth[v]. Se u for mais profundo, use potências de 2 decrescentes para subir u até que depth[u] == depth[v].",
+            "Passo 2: Se após nivelar u == v, o próprio v era ancestral de u, retorne v imediatamente!",
+            "Passo 3: Se u != v, tente saltar potências 2^19, 2^18, ..., 2^0 com ambos u e v simulaneamente. Se up[u][i] != up[v][i], dê o salto!",
+            "No final, u e v estarão imediatamente abaixo do LCA. Retorne up[u][0] (o pai de u)."
+          ],
+          "notes": "Cada consulta faz no máximo 20 iterações em C++, respondendo em menos de 1 microssegundo."
+        },
+        {
+          "title": "Consultas de Mínimo/Máximo em Caminhos com Binary Lifting",
+          "points": [
+            "Podemos estender a tabela up[u][i] para carregar grandezas ao longo do caminho!",
+            "max_edge[u][i]: maior peso de aresta nos 2^i saltos acima de u.",
+            "Recorrência: max_edge[u][i] = max(max_edge[u][i-1], max_edge[up[u][i-1]][i-1]).",
+            "Permite responder: 'qual a aresta mais pesada no caminho entre u e v?' em O(log N) consultas!"
+          ],
+          "notes": "Combina o conceito de Sparse Table com a estrutura de árvore de forma unificada."
+        },
+        {
+          "title": "Somas de Prefixos em Árvores",
+          "points": [
+            "Problema: somar valores em caminhos de árvore de u até v.",
+            "Seja pref[u] a soma acumulada dos valores dos nós desde a raiz até o nó u.",
+            "Fórmula da soma no caminho entre u e v:",
+            "Soma(u, v) = pref[u] + pref[v] - pref[LCA(u, v)] - pref[pai(LCA(u, v))].",
+            "Responde a soma de qualquer caminho em tempo O(log N) (tempo para achar o LCA)!"
+          ],
+          "notes": "Exatamente o análogo em árvore da fórmula de inclusão-exclusão de prefix sums unidimensional."
+        },
+        {
+          "title": "Armadilhas de Maratona em Árvores",
+          "points": [
+            "1. Árvores em linha: nunca use recursões sem garantir que a pilha do sistema suporte profundidade N.",
+            "2. Árvores com pesos negativos: o diâmetro pode não coincidir com o método de 2 BFS (exige DP).",
+            "3. Nó raiz especial: acessar pai da raiz no cálculo de LCA pode acessar índice 0 com lixo de memória se não inicializado com 0.",
+            "4. Esquecer que N nós em uma árvore implicam exatamente N - 1 arestas."
+          ],
+          "notes": "Sempre aponte up[raiz][i] = raiz para que saltos além da raiz permaneçam na própria raiz de forma segura."
+        },
+        {
+          "title": "Checklist de Árvores para Competições",
+          "points": [
+            "1. Implementou a DFS passando o nó pai (u, p) para evitar array de visitados?",
+            "2. O tamanho da matriz de binary lifting tem colunas suficientes (log2(N) + 1)?",
+            "3. Tratou o caso de consultas onde u == v ou onde um nó é ancestral direto do outro?",
+            "4. Verificou se a árvore é 1-indexed para evitar conflito com nó 0?"
+          ],
+          "notes": "Com este checklist, qualquer problema clássico de árvores na OBI ou ICPC é resolvido com código limpo e seguro."
+        }
+      ],
+      "videos": [
+        {
+          "title": "Grafos",
+          "url": "https://www.youtube.com/watch?v=jg4R9RoQv6Y",
+          "publisher": "AoCPC Community",
+          "source_url": "https://aocpc-community.github.io/aocpc-guide/guide/aprender/",
+          "language": "Português",
+          "catalog_checked": "2026-10-24"
+        },
+        {
+          "title": "Prática: Grafos",
+          "url": "https://www.youtube.com/watch?v=a6LUbD118E8",
+          "publisher": "AoCPC Community",
+          "source_url": "https://aocpc-community.github.io/aocpc-guide/guide/aprender/",
+          "language": "Português",
+          "catalog_checked": "2026-10-24"
+        }
+      ],
+      "questions": [
+        {
+          "kind": "diagnostic",
+          "prompt": "Quantas arestas tem uma árvore conectada com N vértices?",
+          "options": [
+            "N",
+            "N-1",
+            "N+1",
+            "Sempre 2N"
+          ],
+          "answer": 1,
+          "explanation": "Uma árvore conectada e acíclica tem exatamente N-1 arestas.",
+          "id": "tree_1"
+        },
+        {
+          "kind": "diagnostic",
+          "prompt": "O diâmetro de uma árvore é:",
+          "options": [
+            "Seu maior grau",
+            "A maior distância entre dois vértices",
+            "A quantidade de folhas",
+            "Sempre a profundidade da raiz"
+          ],
+          "answer": 1,
+          "explanation": "O diâmetro maximiza a distância entre qualquer par de vértices.",
+          "id": "tree_2"
+        },
+        {
+          "kind": "review",
+          "prompt": "Uma estrela com centro e três folhas tem diâmetro em arestas igual a:",
+          "options": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "answer": 1,
+          "explanation": "O caminho entre duas folhas passa por duas arestas, atravessando o centro.",
+          "id": "tree_3"
+        },
+        {
+          "kind": "review",
+          "prompt": "Qual entrada pode causar profundidade recursiva O(N) em uma DFS de árvore?",
+          "options": [
+            "Uma cadeia longa",
+            "Somente N=1",
+            "Qualquer estrela de altura 1",
+            "Nenhuma árvore"
+          ],
+          "answer": 0,
+          "explanation": "Em uma cadeia, os chamados recursivos podem seguir um caminho de N vértices.",
+          "id": "tree_4"
+        }
+      ]
+    }
+  ]
+}

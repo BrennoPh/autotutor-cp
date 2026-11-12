@@ -1,0 +1,374 @@
+{
+  "version": 1,
+  "guides": [
+    {
+      "id": "deep_fundamentals",
+      "topic_id": "fundamentals",
+      "title": "Da leitura ao primeiro Accepted",
+      "prerequisites": "Variáveis, condicionais e laços",
+      "minutes": 35,
+      "sections": [
+        {
+          "title": "Transforme a entrada em um contrato",
+          "body": "Antes de programar, descreva cada linha da entrada e o significado de cada número. Separe tamanho, valor, índice e quantidade de consultas: todos podem ser inteiros, mas têm papéis diferentes. Escreva a resposta como uma função desses dados. Em Missing Number, a ordem de chegada é irrelevante; em Repetitions, trocar a ordem pode mudar o resultado. Essa diferença decide se ordenar os dados preserva a pergunta. Um exemplo confirma uma interpretação, mas não demonstra que ela está correta em todas as entradas."
+        },
+        {
+          "title": "Estime o maior estado intermediário",
+          "body": "Não escolha tipos apenas pelo maior valor lido. Com 200000 valores de até um bilhão, uma soma pode chegar a 200000000000000. Esse total exige 64 bits. A expressão n*(n+1) pode transbordar antes de ser atribuída a long long se ambos os operandos forem int; promova um fator antes da multiplicação. Por outro lado, índices negativos e leituras fora do vetor continuam errados com tipos maiores. Diferencie a capacidade de representar um número da validade de acessar uma posição."
+        },
+        {
+          "title": "Construa uma justificativa curta",
+          "body": "Descreva o que permanece verdadeiro após processar cada elemento. Ao procurar o maior bloco de letras iguais, mantenha o comprimento do bloco terminado na posição atual e o maior bloco já visto. Quando a letra muda, o primeiro contador volta a um; o segundo não perde informação. A inicialização precisa aceitar uma string de uma única letra. A manutenção precisa tratar mudança e repetição. Ao terminar, todo bloco possível já foi considerado. Esse roteiro de inicialização, manutenção e término é uma forma prática de verificar o algoritmo."
+        },
+        {
+          "title": "Teste hipóteses, não apenas exemplos",
+          "body": "Crie casos que mudem uma hipótese de cada vez: um elemento, todos iguais, resposta na primeira posição, resposta na última, valores extremos e sequência decrescente. Para cada caso, calcule a resposta sem executar seu programa. Se houver WA, reduza a entrada mantendo a falha. Um contraexemplo de quatro elementos costuma ser mais explicativo que milhares de números. Para TLE, conte operações em função do tamanho; não tente resolver um crescimento quadrático apenas trocando a forma de ler os dados."
+        },
+        {
+          "title": "Faça uma revisão ativa",
+          "body": "Após conseguir AC, feche o código e explique a ideia em três frases: informação mantida, atualização e custo. No dia seguinte, reconstrua o raciocínio a partir do enunciado. Registre uma decisão que você tomou corretamente e uma falha que deseja reconhecer mais cedo. Durante um treino em trio, outra pessoa pode tentar quebrar a justificativa com casos de fronteira. O objetivo é recuperar o argumento, não decorar a implementação. Se não conseguir explicar por que a ordem dos dados importa, volte ao contrato antes de escrever uma nova versão."
+        }
+      ],
+      "exercises": [
+        {
+          "prompt": "Uma soma de 200000 inteiros de até 10^9 cabe em int de 32 bits? E o índice de cada elemento?",
+          "answer": "A soma pode atingir 2·10^14 e precisa de um tipo de 64 bits. Os índices até 199999 cabem em int; as duas escolhas de tipo resolvem necessidades diferentes."
+        },
+        {
+          "prompt": "Para AACCCCA, quais são os valores finais de bloco atual e maior bloco?",
+          "answer": "O bloco atual termina em A e tem tamanho 1. O maior bloco visto foi CCCC, de tamanho 4. Usar apenas o contador atual perderia a resposta."
+        }
+      ],
+      "author": "AutoTutor · texto e exemplos autorais",
+      "checked": "2026-10-24"
+    },
+    {
+      "id": "deep_structures",
+      "topic_id": "structures",
+      "title": "Escolhendo a estrutura pela operação",
+      "prerequisites": "Arrays, laços e análise de complexidade",
+      "minutes": 35,
+      "sections": [
+        {
+          "title": "Comece pela pergunta que se repete",
+          "body": "Uma estrutura de dados deve responder às operações realmente necessárias. Se você precisa apenas somar tudo uma vez, um acumulador basta. Para contar valores distintos, a informação relevante é a presença de cada valor, não sua ordem original. Um set organiza chaves distintas; um map associa cada chave a um valor, como frequência. Um vector guarda elementos em posições contíguas e permite acesso direto por índice. A estrutura mais sofisticada nem sempre é a melhor: manter informação que nunca será consultada aumenta o código e as possibilidades de erro."
+        },
+        {
+          "title": "Presença, multiplicidade e ordem",
+          "body": "Considere a entrada 4, 4, 9, 4. Um conjunto contém duas chaves, enquanto um mapa de frequências contém 4→3 e 9→1. Apagar a chave 4 do conjunto remove a presença inteira; diminuir sua frequência de três para dois preserva duas ocorrências. Se a próxima pergunta for o menor valor disponível, uma estrutura ordenada ajuda. Se for apenas testar igualdade de chaves, uma tabela hash pode ser suficiente. Seu custo esperado não deve ser confundido com garantia de pior caso para entradas adversariais."
+        },
+        {
+          "title": "Desmonte uma consulta em intervalos",
+          "body": "Para encontrar o mínimo num intervalo fixo, dividir o vetor em blocos permite reutilizar resultados parciais. Uma árvore de segmentos agrupa intervalos hierarquicamente: cada pai resume os dois filhos. A operação mínimo é associativa, então a decomposição não altera a resposta. O elemento neutro é um valor maior ou igual a qualquer entrada possível. Usar zero como neutro em um vetor de valores positivos introduziria um mínimo que nunca existiu. A consulta deve incluir exatamente as posições pedidas, principalmente quando l=r."
+        },
+        {
+          "title": "Memória também é uma restrição",
+          "body": "Um milhão de elementos de oito bytes ocupa aproximadamente oito milhões de bytes de dados, além da estrutura que os contém. Uma tabela com um milhão de linhas e cem colunas já é outra escala. Guarde apenas os resumos exigidos e estime o tamanho antes de alocar. Em C++, cuidado ao manter referências para elementos de um vector e depois aumentar seu tamanho: uma realocação pode invalidá-las. Em uma fila, acessar a frente depois de remover o último elemento também viola o contrato da estrutura."
+        },
+        {
+          "title": "Rotina para implementar com segurança",
+          "body": "Faça uma tabela no papel com operação, custo e efeito sobre o estado. Para uma fila, inserir no fim e remover no início preserva a ordem de chegada. Para uma pilha, o último inserido é o primeiro removido. Escreva um traço de três inserções e duas remoções antes de usar a estrutura num grafo. No problema Distinct Numbers, compare a solução por conjunto com ordenar e contar mudanças. As duas chegam ao mesmo resultado por caminhos diferentes, o que oferece uma boa oportunidade de testar sua compreensão."
+        }
+      ],
+      "exercises": [
+        {
+          "prompt": "Por que inicializar uma consulta de mínimo com zero falha para [7,4,8]?",
+          "answer": "Porque min(0,7,4,8) é zero, que não é uma entrada. Use um neutro adequado, como o maior valor representável, respeitando o tipo."
+        },
+        {
+          "prompt": "Quais dados são perdidos ao transformar [4,4,9,4] em um set?",
+          "answer": "A ordem original e a multiplicidade. O set preserva apenas a presença das chaves 4 e 9; não responde quantas vezes 4 apareceu."
+        }
+      ],
+      "author": "AutoTutor · texto e exemplos autorais",
+      "checked": "2026-10-24"
+    },
+    {
+      "id": "deep_prefix",
+      "topic_id": "prefix",
+      "title": "Prefixos: de consultas a contagem de segmentos",
+      "prerequisites": "Arrays, somas e mapas de frequência",
+      "minutes": 35,
+      "sections": [
+        {
+          "title": "Defina o prefixo vazio",
+          "body": "Escolha uma convenção e escreva-a explicitamente. Com índices de entrada começando em um, P[0]=0 e P[i] representa a soma dos primeiros i elementos. Assim, um intervalo fechado [l,r] contém P[r]−P[l−1]. O prefixo vazio torna a consulta iniciada na primeira posição um caso comum. Se o vetor de programação começa em zero, adapte a tradução na leitura; não misture convenções ao longo da função. A pré-computação custa O(n), e cada soma de intervalo usa duas posições."
+        },
+        {
+          "title": "Uma operação inversa é necessária",
+          "body": "Para somas, retirar o prefixo anterior funciona por subtração. Para XOR, cada bit repetido duas vezes se cancela, então X[r] XOR X[l−1] recupera o intervalo. O mesmo raciocínio não autoriza usar mínimo: conhecer o mínimo até r e o mínimo antes de l não revela quais valores sobraram. Por exemplo, o menor valor global pode estar no trecho removido. Reconhecer a propriedade algébrica evita aplicar uma fórmula familiar a uma operação que não permite desfazer o prefixo."
+        },
+        {
+          "title": "Troque intervalos por pares de prefixos",
+          "body": "Se a soma desejada é k, um segmento terminado em r corresponde a um índice anterior j com P[j]=P[r]−k. Em vez de testar todos os inícios, mantenha quantas vezes cada prefixo anterior apareceu. Para [2,−2,0] e alvo zero, os prefixos são 0,2,0,0. Ao chegar ao segundo zero acumulado há um prefixo anterior compatível; no terceiro há dois. São três segmentos. Valores negativos não impedem essa transformação, mas podem invalidar a monotonicidade exigida por uma janela deslizante simples."
+        },
+        {
+          "title": "Consulte antes de inserir",
+          "body": "No processamento de cada posição, consulte a frequência de P[r]−k e só depois registre P[r]. Se inserir antes, quando k=0 você contará o segmento vazio formado por usar a mesma posição como início e fim. Inicialize a frequência de zero em um para representar o prefixo vazio real. A quantidade de segmentos pode chegar a n(n+1)/2, portanto o contador também pode precisar de 64 bits. O tipo do valor acumulado e o tipo da quantidade de respostas merecem verificações separadas."
+        },
+        {
+          "title": "Reconheça quando a técnica deixa de servir",
+          "body": "Prefixos estáticos funcionam porque o vetor não muda. Alterar uma posição pode modificar todos os prefixos posteriores. Se atualizações e consultas se alternam, procure uma estrutura dinâmica, como Fenwick ou árvore de segmentos, conforme a operação. Em duas dimensões, desenhe o retângulo e suas sobreposições antes de memorizar sinais: somar dois prefixos inclui a interseção duas vezes. Um bom exercício é calcular uma consulta por força bruta e conferir a mesma região com os quatro cantos da fórmula."
+        }
+      ],
+      "exercises": [
+        {
+          "prompt": "Quantos segmentos de soma zero existem em [0,0,0]?",
+          "answer": "São 6: três de tamanho um, dois de tamanho dois e um de tamanho três. A fórmula n(n+1)/2 também confirma o resultado."
+        },
+        {
+          "prompt": "Em [3,−1,4,−2], qual é a soma de [2,4] usando prefixos?",
+          "answer": "P=[0,3,2,6,4]. A soma é P[4]−P[1]=4−3=1. Não se deve subtrair P[2], pois isso excluiria também a posição 2."
+        }
+      ],
+      "author": "AutoTutor · texto e exemplos autorais",
+      "checked": "2026-10-24"
+    },
+    {
+      "id": "deep_binary",
+      "topic_id": "binary",
+      "title": "Busca binária como prova de fronteira",
+      "prerequisites": "Ordenação e invariantes de laço",
+      "minutes": 35,
+      "sections": [
+        {
+          "title": "O que deve ser monotônico",
+          "body": "Busca binária não significa apenas procurar um valor num vetor. Ela localiza a fronteira de um predicado que muda uma única vez. Para uma capacidade de transporte, pode ser falso que todos os itens caibam com capacidade pequena e verdadeiro a partir de certo limite. Antes de escrever o laço, explique por que aumentar a capacidade nunca faz uma solução viável deixar de funcionar. Se essa propriedade não vale, eliminar metade do domínio pode descartar a resposta correta."
+        },
+        {
+          "title": "Escolha um intervalo com significado",
+          "body": "Uma convenção útil para a primeira posição verdadeira mantém um limite impossível à esquerda e um limite possível à direita. Outra trabalha com intervalo fechado de candidatos, atualizando l=mid+1 ou r=mid. Ambas são válidas quando usadas de forma consistente. Não copie linhas de convenções diferentes. Escreva o significado de l e r num comentário e confira se cada atribuição o preserva. O progresso do laço deve ser demonstrável mesmo quando restam duas posições."
+        },
+        {
+          "title": "O teste de viabilidade faz parte da solução",
+          "body": "No problema de dividir uma sequência em até k segmentos, uma capacidade candidata permite uma varredura: acrescente valores até precisar abrir outro segmento. O teste deve rejeitar uma capacidade menor que um item isolado. A busca custa O(log intervalo), mas cada passo paga o custo desse teste. Se a checagem custa O(n), o custo total é O(n log intervalo). Dizer apenas O(log n) omite a maior parte do trabalho e pode esconder uma implementação lenta."
+        },
+        {
+          "title": "Calcule um traço completo",
+          "body": "Para cargas [4,2,7] e dois segmentos, teste capacidade 7: [4,2] soma 6 e [7] soma 7, portanto é viável. Teste 6: o próprio item 7 já torna a capacidade impossível. A fronteira é 7. Registre l, r, mid, resposta do predicado e novo intervalo em cada rodada. Esse traço precisa incluir os testes nas extremidades, não apenas o caso em que o meio coincide com a resposta. Ele mostra exatamente onde uma atualização incorreta perderia a fronteira."
+        },
+        {
+          "title": "Proteja aritmética e término",
+          "body": "Use um tipo que comporte a soma das cargas, pois ela pode ser um limite superior. Para limites não negativos que cabem no tipo, l+(r−l)/2 evita somar diretamente dois extremos grandes. Com limites negativos, o arredondamento da divisão inteira exige atenção à convenção escolhida. Teste domínio de um valor, primeira resposta possível e última resposta possível. Ao terminar, confirme o predicado na resposta e sua falha no predecessor, quando esse predecessor pertence ao domínio."
+        }
+      ],
+      "exercises": [
+        {
+          "prompt": "O predicado “x é par” permite buscar a primeira resposta verdadeira em [1,20] por busca binária comum?",
+          "answer": "Não. Ele alterna entre falso e verdadeiro várias vezes; falta uma única fronteira monotônica."
+        },
+        {
+          "prompt": "Uma busca faz 40 checagens, cada uma varre 200000 itens. Qual é a ordem de grandeza do trabalho?",
+          "answer": "Cerca de oito milhões de visitas a itens, além das operações internas. O custo deve incluir o teste de viabilidade, não apenas as 40 rodadas."
+        }
+      ],
+      "author": "AutoTutor · texto e exemplos autorais",
+      "checked": "2026-10-24"
+    },
+    {
+      "id": "deep_math",
+      "topic_id": "math",
+      "title": "Contagem, divisibilidade e limites numéricos",
+      "prerequisites": "Aritmética inteira e laços",
+      "minutes": 35,
+      "sections": [
+        {
+          "title": "Conte sem construir todos os objetos",
+          "body": "Para sequências binárias de comprimento n, cada posição oferece duas escolhas independentes. Há 2^n objetos, mas não precisamos enumerá-los para contar. Em n=4, separar as sequências pela primeira posição produz dois grupos de oito; essa decomposição explica a multiplicação. Quando a pergunta pede uma contagem, procure escolhas independentes ou uma decomposição sem sobreposição. Se um mesmo objeto pertence a vários grupos, somar os grupos sem corrigir essa duplicidade produz uma resposta inflada."
+        },
+        {
+          "title": "Módulo é parte da aritmética",
+          "body": "O pedido de resposta módulo 1000000007 permite reduzir somas e produtos em cada etapa, preservando o resto final. Isso evita guardar números exponencialmente grandes, mas não autoriza dividir normalmente depois de reduzir. Para potências, separe o expoente em potências de dois e reaproveite quadrados sucessivos. Em C++, mesmo operandos já reduzidos podem produzir um produto perto de 10^18: escolha um tipo adequado antes de multiplicar. A existência de um módulo não impede transbordamento intermediário."
+        },
+        {
+          "title": "Interprete os zeros de um fatorial",
+          "body": "Um zero final vem de um fator dez, que combina um fator dois com um fator cinco. Num fatorial há mais fatores dois, então o fator limitante é cinco. Os múltiplos de 25 contribuem com um cinco adicional, os de 125 com outro, e assim por diante. Para 26!, aparecem cinco fatores vindos dos múltiplos de cinco e mais um vindo de 25, totalizando seis zeros. Calcular o fatorial inteiro seria desnecessário e ultrapassaria rapidamente os tipos usuais."
+        },
+        {
+          "title": "Transforme movimentos em equações",
+          "body": "Em duas pilhas de moedas, chame x o número de movimentos que retiram duas moedas da primeira e y o número que retiram duas da segunda. As quantidades iniciais devem satisfazer 2x+y=a e x+2y=b, com x e y inteiros não negativos. Essas exigências dão critérios aritméticos verificáveis. Uma soma divisível por três sozinha não basta: uma pilha muito maior pode esgotar a outra antes do fim. Procurar conservação e não negatividade evita simular bilhões de movimentos."
+        },
+        {
+          "title": "Faça uma bateria de fronteiras",
+          "body": "Teste um, uma potência de cinco, o valor imediatamente anterior e o posterior a ela. Para congruências, experimente valores com mesmo resto e magnitudes muito diferentes. Para moedas, inclua duas pilhas vazias, pilhas iguais e uma pilha vazia com a outra não vazia. Ao escrever uma prova, separe necessidade de suficiência: mostrar que toda solução respeita uma condição não mostra que toda entrada que respeita a condição tem solução. Exemplos ajudam a encontrar uma conjectura; o argumento precisa cobrir o domínio."
+        }
+      ],
+      "exercises": [
+        {
+          "prompt": "Quantos zeros finais tem 125! sem calcular o fatorial?",
+          "answer": "floor(125/5)+floor(125/25)+floor(125/125)=25+5+1=31."
+        },
+        {
+          "prompt": "Por que as pilhas (1,5) não podem ser esvaziadas apesar da soma ser divisível por três?",
+          "answer": "Seriam necessários x=(2·1−5)/3=−1 e y=3 movimentos das duas formas. Quantidade negativa de movimentos é impossível; a proporção entre pilhas também limita a solução."
+        }
+      ],
+      "author": "AutoTutor · texto e exemplos autorais",
+      "checked": "2026-10-24"
+    },
+    {
+      "id": "deep_greedy",
+      "topic_id": "greedy",
+      "title": "Como justificar uma escolha gulosa",
+      "prerequisites": "Ordenação e contraexemplos pequenos",
+      "minutes": 35,
+      "sections": [
+        {
+          "title": "Escolha local precisa de argumento global",
+          "body": "Uma estratégia gulosa fixa uma decisão e não volta atrás. Isso só é seguro quando podemos demonstrar que existe uma solução ótima compatível com a decisão tomada. Ordenar a entrada não constitui essa prova: é apenas uma forma de apresentar candidatos. Antes de implementar, tente produzir uma entrada em que o critério escolhido perde para outra opção. Critérios plausíveis, como maior benefício imediato, menor duração ou menor início, podem se comportar de formas bem diferentes."
+        },
+        {
+          "title": "Compare agendas por troca",
+          "body": "Para maximizar a quantidade de intervalos sem sobreposição, considere uma agenda ótima qualquer e seu primeiro evento. Trocar esse evento pelo de menor término não reduz o espaço disponível para os eventos seguintes. Esse argumento permite escolher o menor término e repetir no restante. Ele depende do objetivo de contar eventos, não de maximizar uma soma de valores. Se cada evento tem um lucro diferente, a troca pode perder lucro e a mesma prova deixa de servir."
+        },
+        {
+          "title": "Dois extremos e uma pessoa pesada",
+          "body": "Na roda-gigante, a criança mais pesada ainda não alocada precisa entrar numa cabine. Se ela não pode viajar com a mais leve disponível, não pode viajar com ninguém mais. Se pode, juntar os dois pode ser justificado rearranjando pares de uma solução ótima sem aumentar a quantidade de cabines. Ordenar permite identificar os dois extremos e avançar cada ponteiro apenas numa direção. O traço deve tratar uma única criança restante, para não contar a mesma pessoa duas vezes."
+        },
+        {
+          "title": "Cobertura contínua de somas",
+          "body": "Suponha que as moedas já processadas consigam formar todas as somas entre zero e R. Uma nova moeda de valor v≤R+1 amplia a faixa coberta até R+v: as novas somas são v mais cada soma anterior. Se v>R+1, a soma R+1 permanece impossível, e moedas posteriores, ainda maiores, não podem consertá-la. A força do argumento vem de preservar uma faixa contínua inteira, não apenas a maior soma já produzida. Sem essa continuidade, o estado resumido por R seria insuficiente."
+        },
+        {
+          "title": "Saiba abandonar a estratégia",
+          "body": "Com moedas de valores 1,3,4, escolher sempre a maior moeda para totalizar 6 usa 4+1+1, mas 3+3 usa menos moedas. Isso mostra que um algoritmo guloso válido para um sistema monetário particular pode falhar num conjunto arbitrário. Para ajustar comprimentos, escolher a média também não minimiza necessariamente a soma de distâncias absolutas; a mediana é o ponto de equilíbrio relevante. Pergunte sempre qual custo está sendo minimizado antes de transportar uma solução familiar para outro enunciado."
+        }
+      ],
+      "exercises": [
+        {
+          "prompt": "Os intervalos [1,8], [2,3], [3,4] e [4,5] favorecem escolher pelo menor início?",
+          "answer": "Não. O menor início escolheria [1,8] e permitiria só um evento. Escolher pelo menor término permite os outros três."
+        },
+        {
+          "prompt": "Com moedas [1,2,2,8], qual é a primeira soma impossível e qual invariante explica isso?",
+          "answer": "A primeira soma impossível é 6. As moedas 1,2,2 cobrem continuamente [0,5]; a moeda 8 não alcança a lacuna 6."
+        }
+      ],
+      "author": "AutoTutor · texto e exemplos autorais",
+      "checked": "2026-10-24"
+    },
+    {
+      "id": "deep_dp",
+      "topic_id": "dp",
+      "title": "Estados, transições e contagens sem duplicação",
+      "prerequisites": "Recursão, arrays e custo de laços",
+      "minutes": 35,
+      "sections": [
+        {
+          "title": "Um estado é uma pergunta precisa",
+          "body": "Antes da fórmula, escreva uma frase completa: dp[s] pode ser a menor quantidade de moedas para formar exatamente s. Isso difere de formar no máximo s ou contar maneiras de formar s. Defina os casos impossíveis e o estado vazio. Para minimização, dp[0]=0 porque nenhuma moeda produz soma zero; estados não alcançados precisam de um valor que não vença um mínimo válido. Para contagem, dp[0]=1 representa a única maneira de não escolher nada e sustenta as primeiras transições."
+        },
+        {
+          "title": "Declare qual decisão encerra o subproblema",
+          "body": "Se o último lançamento de um dado vale d, antes dele a soma era s−d. Separar pelo último lançamento cria grupos de sequências sem sobreposição, porque uma sequência tem um único último elemento. A recorrência soma as contagens desses predecessores. Para minimizar moedas, a mesma decomposição usa mínimo e acrescenta o custo de uma moeda. Fórmulas parecidas resolvem perguntas diferentes; trocar soma por mínimo exige revisar também a inicialização e o significado dos estados."
+        },
+        {
+          "title": "A ordem dos laços define o que é contado",
+          "body": "Com moedas 1 e 2 e alvo 4, as sequências são 1111,112,121,211 e 22: cinco. Ignorando a ordem, restam três combinações. Percorrer somas por fora e escolher a última moeda por dentro distingue ordens. Processar cada tipo de moeda por fora constrói combinações de um conjunto progressivamente maior de valores. Não trate a troca dos laços como uma otimização inofensiva. Faça um traço de alvo quatro e explique em qual rodada cada objeto é contado."
+        },
+        {
+          "title": "Disponibilidade limitada muda a direção",
+          "body": "Na compra de livros, cada item pode entrar uma única vez. Uma atualização de orçamento em ordem crescente pode usar, na mesma rodada, um estado que já contém o livro atual, permitindo comprá-lo novamente. Percorrer orçamentos decrescentes preserva os estados da camada anterior. Outra implementação mantém duas linhas separadas: anterior e atual. O requisito de usar cada item no máximo uma vez deve aparecer tanto na prova quanto na atualização. Otimizar memória antes de entender as camadas costuma esconder esse detalhe."
+        },
+        {
+          "title": "Faça o orçamento de tempo e de memória",
+          "body": "Conte o número de estados e as transições por estado. Cem moedas e um milhão de somas podem exigir cerca de cem milhões de verificações, mesmo com um vetor de memória pequeno. Memorizar uma recursão evita recalcular estados, mas não elimina automaticamente profundidade de pilha ou custo de cada transição. Para grades com movimentos para direita e baixo, uma ordem por linhas respeita as dependências. Células bloqueadas devem zerar a contribuição, inclusive quando o início ou o destino está bloqueado. Confirme cada convenção em exemplos mínimos."
+        }
+      ],
+      "exercises": [
+        {
+          "prompt": "Um livro de preço 3 e 5 páginas pode render 15 páginas com orçamento 9?",
+          "answer": "Não, se há uma única cópia. A resposta é 5. Uma DP que retorna 15 provavelmente reutilizou o item por atualizar os orçamentos na direção incorreta."
+        },
+        {
+          "prompt": "Por que dp[0]=1 em uma contagem de sequências, mas dp[0]=0 numa minimização de moedas?",
+          "answer": "Na contagem há uma sequência vazia que serve de base. Na minimização, produzir zero exige zero moedas. As iniciais expressam perguntas diferentes."
+        }
+      ],
+      "author": "AutoTutor · texto e exemplos autorais",
+      "checked": "2026-10-24"
+    },
+    {
+      "id": "deep_graph",
+      "topic_id": "graph",
+      "title": "Do mapa aos componentes e às distâncias",
+      "prerequisites": "Filas, pilhas e representação de vizinhos",
+      "minutes": 35,
+      "sections": [
+        {
+          "title": "Modele vértices antes de escolher a busca",
+          "body": "Um vértice pode ser uma cidade, uma célula livre ou um estado do problema. Uma aresta representa um movimento permitido, que pode ser dirigido ou bidirecional. Em uma grade, os vizinhos podem ser calculados sob demanda; não é necessário construir uma lista explícita para cada célula. Defina se diagonais são permitidas e se paredes impedem passagem. Uma modelagem errada não será corrigida pela escolha entre BFS e DFS: a busca apenas percorre o grafo que você definiu."
+        },
+        {
+          "title": "Componentes pedem novas origens",
+          "body": "Uma busca a partir de uma origem visita apenas seu componente. Para contar cômodos, percorra todas as células e inicie uma nova busca sempre que encontrar piso ainda não visitado. Cada início corresponde a um componente distinto. Duas células livres que se tocam apenas por um canto continuam separadas quando os movimentos são pelos lados. Marcar uma célula como visitada antes de colocá-la na fila ou pilha evita que vários vizinhos a adicionem repetidamente."
+        },
+        {
+          "title": "Camadas explicam a distância na BFS",
+          "body": "Com arestas de custo unitário, a fila processa primeiro os vértices com distância menor. Quando um vizinho é descoberto pela primeira vez, sua distância é a da origem da aresta mais um. A garantia depende de todos os movimentos terem o mesmo custo: se as arestas carregam pesos diferentes, uma rota com menos arestas pode ser mais cara. Guarde −1 para não alcançados e zero para a origem, distinguindo distância zero de ausência de visita. Inicialize novamente os estados quando resolver outro caso."
+        },
+        {
+          "title": "Faça um traço que inclua ciclos",
+          "body": "Considere arestas A–B, A–C, B–D e C–D. A começa na fila com distância zero. B e C são descobertos com um passo. D pode ser visto pelos dois, mas só a primeira descoberta o enfileira. Sua distância é dois, independentemente de qual dos dois foi processado primeiro. Inclua também um vértice E isolado: ele continua não alcançado. Esse exemplo separa três fatos: ordem dentro da camada, distância mínima e pertencimento ao componente."
+        },
+        {
+          "title": "Profundidade e custo devem ser explícitos",
+          "body": "Uma DFS recursiva numa cadeia longa pode exceder a pilha de execução, mesmo com complexidade O(n+m). Uma pilha explícita evita depender de centenas de milhares de chamadas aninhadas. Para uma grade de um milhão de células, uma busca ainda pode exigir memória proporcional ao total de células. Antes de submeter, teste grade toda fechada, toda aberta, corredor estreito, uma única célula e regiões conectadas apenas por cantos. O limite de memória mede mais do que a lista de adjacência: filas, distâncias e marcadores também contam."
+        }
+      ],
+      "exercises": [
+        {
+          "prompt": "Uma grade 2×2 com piso apenas nas duas diagonais tem quantos componentes se não há movimentos diagonais?",
+          "answer": "Dois componentes. A proximidade visual pelos cantos não cria uma aresta no modelo de quatro direções."
+        },
+        {
+          "prompt": "Uma BFS com custo de aresta 1 pode ser usada sem mudanças se uma aresta passa a custar 100?",
+          "answer": "Não para minimizar custo total. A ordem por quantidade de arestas deixa de garantir menor custo. A modelagem de pesos pede outro algoritmo adequado."
+        }
+      ],
+      "author": "AutoTutor · texto e exemplos autorais",
+      "checked": "2026-10-24"
+    },
+    {
+      "id": "deep_tree",
+      "topic_id": "tree",
+      "title": "Árvores: enraizamento, subárvores e diâmetro",
+      "prerequisites": "Grafos conexos e travessias",
+      "minutes": 35,
+      "sections": [
+        {
+          "title": "Uma árvore impõe um caminho único",
+          "body": "Uma árvore não direcionada é conexa e não contém ciclos. Entre cada par de vértices há um único caminho simples. Enraizá-la escolhe uma direção de interpretação: cada vértice, exceto a raiz, ganha um pai e os demais vizinhos se tornam filhos. Essa escolha não adiciona nem remove arestas. Altura e ancestralidade dependem da raiz; o diâmetro, entendido como a maior distância entre dois vértices, não depende. Separe propriedades da estrutura e propriedades da representação enraizada."
+        },
+        {
+          "title": "Defina o que uma subárvore inclui",
+          "body": "A subárvore de u normalmente inclui o próprio u e todos os seus descendentes. Sua quantidade de vértices pode ser calculada após obter a resposta dos filhos: um pelo próprio vértice mais os tamanhos das subárvores filhas. Se o enunciado pergunta apenas pelos subordinados, subtraia o próprio u. Essa diferença é responsável por erros de uma unidade que passam despercebidos em árvores maiores. Uma folha oferece um teste direto: subárvore de tamanho um, quantidade de descendentes igual a zero."
+        },
+        {
+          "title": "A ordem de processamento vem da dependência",
+          "body": "Uma travessia que visita o pai antes dos filhos é útil para propagar profundidades. Para agregar dados dos filhos para o pai, processe a ordem inversa de descoberta ou use uma pós-ordem adequada. Numa implementação iterativa, guarde o pai para não voltar pela mesma aresta. A ausência de ciclos permite isso em árvores válidas; num grafo geral, pular apenas o pai não substitui um marcador de visita. Não transporte essa simplificação para um contrato de entrada diferente."
+        },
+        {
+          "title": "Encontre extremos e distâncias",
+          "body": "Para uma árvore sem pesos, uma busca a partir de um vértice encontra um extremo de um diâmetro; uma segunda busca a partir desse extremo encontra a distância do diâmetro. Em uma cadeia de cinco vértices, a maior distância é quatro arestas, não cinco vértices. Em uma estrela com quatro folhas, qualquer par de folhas está a duas arestas, embora a altura a partir do centro seja um. Esses dois desenhos ajudam a impedir a confusão entre altura, tamanho da árvore e diâmetro."
+        },
+        {
+          "title": "Planeje testes para a estrutura inteira",
+          "body": "Uma cadeia revela problemas de profundidade recursiva. Uma estrela revela erros ao combinar vários filhos. Uma única raiz revela inicializações que assumem a existência de arestas. Em cada teste, verifique se o formato pede distâncias em arestas ou número de vértices no caminho. Se uma técnica usa duas maiores contribuições dos filhos, elas precisam vir de filhos distintos. Ao escrever uma explicação, nomeie o objeto retornado pela busca: vértice mais distante e distância são informações diferentes e não podem ser trocadas na segunda etapa."
+        }
+      ],
+      "exercises": [
+        {
+          "prompt": "Uma árvore com apenas um vértice tem qual diâmetro em arestas?",
+          "answer": "Zero. Não há arestas no único caminho do vértice até ele mesmo."
+        },
+        {
+          "prompt": "Em uma raiz com três folhas, qual o tamanho da subárvore da raiz e quantos descendentes ela tem?",
+          "answer": "A subárvore tem quatro vértices, contando a raiz. Ela tem três descendentes. A diferença vem da inclusão do próprio vértice."
+        }
+      ],
+      "author": "AutoTutor · texto e exemplos autorais",
+      "checked": "2026-10-24"
+    }
+  ]
+}

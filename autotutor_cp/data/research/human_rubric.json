@@ -1,0 +1,22 @@
+{
+  "reviewed": false,
+  "scale": {
+    "0": "inadequado",
+    "1": "revisão substancial",
+    "2": "revisão pequena",
+    "3": "adequado"
+  },
+  "criteria": [
+    "clareza",
+    "ambiguidade",
+    "correspondência entre enunciado e solução",
+    "necessidade da competência-alvo",
+    "coerência das restrições",
+    "dificuldade",
+    "carga cognitiva desnecessária",
+    "qualidade dos exemplos",
+    "qualidade das dicas graduais",
+    "alinhamento com objetivo pedagógico"
+  ],
+  "procedure": "Dois avaliadores independentes, cegos para estratégia; justificar notas, medir concordância, resolver divergências. Avaliar enunciado e material complementar separadamente. Nenhuma avaliação realizada neste piloto."
+}

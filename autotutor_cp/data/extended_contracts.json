@@ -1,0 +1,314 @@
+[
+  {
+    "id": "extended_range_sum",
+    "title": "Telemetria: somas com atualizações",
+    "topic": "Segment Tree",
+    "difficulty": "Intermediário",
+    "family": "segtree",
+    "extended_task": "range_sum",
+    "tags": [
+      "Segment Tree",
+      "range sum"
+    ],
+    "statement": "Atribuir um valor a uma posição e consultar a soma de um intervalo.\n\n## Entrada\nN Q, seguidos por N inteiros não negativos. Em seguida Q operações. `1 K X` substitui o valor na posição K por X. `2 L R` consulta o intervalo fechado [L,R]. Índices começam em 1.\n\n## Saída\nUma resposta por consulta, na ordem de entrada.\n\n## Restrições\n1 ≤ N,Q ≤ 30000; valores iniciais e X entre 0 e 10^9. 1 ≤ L ≤ R ≤ N. Use inteiros de 64 bits para somas.\nTempo: 2 s. Memória: 256 MB.",
+    "math_essence": "Atribuir um valor a uma posição e consultar a soma de um intervalo.",
+    "core_concepts": [
+      "Segment Tree",
+      "range sum"
+    ],
+    "approach_summary": "Atribuir um valor a uma posição e consultar a soma de um intervalo. Meta: O((N+Q) log N)",
+    "complexity": "O((N+Q) log N)",
+    "std_cpp": "#include <bits/stdc++.h>\nusing namespace std;\n\nlong long mergeValue(long long a,long long b){return a+b;}\nint main(){ios::sync_with_stdio(false);cin.tie(nullptr);\nint n,q;cin>>n>>q;int size=1;while(size<n)size*=2;vector<long long> t(2*size,0);\nfor(int i=0;i<n;i++)cin>>t[size+i];for(int i=size-1;i;i--)t[i]=mergeValue(t[2*i],t[2*i+1]);\nwhile(q--){int op,x;long long y;cin>>op>>x>>y;\nif(op==1){int p=size+x-1;t[p]=y;while(p>1){p/=2;t[p]=mergeValue(t[2*p],t[2*p+1]);}}\nelse{int l=size+x-1,r=size+(int)y;long long ans=0;while(l<r){if(l&1)ans=mergeValue(ans,t[l++]);if(r&1)ans=mergeValue(ans,t[--r]);l/=2;r/=2;}cout<<ans<<'\\n';}}\n}\n",
+    "brute_cpp": "",
+    "constraints": {
+      "n_max": 30000,
+      "q_max": 30000
+    },
+    "time_limit_sec": 2.0,
+    "memory_limit_mb": 256,
+    "examples": [
+      {
+        "input": "3 3\n2 4 1\n2 1 3\n1 2 7\n2 2 3\n",
+        "expected_output": "7\n8\n"
+      }
+    ],
+    "external": false,
+    "attribution": {
+      "statement": "Contrato autoral do AutoTutor",
+      "tests": "Oráculo Python independente; testes próprios."
+    }
+  },
+  {
+    "id": "extended_range_max",
+    "title": "Telemetria: maior leitura no intervalo",
+    "topic": "Segment Tree",
+    "difficulty": "Intermediário",
+    "family": "segtree",
+    "extended_task": "range_max",
+    "tags": [
+      "Segment Tree",
+      "range max"
+    ],
+    "statement": "Atribuir um valor a uma posição e consultar o máximo de um intervalo.\n\n## Entrada\nN Q, seguidos por N inteiros não negativos. Em seguida Q operações. `1 K X` substitui o valor na posição K por X. `2 L R` consulta o intervalo fechado [L,R]. Índices começam em 1.\n\n## Saída\nUma resposta por consulta, na ordem de entrada.\n\n## Restrições\n1 ≤ N,Q ≤ 30000; valores iniciais e X entre 0 e 10^9. 1 ≤ L ≤ R ≤ N. Use inteiros de 64 bits para somas.\nTempo: 2 s. Memória: 256 MB.",
+    "math_essence": "Atribuir um valor a uma posição e consultar o máximo de um intervalo.",
+    "core_concepts": [
+      "Segment Tree",
+      "range max"
+    ],
+    "approach_summary": "Atribuir um valor a uma posição e consultar o máximo de um intervalo. Meta: O((N+Q) log N)",
+    "complexity": "O((N+Q) log N)",
+    "std_cpp": "#include <bits/stdc++.h>\nusing namespace std;\n\nlong long mergeValue(long long a,long long b){return max(a,b);}\nint main(){ios::sync_with_stdio(false);cin.tie(nullptr);\nint n,q;cin>>n>>q;int size=1;while(size<n)size*=2;vector<long long> t(2*size,0);\nfor(int i=0;i<n;i++)cin>>t[size+i];for(int i=size-1;i;i--)t[i]=mergeValue(t[2*i],t[2*i+1]);\nwhile(q--){int op,x;long long y;cin>>op>>x>>y;\nif(op==1){int p=size+x-1;t[p]=y;while(p>1){p/=2;t[p]=mergeValue(t[2*p],t[2*p+1]);}}\nelse{int l=size+x-1,r=size+(int)y;long long ans=0;while(l<r){if(l&1)ans=mergeValue(ans,t[l++]);if(r&1)ans=mergeValue(ans,t[--r]);l/=2;r/=2;}cout<<ans<<'\\n';}}\n}\n",
+    "brute_cpp": "",
+    "constraints": {
+      "n_max": 30000,
+      "q_max": 30000
+    },
+    "time_limit_sec": 2.0,
+    "memory_limit_mb": 256,
+    "examples": [
+      {
+        "input": "3 3\n2 4 1\n2 1 3\n1 2 7\n2 2 3\n",
+        "expected_output": "4\n7\n"
+      }
+    ],
+    "external": false,
+    "attribution": {
+      "statement": "Contrato autoral do AutoTutor",
+      "tests": "Oráculo Python independente; testes próprios."
+    }
+  },
+  {
+    "id": "extended_range_xor",
+    "title": "Telemetria: paridade bit a bit",
+    "topic": "Segment Tree",
+    "difficulty": "Intermediário",
+    "family": "segtree",
+    "extended_task": "range_xor",
+    "tags": [
+      "Segment Tree",
+      "range xor"
+    ],
+    "statement": "Atribuir um valor a uma posição e consultar o XOR de um intervalo.\n\n## Entrada\nN Q, seguidos por N inteiros não negativos. Em seguida Q operações. `1 K X` substitui o valor na posição K por X. `2 L R` consulta o intervalo fechado [L,R]. Índices começam em 1.\n\n## Saída\nUma resposta por consulta, na ordem de entrada.\n\n## Restrições\n1 ≤ N,Q ≤ 30000; valores iniciais e X entre 0 e 10^9. 1 ≤ L ≤ R ≤ N. Use inteiros de 64 bits para somas.\nTempo: 2 s. Memória: 256 MB.",
+    "math_essence": "Atribuir um valor a uma posição e consultar o XOR de um intervalo.",
+    "core_concepts": [
+      "Segment Tree",
+      "range xor"
+    ],
+    "approach_summary": "Atribuir um valor a uma posição e consultar o XOR de um intervalo. Meta: O((N+Q) log N)",
+    "complexity": "O((N+Q) log N)",
+    "std_cpp": "#include <bits/stdc++.h>\nusing namespace std;\n\nlong long mergeValue(long long a,long long b){return a^b;}\nint main(){ios::sync_with_stdio(false);cin.tie(nullptr);\nint n,q;cin>>n>>q;int size=1;while(size<n)size*=2;vector<long long> t(2*size,0);\nfor(int i=0;i<n;i++)cin>>t[size+i];for(int i=size-1;i;i--)t[i]=mergeValue(t[2*i],t[2*i+1]);\nwhile(q--){int op,x;long long y;cin>>op>>x>>y;\nif(op==1){int p=size+x-1;t[p]=y;while(p>1){p/=2;t[p]=mergeValue(t[2*p],t[2*p+1]);}}\nelse{int l=size+x-1,r=size+(int)y;long long ans=0;while(l<r){if(l&1)ans=mergeValue(ans,t[l++]);if(r&1)ans=mergeValue(ans,t[--r]);l/=2;r/=2;}cout<<ans<<'\\n';}}\n}\n",
+    "brute_cpp": "",
+    "constraints": {
+      "n_max": 30000,
+      "q_max": 30000
+    },
+    "time_limit_sec": 2.0,
+    "memory_limit_mb": 256,
+    "examples": [
+      {
+        "input": "3 3\n2 4 1\n2 1 3\n1 2 7\n2 2 3\n",
+        "expected_output": "7\n6\n"
+      }
+    ],
+    "external": false,
+    "attribution": {
+      "statement": "Contrato autoral do AutoTutor",
+      "tests": "Oráculo Python independente; testes próprios."
+    }
+  },
+  {
+    "id": "extended_range_add_sum",
+    "title": "Bônus em lote: incrementos e somas",
+    "topic": "Segment Tree",
+    "difficulty": "Avançado",
+    "family": "segtree",
+    "extended_task": "range_add_sum",
+    "tags": [
+      "Segment Tree",
+      "range add sum"
+    ],
+    "statement": "Adicionar um valor a todas as posições de um intervalo e consultar somas de intervalos.\n\n## Entrada\nN Q, seguidos por N inteiros não negativos. Em seguida Q operações. `1 L R X` adiciona X ao intervalo fechado [L,R]. `2 L R` consulta o intervalo fechado [L,R]. Índices começam em 1.\n\n## Saída\nUma resposta por consulta, na ordem de entrada.\n\n## Restrições\n1 ≤ N,Q ≤ 30000; valores iniciais e X entre 0 e 10^9. 1 ≤ L ≤ R ≤ N. Use inteiros de 64 bits para somas.\nTempo: 2 s. Memória: 256 MB.",
+    "math_essence": "Adicionar um valor a todas as posições de um intervalo e consultar somas de intervalos.",
+    "core_concepts": [
+      "Segment Tree",
+      "Lazy propagation"
+    ],
+    "approach_summary": "Adicionar um valor a todas as posições de um intervalo e consultar somas de intervalos. Meta: O((N+Q) log N)",
+    "complexity": "O((N+Q) log N)",
+    "std_cpp": "#include <bits/stdc++.h>\nusing namespace std;\n\nvector<long long> t,lz,a;\nvoid build(int p,int l,int r){if(l==r){t[p]=a[l];return;}int m=(l+r)/2;build(p*2,l,m);build(p*2+1,m+1,r);t[p]=t[p*2]+t[p*2+1];}\nvoid apply(int p,int l,int r,long long x){t[p]+=x*(r-l+1);lz[p]+=x;}\nvoid push(int p,int l,int r){if(l!=r&&lz[p]){int m=(l+r)/2;apply(p*2,l,m,lz[p]);apply(p*2+1,m+1,r,lz[p]);lz[p]=0;}}\nvoid add(int p,int l,int r,int ql,int qr,long long x){if(qr<l||r<ql)return;if(ql<=l&&r<=qr){apply(p,l,r,x);return;}push(p,l,r);int m=(l+r)/2;add(p*2,l,m,ql,qr,x);add(p*2+1,m+1,r,ql,qr,x);t[p]=t[p*2]+t[p*2+1];}\nlong long query(int p,int l,int r,int ql,int qr){if(qr<l||r<ql)return 0;if(ql<=l&&r<=qr)return t[p];push(p,l,r);int m=(l+r)/2;return query(p*2,l,m,ql,qr)+query(p*2+1,m+1,r,ql,qr);}\nint main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n,q;cin>>n>>q;a.resize(n+1);t.resize(4*n+4);lz.resize(4*n+4);for(int i=1;i<=n;i++)cin>>a[i];build(1,1,n);while(q--){int op,l,r;cin>>op>>l>>r;if(op==1){long long x;cin>>x;add(1,1,n,l,r,x);}else cout<<query(1,1,n,l,r)<<'\\n';}}\n",
+    "brute_cpp": "",
+    "constraints": {
+      "n_max": 30000,
+      "q_max": 30000
+    },
+    "time_limit_sec": 2.0,
+    "memory_limit_mb": 256,
+    "examples": [
+      {
+        "input": "3 3\n2 4 1\n2 1 3\n1 1 2 3\n2 1 3\n",
+        "expected_output": "7\n13\n"
+      }
+    ],
+    "external": false,
+    "attribution": {
+      "statement": "Contrato autoral do AutoTutor",
+      "tests": "Oráculo Python independente; testes próprios."
+    }
+  },
+  {
+    "id": "extended_components",
+    "title": "Ilhas de comunicação",
+    "topic": "Grafos",
+    "difficulty": "Intermediário",
+    "family": "graph",
+    "extended_task": "components",
+    "tags": [
+      "Grafos",
+      "components"
+    ],
+    "statement": "Contar componentes conexos, incluindo vértices isolados, em grafo não direcionado.\n\n## Entrada\nN M, seguidos por M linhas U V, com 1 ≤ U < V ≤ N. Não existem arestas repetidas.\n\n## Saída\nNúmero de componentes.\n\n## Restrições\n1 ≤ N ≤ 30000; 0 ≤ M ≤ 30000. Para múltiplas fontes, 1 ≤ K ≤ N.\nTempo: 2 s. Memória: 256 MB.",
+    "math_essence": "Contar componentes conexos, incluindo vértices isolados, em grafo não direcionado.",
+    "core_concepts": [
+      "Grafos",
+      "DFS e BFS"
+    ],
+    "approach_summary": "Contar componentes conexos, incluindo vértices isolados, em grafo não direcionado. Meta: O(N+M)",
+    "complexity": "O(N+M)",
+    "std_cpp": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n,m;cin>>n>>m;vector<vector<int>>g(n);for(int i=0,u,v;i<m;i++){cin>>u>>v;--u;--v;g[u].push_back(v);g[v].push_back(u);}vector<int>seen(n);int count=0;for(int root=0;root<n;root++){if(seen[root])continue;count++;vector<int>s{root};seen[root]=1;while(!s.empty()){int u=s.back();s.pop_back();for(int v:g[u])if(!seen[v]){seen[v]=1;s.push_back(v);}}}cout<<count<<'\\n';}\n",
+    "brute_cpp": "",
+    "constraints": {
+      "n_max": 30000,
+      "q_max": 30000
+    },
+    "time_limit_sec": 2.0,
+    "memory_limit_mb": 256,
+    "examples": [
+      {
+        "input": "4 2\n1 2\n2 3\n",
+        "expected_output": "2\n"
+      }
+    ],
+    "external": false,
+    "attribution": {
+      "statement": "Contrato autoral do AutoTutor",
+      "tests": "Oráculo Python independente; testes próprios."
+    }
+  },
+  {
+    "id": "extended_bipartite",
+    "title": "Duas equipes sem conflito",
+    "topic": "Grafos",
+    "difficulty": "Intermediário",
+    "family": "graph",
+    "extended_task": "bipartite",
+    "tags": [
+      "Grafos",
+      "bipartite"
+    ],
+    "statement": "Decidir se um grafo não direcionado permite dividir os vértices em dois grupos sem arestas internas.\n\n## Entrada\nN M, seguidos por M linhas U V, com 1 ≤ U < V ≤ N. Não existem arestas repetidas.\n\n## Saída\nYES se a divisão existe, NO caso contrário.\n\n## Restrições\n1 ≤ N ≤ 30000; 0 ≤ M ≤ 30000. Para múltiplas fontes, 1 ≤ K ≤ N.\nTempo: 2 s. Memória: 256 MB.",
+    "math_essence": "Decidir se um grafo não direcionado permite dividir os vértices em dois grupos sem arestas internas.",
+    "core_concepts": [
+      "Grafos",
+      "DFS e BFS"
+    ],
+    "approach_summary": "Decidir se um grafo não direcionado permite dividir os vértices em dois grupos sem arestas internas. Meta: O(N+M)",
+    "complexity": "O(N+M)",
+    "std_cpp": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n,m;cin>>n>>m;vector<vector<int>>g(n);for(int i=0,u,v;i<m;i++){cin>>u>>v;--u;--v;g[u].push_back(v);g[v].push_back(u);}vector<int>color(n,-1);bool ok=true;for(int root=0;root<n;root++){if(color[root]>=0)continue;vector<int>s{root};color[root]=0;while(!s.empty()){int u=s.back();s.pop_back();for(int v:g[u]){if(color[v]<0){color[v]=1-color[u];s.push_back(v);}else if(color[v]==color[u])ok=false;}}}cout<<(ok?\"YES\":\"NO\")<<'\\n';}\n",
+    "brute_cpp": "",
+    "constraints": {
+      "n_max": 30000,
+      "q_max": 30000
+    },
+    "time_limit_sec": 2.0,
+    "memory_limit_mb": 256,
+    "examples": [
+      {
+        "input": "4 2\n1 2\n2 3\n",
+        "expected_output": "YES\n"
+      }
+    ],
+    "external": false,
+    "attribution": {
+      "statement": "Contrato autoral do AutoTutor",
+      "tests": "Oráculo Python independente; testes próprios."
+    }
+  },
+  {
+    "id": "extended_nearest_source",
+    "title": "Distância ao posto mais próximo",
+    "topic": "Grafos",
+    "difficulty": "Intermediário",
+    "family": "graph",
+    "extended_task": "nearest_source",
+    "tags": [
+      "Grafos",
+      "nearest source"
+    ],
+    "statement": "Calcular para cada vértice a menor quantidade de arestas até qualquer fonte indicada.\n\n## Entrada\nN M, seguidos por M linhas U V, com 1 ≤ U < V ≤ N. Não existem arestas repetidas. Depois das arestas, K e uma linha com K fontes distintas entre 1 e N.\n\n## Saída\nN distâncias, na ordem dos vértices; -1 para vértices inacessíveis.\n\n## Restrições\n1 ≤ N ≤ 30000; 0 ≤ M ≤ 30000. Para múltiplas fontes, 1 ≤ K ≤ N.\nTempo: 2 s. Memória: 256 MB.",
+    "math_essence": "Calcular para cada vértice a menor quantidade de arestas até qualquer fonte indicada.",
+    "core_concepts": [
+      "Grafos",
+      "BFS"
+    ],
+    "approach_summary": "Calcular para cada vértice a menor quantidade de arestas até qualquer fonte indicada. Meta: O(N+M)",
+    "complexity": "O(N+M)",
+    "std_cpp": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n,m;cin>>n>>m;vector<vector<int>>g(n);for(int i=0,u,v;i<m;i++){cin>>u>>v;--u;--v;g[u].push_back(v);g[v].push_back(u);}int k;cin>>k;queue<int>q;vector<int>d(n,-1);while(k--){int s;cin>>s;--s;d[s]=0;q.push(s);}while(!q.empty()){int u=q.front();q.pop();for(int v:g[u])if(d[v]<0){d[v]=d[u]+1;q.push(v);}}for(int i=0;i<n;i++)cout<<d[i]<<(i+1==n?'\\n':' ');}\n",
+    "brute_cpp": "",
+    "constraints": {
+      "n_max": 30000,
+      "q_max": 30000
+    },
+    "time_limit_sec": 2.0,
+    "memory_limit_mb": 256,
+    "examples": [
+      {
+        "input": "4 2\n1 2\n2 3\n2\n1 4\n",
+        "expected_output": "0 1 2 0\n"
+      }
+    ],
+    "external": false,
+    "attribution": {
+      "statement": "Contrato autoral do AutoTutor",
+      "tests": "Oráculo Python independente; testes próprios."
+    }
+  },
+  {
+    "id": "extended_cycle",
+    "title": "Rotas com circuito",
+    "topic": "Grafos",
+    "difficulty": "Intermediário",
+    "family": "graph",
+    "extended_task": "cycle",
+    "tags": [
+      "Grafos",
+      "cycle"
+    ],
+    "statement": "Decidir se um grafo simples não direcionado contém um ciclo em qualquer componente.\n\n## Entrada\nN M, seguidos por M linhas U V, com 1 ≤ U < V ≤ N. Não existem arestas repetidas.\n\n## Saída\nYES se existe um ciclo, NO caso contrário.\n\n## Restrições\n1 ≤ N ≤ 30000; 0 ≤ M ≤ 30000. Para múltiplas fontes, 1 ≤ K ≤ N.\nTempo: 2 s. Memória: 256 MB.",
+    "math_essence": "Decidir se um grafo simples não direcionado contém um ciclo em qualquer componente.",
+    "core_concepts": [
+      "Grafos",
+      "DFS e BFS"
+    ],
+    "approach_summary": "Decidir se um grafo simples não direcionado contém um ciclo em qualquer componente. Meta: O(N+M)",
+    "complexity": "O(N+M)",
+    "std_cpp": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n,m;cin>>n>>m;vector<vector<int>>g(n);for(int i=0,u,v;i<m;i++){cin>>u>>v;--u;--v;g[u].push_back(v);g[v].push_back(u);}vector<int>seen(n),parent(n,-1);bool cycle=false;for(int root=0;root<n;root++){if(seen[root])continue;vector<int>s{root};seen[root]=1;while(!s.empty()){int u=s.back();s.pop_back();for(int v:g[u]){if(!seen[v]){seen[v]=1;parent[v]=u;s.push_back(v);}else if(v!=parent[u])cycle=true;}}}cout<<(cycle?\"YES\":\"NO\")<<'\\n';}\n",
+    "brute_cpp": "",
+    "constraints": {
+      "n_max": 30000,
+      "q_max": 30000
+    },
+    "time_limit_sec": 2.0,
+    "memory_limit_mb": 256,
+    "examples": [
+      {
+        "input": "4 2\n1 2\n2 3\n",
+        "expected_output": "NO\n"
+      }
+    ],
+    "external": false,
+    "attribution": {
+      "statement": "Contrato autoral do AutoTutor",
+      "tests": "Oráculo Python independente; testes próprios."
+    }
+  }
+]

@@ -1,0 +1,69 @@
+\begin{thebibliography}{}
+
+\bibitem[Cormack et~al. 2009]{cormack2009}
+Cormack, G.~V., Clarke, C. L.~A., and B{\"u}ttcher, S. (2009).
+\newblock Reciprocal rank fusion outperforms condorcet and individual rank learning methods.
+\newblock In {\em Proceedings of SIGIR}, pages 758--759.
+\newblock DOI: 10.1145/1571941.1572114.
+
+\bibitem[{CP-Algorithms contributors} 2026]{cpalgorithms2026}
+{CP-Algorithms contributors} (2026).
+\newblock Algorithms for competitive programming.
+\newblock \url{https://cp-algorithms.com/}.
+\newblock Revisão bbbbb6f04e5c9a665c8477ec68ee4f28b1367dd7. Licença CC BY-SA 4.0.
+
+\bibitem[{CP Initiative} 2026]{usaco2026}
+{CP Initiative} (2026).
+\newblock Usaco guide.
+\newblock \url{https://usaco.guide/}.
+\newblock Repositório cpinitiative/usaco-guide, revisão a2a25966a3c8e6cb7e0a87985b0abaac99e2ad40. Licença CC BY-NC-SA 4.0.
+
+\bibitem[Ez-zaouia and Boumarafi 2025]{codigen2025}
+Ez-zaouia, M. and Boumarafi, Y. (2025).
+\newblock Codigen: Enhancing personalized programming education with visual authoring and llms.
+\newblock In {\em IEEE Symposium on Visual Languages and Human-Centric Computing}.
+\newblock DOI: 10.1109/VL-HCC65237.2025.00038.
+
+\bibitem[Lewis et~al. 2020]{lewis2020}
+Lewis, P., Perez, E., Piktus, A., Petroni, F., Karpukhin, V., Goyal, N., Kuttler, H., Lewis, M., Yih, W.-t., Rocktaschel, T., Riedel, S., and Kiela, D. (2020).
+\newblock Retrieval-augmented generation for knowledge-intensive nlp tasks.
+\newblock In {\em Advances in Neural Information Processing Systems}, volume~33, pages 9459--9474.
+\newblock arXiv:2005.11401.
+
+\bibitem[{Ollama} 2026]{ollama2026}
+{Ollama} (2026).
+\newblock Generate embeddings; all-minilm model library.
+\newblock \url{https://docs.ollama.com/api/embed}.
+\newblock Modelo: \url{https://ollama.com/library/all-minilm}. Acesso em novembro de 2026.
+
+\bibitem[Reimers and Gurevych 2019]{reimers2019}
+Reimers, N. and Gurevych, I. (2019).
+\newblock Sentence-bert: Sentence embeddings using siamese bert-networks.
+\newblock In {\em Proceedings of EMNLP-IJCNLP}, pages 3982--3992.
+\newblock DOI: 10.18653/v1/D19-1410.
+
+\bibitem[Robertson and Zaragoza 2009]{robertson2009}
+Robertson, S. and Zaragoza, H. (2009).
+\newblock The probabilistic relevance framework: Bm25 and beyond.
+\newblock {\em Foundations and Trends in Information Retrieval}, 3(4):333--389.
+\newblock DOI: 10.1561/1500000019.
+
+\bibitem[Su et~al. 2025]{su2025}
+Su, Y., Nie, P., and Meng, X. (2025).
+\newblock Oi-assistant: A retrieval augmented system for similar problem discovery and interactive learning in competitive programming.
+\newblock {\em Olympiads in Informatics}, 19:129--144.
+\newblock DOI: 10.15388/ioi.2025.09.
+
+\bibitem[Vaswani et~al. 2017]{vaswani2017}
+Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A.~N., Kaiser, L., and Polosukhin, I. (2017).
+\newblock Attention is all you need.
+\newblock In {\em Advances in Neural Information Processing Systems}, volume~30.
+\newblock arXiv:1706.03762.
+
+\bibitem[Zhou et~al. 2026]{zhou2026}
+Zhou, S., Zheng, Z., Liu, K., Shen, Z., Cheng, Z., et~al. (2026).
+\newblock Autocode: Llms as problem setters for competitive programming.
+\newblock In {\em International Conference on Learning Representations}.
+\newblock arXiv:2510.12803.
+
+\end{thebibliography}

@@ -1,0 +1,112 @@
+{
+  "execution_mode": "api_free_tier",
+  "target": "Segment Tree",
+  "runs": [
+    {
+      "run_id": "b2dfdd9c84b34742968d17d308cc3ca5",
+      "strategy": "direct",
+      "validated": true,
+      "error": null,
+      "attempts": 1,
+      "seconds": 9.266,
+      "path": "b2dfdd9c84b34742968d17d308cc3ca5"
+    },
+    {
+      "run_id": "8cafc323b2dc4a94a405c43fe02fc3a9",
+      "strategy": "rag",
+      "validated": true,
+      "error": null,
+      "attempts": 1,
+      "seconds": 9.104,
+      "path": "8cafc323b2dc4a94a405c43fe02fc3a9"
+    },
+    {
+      "run_id": "afa8b37310ab4a16bb42d8e471ee80e8",
+      "strategy": "structured",
+      "validated": true,
+      "error": null,
+      "attempts": 1,
+      "seconds": 11.289,
+      "path": "afa8b37310ab4a16bb42d8e471ee80e8"
+    }
+  ],
+  "financial_policy": "Gasto autorizado zero; somente cota gratuita informada pelo usuário.",
+  "limits": "Uma tarefa por estratégia, sem repetição estatística ou avaliação humana. Não demonstra superioridade nem aprendizagem.",
+  "ledger": {
+    "day_utc": "2026-11-05",
+    "calls": 4,
+    "reserved_tokens": 37287,
+    "reserved_usd": 0.0,
+    "operations": [
+      {
+        "id": "31938ab6d35f4584bd7c77caf8c251ec",
+        "started_utc": "2026-11-05T13:58:30.963509+00:00",
+        "reserved_tokens": 5559,
+        "reserved_usd": 0.0,
+        "status": "received",
+        "model": "gemini-3.1-flash-lite",
+        "model_version": "gemini-3.1-flash-lite",
+        "usage": {
+          "promptTokenCount": 20,
+          "candidatesTokenCount": 5,
+          "totalTokenCount": 25
+        },
+        "finish_reason": "STOP",
+        "seconds": 4.342,
+        "prompt_sha256": "8cee42e762e876eb04400b6f4849de49ed04fef272ec57b5247e8333abbf9248"
+      },
+      {
+        "id": "24c021a303c74cc7a764cf40ee9c8915",
+        "started_utc": "2026-11-05T14:06:26.999646+00:00",
+        "reserved_tokens": 9007,
+        "reserved_usd": 0.0,
+        "status": "received",
+        "model": "gemini-3.1-flash-lite",
+        "model_version": "gemini-3.1-flash-lite",
+        "usage": {
+          "promptTokenCount": 386,
+          "candidatesTokenCount": 1132,
+          "totalTokenCount": 1518
+        },
+        "finish_reason": "STOP",
+        "seconds": 3.93,
+        "prompt_sha256": "c197d5bc0afa9f187b572bb2b32a25e0f416ed1a1067abaea118d11196424a88"
+      },
+      {
+        "id": "42c8686eeffb499f9bea15c9deeeedcc",
+        "started_utc": "2026-11-05T14:06:51.436660+00:00",
+        "reserved_tokens": 11210,
+        "reserved_usd": 0.0,
+        "status": "received",
+        "model": "gemini-3.1-flash-lite",
+        "model_version": "gemini-3.1-flash-lite",
+        "usage": {
+          "promptTokenCount": 958,
+          "candidatesTokenCount": 1110,
+          "totalTokenCount": 2068
+        },
+        "finish_reason": "STOP",
+        "seconds": 3.357,
+        "prompt_sha256": "6f6b88fe0f100ebb344165636bfc905f345a6232613be88853c3ad66265e0e20"
+      },
+      {
+        "id": "b79cea47d89b46dcba334eb80868f928",
+        "started_utc": "2026-11-05T14:07:15.696921+00:00",
+        "reserved_tokens": 11511,
+        "reserved_usd": 0.0,
+        "status": "received",
+        "model": "gemini-3.1-flash-lite",
+        "model_version": "gemini-3.1-flash-lite",
+        "usage": {
+          "promptTokenCount": 1029,
+          "candidatesTokenCount": 1104,
+          "totalTokenCount": 2133
+        },
+        "finish_reason": "STOP",
+        "seconds": 3.321,
+        "prompt_sha256": "e81eff05542dad8daa4ad934606e0813c36d96cdcfe367153c32764cff7bd7b9"
+      }
+    ],
+    "financial_policy": "Somente cota gratuita declarada pelo dono da chave; gasto autorizado zero. A API não informa o plano de cobrança. Nenhuma rotina ativa faturamento ou fallback pago. Reservas de tokens não são devolvidas em falha."
+  }
+}

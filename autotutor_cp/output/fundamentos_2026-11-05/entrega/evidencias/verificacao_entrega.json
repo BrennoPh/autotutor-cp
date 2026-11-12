@@ -1,0 +1,23 @@
+{
+  "date": "2026-11-05",
+  "new_external_api_calls": 0,
+  "existing_daily_external_calls": 4,
+  "authorized_financial_budget": 0,
+  "checks": {
+    "knowledge_and_research": "26 passed",
+    "beginner_ui": "1 passed",
+    "prefix_fixture": "validated; 44 finite cases; not model quality",
+    "secret_scan": "passed",
+    "article_pages": 8,
+    "presentation_slides": 18,
+    "rendered_visual_review": "8 article pages and 18 slides"
+  },
+  "code_sha256": {
+    "core/knowledge.py": "fd43a54d38cfd7ba5d16d8b2307d95fd8d9fed7ced00a06bdc2218428543824b",
+    "core/research/pipeline.py": "92e3a6f65b4326063457b8e21186c7aabe1f11552517d9e2bcee259d88b4d067",
+    "core/research/views.py": "0969caf10e479d79befa3140a249139838bf42170c0968346f2b2d0f71ed3d0a",
+    "data/research/basic_curriculum.json": "b58053d81dd649e4e92f3a3d6d5a944ab16f6f0defb3e813a1ed56aa95c714b0",
+    "data/research/competencies.json": "f0ae16b4c47ccb88950883783a8fbfeca98d7b0374c84545dad3241b62c94cda",
+    "scripts/run_research_pilot.py": "04805b8fedf3186eae526b7489335230913a2199de3921977e519792d6f10942"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "current_feature": "Roteamento 100% Dinâmico de Trilhas, Isolamento de Conclusão e Sequenciamento Intra-Trilha",
+  "active_stage": "BACKEND",
+  "status": "IN_PROGRESS",
+  "last_output_by": "Planejador",
+  "updated_at": "2026-11-09T18:30:00Z",
+  "artifacts": {
+    "spec_file": ".ai-memory/handoffs/spec-atual.md",
+    "modified_files": [],
+    "test_file": "",
+    "test_status": "PENDING",
+    "feedback": "Especificação técnica concluída. Iniciando implementação das regras dinâmicas e testes de isolamento."
+  },
+  "next_action": "Implementar regras dinâmicas no lessonProgressService, adaptiveRoadmapEngine, trilhas/[slug]/page.tsx e workspace/page.tsx"
+}

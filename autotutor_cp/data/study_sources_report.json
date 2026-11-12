@@ -1,0 +1,273 @@
+{
+  "checked_at": "2026-11-04T21:50:00.598707+00:00",
+  "sources": [
+    {
+      "source": "Maratona UFMG",
+      "url": "https://www.youtube.com/@maratonaufmg2572/videos",
+      "status": "referências públicas",
+      "reference_count": 27,
+      "detail": "Vídeos expostos na página pública; sem transcrições. Não inclui vídeos privados ou páginas adicionais."
+    },
+    {
+      "source": "CSES",
+      "url": "https://cses.fi/problemset/",
+      "status": "referências públicas",
+      "reference_count": 400,
+      "detail": "Títulos e seções dos problemas; enunciados e testes oficiais não importados."
+    },
+    {
+      "source": "USACO Guide",
+      "url": "https://usaco.guide/",
+      "status": "tutoriais com texto importado",
+      "reference_count": 0,
+      "detail": "138 módulos na versão fixada, com licença. Limpeza de MDX; soluções e trechos de terceiros excluídos."
+    },
+    {
+      "source": "Neps Academy",
+      "url": "https://neps.academy/sitemap.xml",
+      "status": "referências públicas",
+      "reference_count": 1201,
+      "detail": "Endereços públicos em português com títulos derivados da URL. IDs numéricos sem título, perfis e discussões excluídos; cursos e enunciados não copiados."
+    },
+    {
+      "source": "YouKn0wWho Academy",
+      "url": "https://youkn0wwho.academy/topic-list",
+      "status": "referências públicas",
+      "reference_count": 3832,
+      "detail": "Referências públicas da lista de assuntos. Aulas, soluções e conteúdo dos destinos não copiados."
+    },
+    {
+      "source": "TLE Eliminators",
+      "url": "https://www.tle-eliminators.com/cp-sheet",
+      "status": "parcial: catálogo recusou acesso (HTTP 403)",
+      "reference_count": 1,
+      "detail": "Link inicial indexado. A consulta pública no-auth-fetch-problems recusou a origem; problemas e vídeos da lista não foram importados."
+    }
+  ],
+  "import": {
+    "unchanged": 5230
+  },
+  "stats": {
+    "documents": 5551,
+    "chunks": 6837,
+    "bytes": 15122432,
+    "sources": [
+      {
+        "source": "AutoTutor · material autoral",
+        "documents": 19
+      },
+      {
+        "source": "CP-Algorithms",
+        "documents": 164
+      },
+      {
+        "source": "CSES",
+        "documents": 400
+      },
+      {
+        "source": "Maratona UFMG",
+        "documents": 27
+      },
+      {
+        "source": "Neps Academy",
+        "documents": 1201
+      },
+      {
+        "source": "TLE Eliminators",
+        "documents": 1
+      },
+      {
+        "source": "USACO Guide / CP Initiative",
+        "documents": 138
+      },
+      {
+        "source": "YouKn0wWho Academy",
+        "documents": 3601
+      }
+    ],
+    "tracks": [
+      {
+        "track": "Base",
+        "documents": 87
+      },
+      {
+        "track": "Complementar",
+        "documents": 234
+      },
+      {
+        "track": "Referências",
+        "documents": 5230
+      }
+    ],
+    "languages": [
+      "en",
+      "pt-BR"
+    ]
+  },
+  "unique_references_in_batch": 5230,
+  "licensed_update": {
+    "revision": {
+      "sha": "a2a25966a3c8e6cb7e0a87985b0abaac99e2ad40",
+      "date": "2026-11-04T16:37:17Z"
+    },
+    "result": {
+      "updated": 138
+    },
+    "idempotence": {
+      "unchanged": 138
+    },
+    "documents_considered": 138,
+    "skipped": [
+      {
+        "path": "content/1_General/USACO_Monthlies.mdx",
+        "reason": "too little tutorial prose after cleaning"
+      },
+      {
+        "path": "content/2_Bronze/Casework.mdx",
+        "reason": "too little tutorial prose after cleaning"
+      },
+      {
+        "path": "content/2_Bronze/Intro_Complete.mdx",
+        "reason": "too little tutorial prose after cleaning"
+      },
+      {
+        "path": "content/4_Gold/All_Roots.mdx",
+        "reason": "too little tutorial prose after cleaning"
+      },
+      {
+        "path": "content/5_Plat/Range_Sweep.mdx",
+        "reason": "too little tutorial prose after cleaning"
+      },
+      {
+        "path": "content/6_Advanced/Comb_Sub.mdx",
+        "reason": "too little tutorial prose after cleaning"
+      },
+      {
+        "path": "content/6_Advanced/FFT-ext.mdx",
+        "reason": "too little tutorial prose after cleaning"
+      },
+      {
+        "path": "content/6_Advanced/FFT.mdx",
+        "reason": "too little tutorial prose after cleaning"
+      },
+      {
+        "path": "content/6_Advanced/Segtree_Beats.mdx",
+        "reason": "too little tutorial prose after cleaning"
+      }
+    ],
+    "before": {
+      "documents": 5551,
+      "chunks": 6837,
+      "bytes": 15122432,
+      "sources": [
+        {
+          "source": "AutoTutor · material autoral",
+          "documents": 19
+        },
+        {
+          "source": "CP-Algorithms",
+          "documents": 164
+        },
+        {
+          "source": "CSES",
+          "documents": 400
+        },
+        {
+          "source": "Maratona UFMG",
+          "documents": 27
+        },
+        {
+          "source": "Neps Academy",
+          "documents": 1201
+        },
+        {
+          "source": "TLE Eliminators",
+          "documents": 1
+        },
+        {
+          "source": "USACO Guide / CP Initiative",
+          "documents": 138
+        },
+        {
+          "source": "YouKn0wWho Academy",
+          "documents": 3601
+        }
+      ],
+      "tracks": [
+        {
+          "track": "Base",
+          "documents": 87
+        },
+        {
+          "track": "Complementar",
+          "documents": 234
+        },
+        {
+          "track": "Referências",
+          "documents": 5230
+        }
+      ],
+      "languages": [
+        "en",
+        "pt-BR"
+      ]
+    },
+    "after": {
+      "documents": 5551,
+      "chunks": 6837,
+      "bytes": 15458304,
+      "sources": [
+        {
+          "source": "AutoTutor · material autoral",
+          "documents": 19
+        },
+        {
+          "source": "CP-Algorithms",
+          "documents": 164
+        },
+        {
+          "source": "CSES",
+          "documents": 400
+        },
+        {
+          "source": "Maratona UFMG",
+          "documents": 27
+        },
+        {
+          "source": "Neps Academy",
+          "documents": 1201
+        },
+        {
+          "source": "TLE Eliminators",
+          "documents": 1
+        },
+        {
+          "source": "USACO Guide / CP Initiative",
+          "documents": 138
+        },
+        {
+          "source": "YouKn0wWho Academy",
+          "documents": 3601
+        }
+      ],
+      "tracks": [
+        {
+          "track": "Base",
+          "documents": 87
+        },
+        {
+          "track": "Complementar",
+          "documents": 234
+        },
+        {
+          "track": "Referências",
+          "documents": 5230
+        }
+      ],
+      "languages": [
+        "en",
+        "pt-BR"
+      ]
+    }
+  }
+}

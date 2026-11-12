@@ -1,0 +1,10 @@
+{
+  "ok": true,
+  "response": "OK.",
+  "seconds": 3.81,
+  "model": "llama3.2:1b",
+  "peak_reported_bytes": 1466852966,
+  "loaded_after": [],
+  "synthetic_smoke_test": true,
+  "pedagogical_quality_evaluated": false
+}

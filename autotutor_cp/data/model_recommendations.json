@@ -1,0 +1,74 @@
+{
+  "reviewed_at": "2026-11-04",
+  "scope": "Recomendação técnica para tutoria de programação, RAG e interpretação de desempenho. Baseada nas capacidades documentadas; não é um ranking de testes próprios entre os provedores. Disponibilidade depende da conta, região e cota.",
+  "providers": {
+    "OpenAI": {
+      "company": "OpenAI",
+      "quality": {
+        "model": "gpt-6-astra",
+        "title": "GPT-6 Astra",
+        "reason": "Minha escolha de maior capacidade para explicações difíceis, raciocínio matemático e revisão de código; custo maior.",
+        "url": "https://developers.openai.com/api/docs/models/gpt-6-astra"
+      },
+      "balanced": {
+        "model": "gpt-5.6-terra",
+        "title": "GPT-5.6 Terra",
+        "reason": "Candidato para uso diário com equilíbrio entre capacidade e custo, antes de recorrer ao modelo maior.",
+        "url": "https://developers.openai.com/api/docs/models/gpt-5.6-terra"
+      }
+    },
+    "Gemini": {
+      "company": "Google",
+      "quality": {
+        "model": "gemini-4-argon",
+        "title": "Gemini 4 Argon",
+        "reason": "Minha escolha para raciocínio matemático e explicações complexas quando estiver disponível na conta.",
+        "url": "https://aistudio.google.com/docs/models/gemini-4-argon"
+      },
+      "balanced": {
+        "model": "gemini-3.8-flash",
+        "title": "Gemini 3.8 Flash",
+        "reason": "Primeiro candidato para aulas do básico e RAG interativo, priorizando velocidade e custo. Evita modelos de pesquisa longa para uma conversa comum.",
+        "url": "https://aistudio.google.com/docs/models/gemini-3.8-flash"
+      }
+    },
+    "DeepSeek": {
+      "company": "DeepSeek",
+      "quality": {
+        "model": "deepseek-flash",
+        "title": "DeepSeek V4.1 Flash-1017",
+        "reason": "Primeiro candidato atual para este projeto: modelo recente, com raciocínio e JSON documentados. A API exige saldo disponível.",
+        "url": "https://api-docs.deepseek.com/quick_start/pricing/"
+      },
+      "balanced": {
+        "model": "deepseek-flash",
+        "title": "DeepSeek V4.1 Flash-1017",
+        "reason": "Também é minha escolha de custo para começar. O V4 Pro continua disponível como alternativa a comparar; não há avaliação própria que o torne melhor aqui.",
+        "url": "https://api-docs.deepseek.com/quick_start/pricing/"
+      }
+    },
+    "Qwen": {
+      "company": "Alibaba Cloud",
+      "quality": {
+        "model": "qwen3.8-max",
+        "title": "Qwen3.8-Max",
+        "reason": "Minha escolha de maior capacidade da linha para raciocínio e código. Use a região e o workspace da chave.",
+        "url": "https://help.aliyun.com/en/model-studio/models",
+        "thinking": true
+      },
+      "balanced": {
+        "model": "qwen3.7-plus",
+        "title": "Qwen3.7-Plus",
+        "reason": "Candidato para tutoria cotidiana equilibrando capacidade, velocidade e custo. Suporta JSON; mantenha raciocínio ativo quando exigido pelo modelo.",
+        "url": "https://help.aliyun.com/en/model-studio/models",
+        "thinking": true
+      }
+    },
+    "Ollama": {
+      "company": "Modelo local",
+      "experimental": true,
+      "reason": "Padrão leve: Llama 3.2 1B, por preferência de memória. O Qwen2.5 3B foi removido desta instalação. O Llama segue experimental: as avaliações anteriores encontraram erros conceituais; o teste de conexão não certifica qualidade pedagógica.",
+      "url": "https://ollama.com/library/llama3.2:1b"
+    }
+  }
+}

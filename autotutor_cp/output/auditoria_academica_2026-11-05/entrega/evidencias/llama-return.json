@@ -1,0 +1,11 @@
+{
+  "model": "llama3.2:1b",
+  "removed_model": "qwen2.5:3b",
+  "keep_alive": 0,
+  "num_thread": 2,
+  "num_batch": 128,
+  "tests_passed": 15,
+  "backup": "/home/brenno/Downloads/Nuvem/Projeto_IA/autotutor_cp/data/backups/before-return-llama-20261104-181933.zip",
+  "app_pid": 387808,
+  "health": "ok"
+}

@@ -1,0 +1,738 @@
+{
+  "version": 1,
+  "checked": "2026-10-24",
+  "resources": [
+    {
+      "id": "ref_efec7b8d0ff1ead6",
+      "title": "Complexidade de Algoritmos",
+      "url": "https://www.youtube.com/watch?v=uX0mdrs_xdk",
+      "topics": [
+        "fundamentals"
+      ],
+      "kind": "Vídeo",
+      "publisher": "AoCPC Community",
+      "summary": "Aula complementar ao módulo. Ao assistir, anote o invariante apresentado e reconstrua um exemplo sem consultar o vídeo.",
+      "source_url": "https://aocpc-community.github.io/aocpc-guide/guide/aprender/",
+      "verification": "Link conferido no catálogo de aulas",
+      "language": "Português",
+      "checked": "2026-10-24"
+    },
+    {
+      "id": "ref_4c6a5130d7abc375",
+      "title": "Concursos de Programação",
+      "url": "https://www.youtube.com/watch?v=fPxpVi4no7I",
+      "topics": [
+        "fundamentals"
+      ],
+      "kind": "Vídeo",
+      "publisher": "AoCPC Community",
+      "summary": "Aula complementar ao módulo. Ao assistir, anote o invariante apresentado e reconstrua um exemplo sem consultar o vídeo.",
+      "source_url": "https://aocpc-community.github.io/aocpc-guide/guide/aprender/",
+      "verification": "Link conferido no catálogo de aulas",
+      "language": "Português",
+      "checked": "2026-10-24"
+    },
+    {
+      "id": "ref_0550c6f775e0be28",
+      "title": "C++ STL, Bruteforce e Backtracking",
+      "url": "https://www.youtube.com/watch?v=E5FlE3o7aNs",
+      "topics": [
+        "structures"
+      ],
+      "kind": "Vídeo",
+      "publisher": "AoCPC Community",
+      "summary": "Aula complementar ao módulo. Ao assistir, anote o invariante apresentado e reconstrua um exemplo sem consultar o vídeo.",
+      "source_url": "https://aocpc-community.github.io/aocpc-guide/guide/aprender/",
+      "verification": "Link conferido no catálogo de aulas",
+      "language": "Português",
+      "checked": "2026-10-24"
+    },
+    {
+      "id": "ref_39da6fd2a6d8566f",
+      "title": "Operações em Arrays (Estáticos)",
+      "url": "https://www.youtube.com/watch?v=vTvHSGbZ9O8",
+      "topics": [
+        "prefix",
+        "structures"
+      ],
+      "kind": "Vídeo",
+      "publisher": "AoCPC Community",
+      "summary": "Aula complementar ao módulo. Ao assistir, anote o invariante apresentado e reconstrua um exemplo sem consultar o vídeo.",
+      "source_url": "https://aocpc-community.github.io/aocpc-guide/guide/aprender/",
+      "verification": "Link conferido no catálogo de aulas",
+      "language": "Português",
+      "checked": "2026-10-24"
+    },
+    {
+      "id": "ref_58daed3d75278e5c",
+      "title": "Resolução de Exercícios: Operações em Arrays",
+      "url": "https://www.youtube.com/watch?v=Y0YDkhjb5_4",
+      "topics": [
+        "prefix"
+      ],
+      "kind": "Vídeo",
+      "publisher": "AoCPC Community",
+      "summary": "Aula complementar ao módulo. Ao assistir, anote o invariante apresentado e reconstrua um exemplo sem consultar o vídeo.",
+      "source_url": "https://aocpc-community.github.io/aocpc-guide/guide/aprender/",
+      "verification": "Link conferido no catálogo de aulas",
+      "language": "Português",
+      "checked": "2026-10-24"
+    },
+    {
+      "id": "ref_fa775dac939ccd2f",
+      "title": "Ordenação, Busca Binária e Aplicações",
+      "url": "https://www.youtube.com/watch?v=kBlSqEdyFIM",
+      "topics": [
+        "binary"
+      ],
+      "kind": "Vídeo",
+      "publisher": "AoCPC Community",
+      "summary": "Aula complementar ao módulo. Ao assistir, anote o invariante apresentado e reconstrua um exemplo sem consultar o vídeo.",
+      "source_url": "https://aocpc-community.github.io/aocpc-guide/guide/aprender/",
+      "verification": "Link conferido no catálogo de aulas",
+      "language": "Português",
+      "checked": "2026-10-24"
+    },
+    {
+      "id": "ref_6d0986c2056b1bc7",
+      "title": "Pilhas Monotónicas e Pesquisa Binária na Resposta",
+      "url": "https://www.youtube.com/watch?v=upebuSQF1rw",
+      "topics": [
+        "binary"
+      ],
+      "kind": "Vídeo",
+      "publisher": "AoCPC Community",
+      "summary": "Aula complementar ao módulo. Ao assistir, anote o invariante apresentado e reconstrua um exemplo sem consultar o vídeo.",
+      "source_url": "https://aocpc-community.github.io/aocpc-guide/guide/aprender/",
+      "verification": "Link conferido no catálogo de aulas",
+      "language": "Português",
+      "checked": "2026-10-24"
+    },
+    {
+      "id": "ref_14ae6d1cc74099de",
+      "title": "Matemática",
+      "url": "https://www.youtube.com/watch?v=RzPjwv9lFHA",
+      "topics": [
+        "math"
+      ],
+      "kind": "Vídeo",
+      "publisher": "AoCPC Community",
+      "summary": "Aula complementar ao módulo. Ao assistir, anote o invariante apresentado e reconstrua um exemplo sem consultar o vídeo.",
+      "source_url": "https://aocpc-community.github.io/aocpc-guide/guide/aprender/",
+      "verification": "Link conferido no catálogo de aulas",
+      "language": "Português",
+      "checked": "2026-10-24"
+    },
+    {
+      "id": "ref_bebef33067bb4307",
+      "title": "Teoria dos Números",
+      "url": "https://www.youtube.com/watch?v=0IoxQkYQdVM",
+      "topics": [
+        "math"
+      ],
+      "kind": "Vídeo",
+      "publisher": "AoCPC Community",
+      "summary": "Aula complementar ao módulo. Ao assistir, anote o invariante apresentado e reconstrua um exemplo sem consultar o vídeo.",
+      "source_url": "https://aocpc-community.github.io/aocpc-guide/guide/aprender/",
+      "verification": "Link conferido no catálogo de aulas",
+      "language": "Português",
+      "checked": "2026-10-24"
+    },
+    {
+      "id": "ref_34e40f49c16997c0",
+      "title": "Greedy",
+      "url": "https://www.youtube.com/watch?v=6ePTnxNZbO0",
+      "topics": [
+        "greedy"
+      ],
+      "kind": "Vídeo",
+      "publisher": "AoCPC Community",
+      "summary": "Aula complementar ao módulo. Ao assistir, anote o invariante apresentado e reconstrua um exemplo sem consultar o vídeo.",
+      "source_url": "https://aocpc-community.github.io/aocpc-guide/guide/aprender/",
+      "verification": "Link conferido no catálogo de aulas",
+      "language": "Português",
+      "checked": "2026-10-24"
+    },
+    {
+      "id": "ref_3b939e5188570427",
+      "title": "Greedy vs Programação Dinâmica",
+      "url": "https://www.youtube.com/watch?v=-NEyxkz3Uvs",
+      "topics": [
+        "greedy"
+      ],
+      "kind": "Vídeo",
+      "publisher": "AoCPC Community",
+      "summary": "Aula complementar ao módulo. Ao assistir, anote o invariante apresentado e reconstrua um exemplo sem consultar o vídeo.",
+      "source_url": "https://aocpc-community.github.io/aocpc-guide/guide/aprender/",
+      "verification": "Link conferido no catálogo de aulas",
+      "language": "Português",
+      "checked": "2026-10-24"
+    },
+    {
+      "id": "ref_9d43145a6a1cb8e8",
+      "title": "Programação Dinâmica",
+      "url": "https://www.youtube.com/watch?v=qHnUougiq60",
+      "topics": [
+        "dp"
+      ],
+      "kind": "Vídeo",
+      "publisher": "AoCPC Community",
+      "summary": "Aula complementar ao módulo. Ao assistir, anote o invariante apresentado e reconstrua um exemplo sem consultar o vídeo.",
+      "source_url": "https://aocpc-community.github.io/aocpc-guide/guide/aprender/",
+      "verification": "Link conferido no catálogo de aulas",
+      "language": "Português",
+      "checked": "2026-10-24"
+    },
+    {
+      "id": "ref_f63249a3f6f5364e",
+      "title": "Resolução de Problemas de Programação Dinâmica",
+      "url": "https://www.youtube.com/watch?v=GhFcAXecjPM",
+      "topics": [
+        "dp"
+      ],
+      "kind": "Vídeo",
+      "publisher": "AoCPC Community",
+      "summary": "Aula complementar ao módulo. Ao assistir, anote o invariante apresentado e reconstrua um exemplo sem consultar o vídeo.",
+      "source_url": "https://aocpc-community.github.io/aocpc-guide/guide/aprender/",
+      "verification": "Link conferido no catálogo de aulas",
+      "language": "Português",
+      "checked": "2026-10-24"
+    },
+    {
+      "id": "ref_98f20b581be61e71",
+      "title": "Grafos",
+      "url": "https://www.youtube.com/watch?v=jg4R9RoQv6Y",
+      "topics": [
+        "graph",
+        "tree"
+      ],
+      "kind": "Vídeo",
+      "publisher": "AoCPC Community",
+      "summary": "Aula complementar ao módulo. Ao assistir, anote o invariante apresentado e reconstrua um exemplo sem consultar o vídeo.",
+      "source_url": "https://aocpc-community.github.io/aocpc-guide/guide/aprender/",
+      "verification": "Link conferido no catálogo de aulas",
+      "language": "Português",
+      "checked": "2026-10-24"
+    },
+    {
+      "id": "ref_641abddbb5acc818",
+      "title": "Prática: Grafos",
+      "url": "https://www.youtube.com/watch?v=a6LUbD118E8",
+      "topics": [
+        "graph",
+        "tree"
+      ],
+      "kind": "Vídeo",
+      "publisher": "AoCPC Community",
+      "summary": "Aula complementar ao módulo. Ao assistir, anote o invariante apresentado e reconstrua um exemplo sem consultar o vídeo.",
+      "source_url": "https://aocpc-community.github.io/aocpc-guide/guide/aprender/",
+      "verification": "Link conferido no catálogo de aulas",
+      "language": "Português",
+      "checked": "2026-10-24"
+    },
+    {
+      "id": "ref_5c0966d5131fbfce",
+      "title": "Complexidade de tempo",
+      "url": "https://usaco.guide/bronze/time-comp",
+      "topics": [
+        "fundamentals"
+      ],
+      "kind": "Artigo",
+      "publisher": "USACO Guide / CP Initiative",
+      "summary": "Como estimar o crescimento do trabalho a partir das operações e restrições. Use para comparar uma varredura com dois laços aninhados.",
+      "source_url": "https://usaco.guide/bronze/time-comp",
+      "verification": "Página consultada",
+      "language": "Inglês",
+      "checked": "2026-10-24"
+    },
+    {
+      "id": "ref_4a57e4e701f18c97",
+      "title": "Tipos de dados",
+      "url": "https://usaco.guide/general/data-types",
+      "topics": [
+        "fundamentals"
+      ],
+      "kind": "Artigo",
+      "publisher": "USACO Guide / CP Initiative",
+      "summary": "Referência de tipos numéricos e limites de representação. Relacione o maior valor intermediário ao tipo usado.",
+      "source_url": "https://usaco.guide/general/data-types",
+      "verification": "Página consultada",
+      "language": "Inglês",
+      "checked": "2026-10-24"
+    },
+    {
+      "id": "ref_59cef81e9452c126",
+      "title": "Entrada e saída",
+      "url": "https://usaco.guide/general/input-output",
+      "topics": [
+        "fundamentals"
+      ],
+      "kind": "Artigo",
+      "publisher": "USACO Guide / CP Initiative",
+      "summary": "Guia de leitura e impressão para concursos. Compare o formato exigido com cada operação de entrada de seu programa.",
+      "source_url": "https://usaco.guide/general/input-output",
+      "verification": "Página consultada",
+      "language": "Inglês",
+      "checked": "2026-10-24"
+    },
+    {
+      "id": "ref_2de54caa7f16ac92",
+      "title": "Como depurar",
+      "url": "https://usaco.guide/general/debugging-checklist",
+      "topics": [
+        "fundamentals"
+      ],
+      "kind": "Artigo",
+      "publisher": "USACO Guide / CP Initiative",
+      "summary": "Checklist organizado por falhas de compilação, resposta, execução e tempo. Use o veredito para formular uma hipótese verificável.",
+      "source_url": "https://usaco.guide/general/debugging-checklist",
+      "verification": "Página consultada",
+      "language": "Inglês",
+      "checked": "2026-10-24"
+    },
+    {
+      "id": "ref_bbaf751acf3e0a1e",
+      "title": "Como praticar",
+      "url": "https://usaco.guide/general/practicing",
+      "topics": [
+        "fundamentals"
+      ],
+      "kind": "Artigo",
+      "publisher": "USACO Guide / CP Initiative",
+      "summary": "Discussão sobre dificuldade adequada e leitura de editoriais. Inclui perspectivas de diferentes competidores; não é uma regra única de estudo.",
+      "source_url": "https://usaco.guide/general/practicing",
+      "verification": "Página consultada",
+      "language": "Inglês",
+      "checked": "2026-10-24"
+    },
+    {
+      "id": "ref_37cd1e67227c8ab9",
+      "title": "Busca completa",
+      "url": "https://usaco.guide/bronze/intro-complete",
+      "topics": [
+        "fundamentals"
+      ],
+      "kind": "Artigo",
+      "publisher": "USACO Guide / CP Initiative",
+      "summary": "Enumeração de possibilidades como ponto de partida. Uma implementação simples também pode servir de comparação para uma abordagem otimizada.",
+      "source_url": "https://usaco.guide/bronze/intro-complete",
+      "verification": "Página consultada",
+      "language": "Inglês",
+      "checked": "2026-10-24"
+    },
+    {
+      "id": "ref_eab00e0cc9c7fac3",
+      "title": "Introdução às estruturas de dados",
+      "url": "https://usaco.guide/bronze/intro-ds",
+      "topics": [
+        "structures"
+      ],
+      "kind": "Artigo",
+      "publisher": "USACO Guide / CP Initiative",
+      "summary": "Arrays, vetores, pares e organização de dados. Escolha a estrutura a partir das operações necessárias.",
+      "source_url": "https://usaco.guide/bronze/intro-ds",
+      "verification": "Página consultada",
+      "language": "Inglês",
+      "checked": "2026-10-24"
+    },
+    {
+      "id": "ref_911b2996e16a40fe",
+      "title": "Conjuntos e mapas",
+      "url": "https://usaco.guide/bronze/intro-sets",
+      "topics": [
+        "structures"
+      ],
+      "kind": "Artigo",
+      "publisher": "USACO Guide / CP Initiative",
+      "summary": "Presença de chaves e valores associados. Compare conjunto de valores distintos com mapa de frequências.",
+      "source_url": "https://usaco.guide/bronze/intro-sets",
+      "verification": "Página consultada",
+      "language": "Inglês",
+      "checked": "2026-10-24"
+    },
+    {
+      "id": "ref_aec0b9808661e55d",
+      "title": "Introdução à ordenação",
+      "url": "https://usaco.guide/bronze/intro-sorting",
+      "topics": [
+        "greedy"
+      ],
+      "kind": "Artigo",
+      "publisher": "USACO Guide / CP Initiative",
+      "summary": "Como reorganizar coleções e usar critérios de ordenação. Avalie se a pergunta original depende da ordem de entrada.",
+      "source_url": "https://usaco.guide/bronze/intro-sorting",
+      "verification": "Página consultada",
+      "language": "Inglês",
+      "checked": "2026-10-24"
+    },
+    {
+      "id": "ref_5c8b8216321f0c8d",
+      "title": "Introdução a somas de prefixos",
+      "url": "https://usaco.guide/silver/prefix-sums",
+      "topics": [
+        "prefix"
+      ],
+      "kind": "Artigo",
+      "publisher": "USACO Guide / CP Initiative",
+      "summary": "Pré-processamento linear para somas de intervalos constantes. O módulo contém exemplos e prática adicional.",
+      "source_url": "https://usaco.guide/silver/prefix-sums",
+      "verification": "Página consultada",
+      "language": "Inglês",
+      "checked": "2026-10-24"
+    },
+    {
+      "id": "ref_1b210ef3cc700b5b",
+      "title": "Busca binária e funções monotônicas",
+      "url": "https://usaco.guide/silver/binary-search",
+      "topics": [
+        "binary"
+      ],
+      "kind": "Artigo",
+      "publisher": "USACO Guide / CP Initiative",
+      "summary": "Busca de uma fronteira verdadeira ou falsa, com cuidados de índices e aritmética. Escreva o predicado antes do laço.",
+      "source_url": "https://usaco.guide/silver/binary-search",
+      "verification": "Página consultada",
+      "language": "Inglês",
+      "checked": "2026-10-24"
+    },
+    {
+      "id": "ref_3eef66b3317506aa",
+      "title": "Guloso com ordenação",
+      "url": "https://usaco.guide/silver/greedy-sorting",
+      "topics": [
+        "greedy"
+      ],
+      "kind": "Artigo",
+      "publisher": "USACO Guide / CP Initiative",
+      "summary": "Agendamento, escolhas locais e exemplos em que estratégias gulosas falham. Procure a justificativa de cada critério.",
+      "source_url": "https://usaco.guide/silver/greedy-sorting",
+      "verification": "Página consultada",
+      "language": "Inglês",
+      "checked": "2026-10-24"
+    },
+    {
+      "id": "ref_c2e07da7db844984",
+      "title": "Introdução à programação dinâmica",
+      "url": "https://usaco.guide/gold/intro-dp",
+      "topics": [
+        "dp"
+      ],
+      "kind": "Artigo",
+      "publisher": "USACO Guide / CP Initiative",
+      "summary": "Subproblemas, repetição de cálculos e ordens de transição. O módulo reúne referências escritas e em vídeo.",
+      "source_url": "https://usaco.guide/gold/intro-dp",
+      "verification": "Página consultada",
+      "language": "Inglês",
+      "checked": "2026-10-24"
+    },
+    {
+      "id": "ref_cfdc222648834350",
+      "title": "Introdução a grafos",
+      "url": "https://usaco.guide/bronze/intro-graphs",
+      "topics": [
+        "graph"
+      ],
+      "kind": "Artigo",
+      "publisher": "USACO Guide / CP Initiative",
+      "summary": "Representações por listas de adjacência e modelagem de conexões. Desenhe vértices e arestas antes de escolher a busca.",
+      "source_url": "https://usaco.guide/bronze/intro-graphs",
+      "verification": "Página consultada",
+      "language": "Inglês",
+      "checked": "2026-10-24"
+    },
+    {
+      "id": "ref_d41febac0ee2fe87",
+      "title": "Travessias em grafos",
+      "url": "https://usaco.guide/silver/graph-traversal",
+      "topics": [
+        "graph"
+      ],
+      "kind": "Artigo",
+      "publisher": "USACO Guide / CP Initiative",
+      "summary": "DFS, BFS, componentes e coloração. Relacione ordem de visita ao objetivo de alcançabilidade ou distância.",
+      "source_url": "https://usaco.guide/silver/graph-traversal",
+      "verification": "Página consultada",
+      "language": "Inglês",
+      "checked": "2026-10-24"
+    },
+    {
+      "id": "ref_2601a1917e47f301",
+      "title": "Introdução a árvores",
+      "url": "https://usaco.guide/silver/intro-tree",
+      "topics": [
+        "tree"
+      ],
+      "kind": "Artigo",
+      "publisher": "USACO Guide / CP Initiative",
+      "summary": "Terminologia, travessia e agregação de subárvores. Diferencie descendentes e tamanho da subárvore.",
+      "source_url": "https://usaco.guide/silver/intro-tree",
+      "verification": "Página consultada",
+      "language": "Inglês",
+      "checked": "2026-10-24"
+    },
+    {
+      "id": "ref_777636938c3b05e0",
+      "title": "Exponenciação binária",
+      "url": "https://cp-algorithms.com/algebra/binary-exp.html",
+      "topics": [
+        "math"
+      ],
+      "kind": "Artigo",
+      "publisher": "CP-Algorithms",
+      "summary": "Potências por quadrados sucessivos e aplicações modulares. Leitura para depois de entender escolhas independentes.",
+      "source_url": "https://cp-algorithms.com/algebra/binary-exp.html",
+      "verification": "Página consultada",
+      "language": "Inglês",
+      "checked": "2026-10-24"
+    },
+    {
+      "id": "ref_ecc3f82c95643f2a",
+      "title": "Algoritmo de Euclides",
+      "url": "https://cp-algorithms.com/algebra/euclid-algorithm.html",
+      "topics": [
+        "math"
+      ],
+      "kind": "Artigo",
+      "publisher": "CP-Algorithms",
+      "summary": "MDC por restos sucessivos e relação com MMC. Verifique a ordem das operações para evitar produtos desnecessariamente grandes.",
+      "source_url": "https://cp-algorithms.com/algebra/euclid-algorithm.html",
+      "verification": "Página consultada",
+      "language": "Inglês",
+      "checked": "2026-10-24"
+    },
+    {
+      "id": "ref_783a10f5f328cc27",
+      "title": "Árvore de segmentos",
+      "url": "https://cp-algorithms.com/data_structures/segment_tree.html",
+      "topics": [
+        "structures"
+      ],
+      "kind": "Artigo",
+      "publisher": "CP-Algorithms",
+      "summary": "Consultas e atualizações por decomposição hierárquica de intervalos. Comece pela versão de soma ou mínimo antes das extensões.",
+      "source_url": "https://cp-algorithms.com/data_structures/segment_tree.html",
+      "verification": "Página consultada",
+      "language": "Inglês",
+      "checked": "2026-10-24"
+    },
+    {
+      "id": "ref_63c5f187834c4e10",
+      "title": "Busca em largura",
+      "url": "https://cp-algorithms.com/graph/breadth-first-search.html",
+      "topics": [
+        "graph"
+      ],
+      "kind": "Artigo",
+      "publisher": "CP-Algorithms",
+      "summary": "Percurso em camadas para grafos sem pesos e aplicações. Compare sua fila com a ordem das distâncias.",
+      "source_url": "https://cp-algorithms.com/graph/breadth-first-search.html",
+      "verification": "Página consultada",
+      "language": "Inglês",
+      "checked": "2026-10-24"
+    },
+    {
+      "id": "ref_8f71bbc8c2805e43",
+      "title": "Introdução à DP",
+      "url": "https://cp-algorithms.com/dynamic_programming/intro-to-dp.html",
+      "topics": [
+        "dp"
+      ],
+      "kind": "Artigo",
+      "publisher": "CP-Algorithms",
+      "summary": "Memorização e programação por estados em ordem de dependência. Compare recursão com implementação iterativa.",
+      "source_url": "https://cp-algorithms.com/dynamic_programming/intro-to-dp.html",
+      "verification": "Página consultada",
+      "language": "Inglês",
+      "checked": "2026-10-24"
+    },
+    {
+      "id": "ref_9249e9ffa1966eff",
+      "title": "DP: Fibonacci, iteração e recursão",
+      "url": "https://www.youtube.com/watch?v=YBSt1jYwVfU",
+      "topics": [
+        "dp"
+      ],
+      "kind": "Vídeo",
+      "publisher": "Errichto",
+      "summary": "Videoaula recomendada no módulo correspondente do USACO Guide. Conteúdo em inglês; pratique o conceito depois de assistir.",
+      "source_url": "https://usaco.guide/gold/intro-dp",
+      "verification": "Link conferido no módulo de referência",
+      "language": "Inglês",
+      "checked": "2026-10-24"
+    },
+    {
+      "id": "ref_46e9dbf2b99019ab",
+      "title": "Busca binária em C++ e Python",
+      "url": "https://www.youtube.com/watch?v=GU7DpgHINWQ",
+      "topics": [
+        "binary"
+      ],
+      "kind": "Vídeo",
+      "publisher": "Errichto",
+      "summary": "Videoaula recomendada no módulo correspondente do USACO Guide. Conteúdo em inglês; pratique o conceito depois de assistir.",
+      "source_url": "https://usaco.guide/silver/binary-search",
+      "verification": "Link conferido no módulo de referência",
+      "language": "Inglês",
+      "checked": "2026-10-24"
+    },
+    {
+      "id": "ref_eb2d90b9a1f52fea",
+      "title": "Árvores de segmentos e lazy propagation",
+      "url": "https://www.youtube.com/watch?v=38n2Xv6gt1M",
+      "topics": [
+        "structures"
+      ],
+      "kind": "Vídeo",
+      "publisher": "AoCPC Community",
+      "summary": "Aula listada no catálogo de aprendizagem do AoCPC. Use como aprofundamento após o módulo introdutório.",
+      "source_url": "https://aocpc-community.github.io/aocpc-guide/guide/aprender/",
+      "verification": "Link conferido no catálogo de aulas",
+      "language": "Português",
+      "checked": "2026-10-24"
+    },
+    {
+      "id": "ref_2c247befcce4fc92",
+      "title": "Matemática: prática",
+      "url": "https://www.youtube.com/watch?v=u3zkf9LsEnM",
+      "topics": [
+        "math"
+      ],
+      "kind": "Vídeo",
+      "publisher": "AoCPC Community",
+      "summary": "Aula listada no catálogo de aprendizagem do AoCPC. Use como aprofundamento após o módulo introdutório.",
+      "source_url": "https://aocpc-community.github.io/aocpc-guide/guide/aprender/",
+      "verification": "Link conferido no catálogo de aulas",
+      "language": "Português",
+      "checked": "2026-10-24"
+    },
+    {
+      "id": "ref_8e810e0487dac833",
+      "title": "Grafos e conjuntos disjuntos",
+      "url": "https://www.youtube.com/watch?v=gv9xUsJvVso",
+      "topics": [
+        "graph",
+        "structures"
+      ],
+      "kind": "Vídeo",
+      "publisher": "AoCPC Community",
+      "summary": "Aula listada no catálogo de aprendizagem do AoCPC. Use como aprofundamento após o módulo introdutório.",
+      "source_url": "https://aocpc-community.github.io/aocpc-guide/guide/aprender/",
+      "verification": "Link conferido no catálogo de aulas",
+      "language": "Português",
+      "checked": "2026-10-24"
+    },
+    {
+      "id": "ref_6916e0a3478637ce",
+      "title": "Bitwise e técnicas em matrizes",
+      "url": "https://www.youtube.com/watch?v=-XoeqOOMxoU",
+      "topics": [
+        "math",
+        "prefix"
+      ],
+      "kind": "Vídeo",
+      "publisher": "AoCPC Community",
+      "summary": "Aula listada no catálogo de aprendizagem do AoCPC. Use como aprofundamento após o módulo introdutório.",
+      "source_url": "https://aocpc-community.github.io/aocpc-guide/guide/aprender/",
+      "verification": "Link conferido no catálogo de aulas",
+      "language": "Português",
+      "checked": "2026-10-24"
+    },
+    {
+      "id": "ref_5badffd759c0e449",
+      "title": "Maratona UFMG",
+      "url": "https://youtube.com/@maratonaufmg2572",
+      "topics": [],
+      "kind": "Canal",
+      "publisher": "Maratona UFMG",
+      "summary": "Canal indicado para acompanhar aulas e treinos de programação competitiva.",
+      "source_url": "https://dcc.ufmg.br/canal-maratona-do-dcc-ufmg-ensina-algoritmos-e-estruturas-de-dados-de-forma-gratuita/",
+      "verification": "Canal confirmado pela página oficial do DCC/UFMG",
+      "language": "Português",
+      "checked": "2026-10-24"
+    },
+    {
+      "id": "ref_fe3b784c9c52c34b",
+      "title": "CSES",
+      "url": "https://cses.fi/problemset/",
+      "topics": [],
+      "kind": "Site",
+      "publisher": "CSES",
+      "summary": "Catálogo oficial indexado por seção. Enunciados e correção no CSES.",
+      "source_url": "https://cses.fi/problemset/",
+      "verification": "Página da plataforma consultada",
+      "language": "Vários",
+      "checked": "2026-10-24"
+    },
+    {
+      "id": "ref_cd11978ae94ff304",
+      "title": "USACO Guide",
+      "url": "https://usaco.guide/",
+      "topics": [],
+      "kind": "Site",
+      "publisher": "USACO Guide",
+      "summary": "Módulos Bronze e Silver usados como fonte de metadados dos exercícios adicionais.",
+      "source_url": "https://usaco.guide/",
+      "verification": "Página da plataforma consultada",
+      "language": "Vários",
+      "checked": "2026-10-24"
+    },
+    {
+      "id": "ref_6df46f67e1411fb8",
+      "title": "Neps Academy",
+      "url": "https://neps.academy/",
+      "topics": [],
+      "kind": "Site",
+      "publisher": "Neps Academy",
+      "summary": "Conteúdo em português e exercícios. Consulte acesso e disponibilidade na plataforma.",
+      "source_url": "https://neps.academy/",
+      "verification": "Página da plataforma consultada",
+      "language": "Português",
+      "checked": "2026-10-24"
+    },
+    {
+      "id": "ref_c55bbd30f6cce770",
+      "title": "YouKn0wWho Academy",
+      "url": "https://youkn0wwho.academy/",
+      "topics": [],
+      "kind": "Site",
+      "publisher": "YouKn0wWho Academy",
+      "summary": "Recurso indicado pelo usuário; catálogo não importado automaticamente.",
+      "source_url": "https://youkn0wwho.academy/",
+      "verification": "Recurso indicado pelo usuário; conteúdo não inspecionado",
+      "language": "Vários",
+      "checked": "2026-10-24"
+    },
+    {
+      "id": "ref_86067cad306a14c7",
+      "title": "TLE Eliminators CP Sheet",
+      "url": "https://www.tle-eliminators.com/cp-sheet",
+      "topics": [],
+      "kind": "Site",
+      "publisher": "TLE Eliminators CP Sheet",
+      "summary": "Lista indicada pelo usuário; catálogo carregado por JavaScript e não importado automaticamente.",
+      "source_url": "https://www.tle-eliminators.com/cp-sheet",
+      "verification": "Recurso indicado pelo usuário; conteúdo não inspecionado",
+      "language": "Vários",
+      "checked": "2026-10-24"
+    },
+    {
+      "id": "ref_bb3fe6347ba77978",
+      "title": "Curso Silver em vídeo",
+      "url": "https://joincpi.org/silver-video-classes",
+      "topics": [
+        "prefix",
+        "binary",
+        "greedy",
+        "graph",
+        "tree"
+      ],
+      "kind": "Curso",
+      "publisher": "CP Initiative",
+      "summary": "Curso autoguiado com aulas em vídeo e módulos correspondentes do USACO Guide. A página oficial informa acesso gratuito.",
+      "source_url": "https://joincpi.org/silver-video-classes",
+      "verification": "Página consultada",
+      "language": "Inglês",
+      "checked": "2026-10-24"
+    }
+  ]
+}

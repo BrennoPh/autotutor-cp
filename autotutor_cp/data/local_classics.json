@@ -1,0 +1,1274 @@
+[
+  {
+    "id": "external_8ed32967ddec7f18",
+    "title": "Missing Number",
+    "url": "https://cses.fi/problemset/task/1083",
+    "source": "CSES",
+    "source_url": "https://cses.fi/problemset/",
+    "section": "Introductory Problems",
+    "topic": "Fundamentos",
+    "tags": [
+      "Fundamentos",
+      "CSES",
+      "Correção local"
+    ],
+    "difficulty": "Iniciante",
+    "original_difficulty": "",
+    "difficulty_basis": "Estimativa de organização do catálogo; não é rating oficial.",
+    "external": false,
+    "math_essence": "Uma lista contém todos os inteiros de 1 a n, exceto exatamente um. Descubra qual valor não foi fornecido.",
+    "core_concepts": [
+      "Fundamentos"
+    ],
+    "approach_summary": "O(n) tempo, O(1) memória",
+    "statement": "## Missing Number\n\nUma lista contém todos os inteiros de 1 a n, exceto exatamente um. Descubra qual valor não foi fornecido.\n\n### Entrada\nn e, na linha seguinte, n−1 inteiros distintos.\n\n### Saída\nO inteiro ausente.\n\n### Restrições\n2 ≤ n ≤ 200000; valores entre 1 e n.\n\nTempo local: 2 s por teste. Memória local: 256 MB.\n\n**Adaptação didática em português do problema CSES 1083.** Testes e implementações autorais do AutoTutor; não são os testes oficiais do CSES. O formato de entrada e saída é compatível com a tarefa de origem.",
+    "complexity": "O(n) tempo, O(1) memória",
+    "catalog_checked": "2026-10-24",
+    "local_task": "missing",
+    "family": "classic",
+    "time_limit_sec": 2.0,
+    "memory_limit_mb": 256,
+    "constraints": {
+      "n_max": 200000
+    },
+    "examples": [
+      {
+        "input": "5\n1 5 2 4\n",
+        "expected_output": "3\n"
+      }
+    ],
+    "std_cpp": "#include <bits/stdc++.h>\nusing namespace std; using ll=long long; const ll MOD=1000000007;\nint main(){ios::sync_with_stdio(false);cin.tie(nullptr);\nll n,x;cin>>n;ll s=n*(n+1)/2;for(int i=1;i<n;i++){cin>>x;s-=x;}cout<<s<<\"\\n\";\n}\n",
+    "flow_steps": [
+      "Ler tamanho e números",
+      "Consolidar informação do conjunto completo",
+      "Comparar com os números recebidos",
+      "Imprimir ausente"
+    ],
+    "local_pack_version": 1,
+    "attribution": {
+      "title": "Missing Number",
+      "url": "https://cses.fi/problemset/task/1083",
+      "statement": "Reformulação didática em português",
+      "tests": "Testes próprios gerados; sem vínculo com a avaliação oficial"
+    }
+  },
+  {
+    "id": "external_316f25ad6b1d1a3f",
+    "title": "Repetitions",
+    "url": "https://cses.fi/problemset/task/1069",
+    "source": "CSES",
+    "source_url": "https://cses.fi/problemset/",
+    "section": "Introductory Problems",
+    "topic": "Fundamentos",
+    "tags": [
+      "Fundamentos",
+      "CSES",
+      "Correção local"
+    ],
+    "difficulty": "Iniciante",
+    "original_difficulty": "",
+    "difficulty_basis": "Estimativa de organização do catálogo; não é rating oficial.",
+    "external": false,
+    "math_essence": "Encontre o maior bloco consecutivo formado por uma única letra em uma sequência de DNA.",
+    "core_concepts": [
+      "Fundamentos"
+    ],
+    "approach_summary": "O(n) tempo, O(n) leitura",
+    "statement": "## Repetitions\n\nEncontre o maior bloco consecutivo formado por uma única letra em uma sequência de DNA.\n\n### Entrada\nUma string não vazia contendo apenas A, C, G e T.\n\n### Saída\nO comprimento do maior bloco.\n\n### Restrições\n1 ≤ comprimento ≤ 1000000.\n\nTempo local: 2 s por teste. Memória local: 256 MB.\n\n**Adaptação didática em português do problema CSES 1069.** Testes e implementações autorais do AutoTutor; não são os testes oficiais do CSES. O formato de entrada e saída é compatível com a tarefa de origem.",
+    "complexity": "O(n) tempo, O(n) leitura",
+    "catalog_checked": "2026-10-24",
+    "local_task": "repetitions",
+    "family": "classic",
+    "time_limit_sec": 2.0,
+    "memory_limit_mb": 256,
+    "constraints": {
+      "n_max": 1000000
+    },
+    "examples": [
+      {
+        "input": "AGGGTTCCCCA\n",
+        "expected_output": "4\n"
+      }
+    ],
+    "std_cpp": "#include <bits/stdc++.h>\nusing namespace std; using ll=long long; const ll MOD=1000000007;\nint main(){ios::sync_with_stdio(false);cin.tie(nullptr);\nstring s;cin>>s;int best=0,run=0;char prev=0;for(char c:s){run=c==prev?run+1:1;prev=c;best=max(best,run);}cout<<best<<\"\\n\";\n}\n",
+    "flow_steps": [
+      "Ler sequência",
+      "Acompanhar bloco atual",
+      "Atualizar maior bloco",
+      "Imprimir comprimento"
+    ],
+    "local_pack_version": 1,
+    "attribution": {
+      "title": "Repetitions",
+      "url": "https://cses.fi/problemset/task/1069",
+      "statement": "Reformulação didática em português",
+      "tests": "Testes próprios gerados; sem vínculo com a avaliação oficial"
+    }
+  },
+  {
+    "id": "external_4f8bda04dc39f82c",
+    "title": "Increasing Array",
+    "url": "https://cses.fi/problemset/task/1094",
+    "source": "CSES",
+    "source_url": "https://cses.fi/problemset/",
+    "section": "Introductory Problems",
+    "topic": "Guloso",
+    "tags": [
+      "Guloso",
+      "CSES",
+      "Correção local"
+    ],
+    "difficulty": "Intermediário",
+    "original_difficulty": "",
+    "difficulty_basis": "Estimativa de organização do catálogo; não é rating oficial.",
+    "external": false,
+    "math_essence": "Você pode aumentar qualquer elemento em uma unidade por operação. Calcule o menor total de operações para que cada elemento seja maior ou igual ao anterior.",
+    "core_concepts": [
+      "Guloso"
+    ],
+    "approach_summary": "O(n) tempo, O(1) memória",
+    "statement": "## Increasing Array\n\nVocê pode aumentar qualquer elemento em uma unidade por operação. Calcule o menor total de operações para que cada elemento seja maior ou igual ao anterior.\n\n### Entrada\nn seguido dos n valores.\n\n### Saída\nO mínimo de incrementos.\n\n### Restrições\n1 ≤ n ≤ 200000; 1 ≤ valores ≤ 10^9.\n\nTempo local: 2 s por teste. Memória local: 256 MB.\n\n**Adaptação didática em português do problema CSES 1094.** Testes e implementações autorais do AutoTutor; não são os testes oficiais do CSES. O formato de entrada e saída é compatível com a tarefa de origem.",
+    "complexity": "O(n) tempo, O(1) memória",
+    "catalog_checked": "2026-10-24",
+    "local_task": "increasing",
+    "family": "classic",
+    "time_limit_sec": 2.0,
+    "memory_limit_mb": 256,
+    "constraints": {
+      "n_max": 200000
+    },
+    "examples": [
+      {
+        "input": "5\n5 2 4 4 8\n",
+        "expected_output": "5\n"
+      }
+    ],
+    "std_cpp": "#include <bits/stdc++.h>\nusing namespace std; using ll=long long; const ll MOD=1000000007;\nint main(){ios::sync_with_stdio(false);cin.tie(nullptr);\nint n;cin>>n;ll x,last=0,ans=0;while(n--){cin>>x;if(x<last)ans+=last-x;else last=x;}cout<<ans<<\"\\n\";\n}\n",
+    "flow_steps": [
+      "Ler sequência",
+      "Preservar limite do prefixo",
+      "Contabilizar incrementos necessários",
+      "Imprimir custo"
+    ],
+    "local_pack_version": 1,
+    "attribution": {
+      "title": "Increasing Array",
+      "url": "https://cses.fi/problemset/task/1094",
+      "statement": "Reformulação didática em português",
+      "tests": "Testes próprios gerados; sem vínculo com a avaliação oficial"
+    }
+  },
+  {
+    "id": "external_21467a51d6758aec",
+    "title": "Bit Strings",
+    "url": "https://cses.fi/problemset/task/1617",
+    "source": "CSES",
+    "source_url": "https://cses.fi/problemset/",
+    "section": "Introductory Problems",
+    "topic": "Matemática",
+    "tags": [
+      "Matemática",
+      "CSES",
+      "Correção local"
+    ],
+    "difficulty": "Iniciante",
+    "original_difficulty": "",
+    "difficulty_basis": "Estimativa de organização do catálogo; não é rating oficial.",
+    "external": false,
+    "math_essence": "Conte as sequências de comprimento n em que cada posição pode conter 0 ou 1. Informe a contagem módulo 1000000007.",
+    "core_concepts": [
+      "Matemática"
+    ],
+    "approach_summary": "O(log n) tempo, O(1) memória",
+    "statement": "## Bit Strings\n\nConte as sequências de comprimento n em que cada posição pode conter 0 ou 1. Informe a contagem módulo 1000000007.\n\n### Entrada\nUm inteiro n.\n\n### Saída\nA contagem reduzida pelo módulo.\n\n### Restrições\n1 ≤ n ≤ 1000000.\n\nTempo local: 2 s por teste. Memória local: 256 MB.\n\n**Adaptação didática em português do problema CSES 1617.** Testes e implementações autorais do AutoTutor; não são os testes oficiais do CSES. O formato de entrada e saída é compatível com a tarefa de origem.",
+    "complexity": "O(log n) tempo, O(1) memória",
+    "catalog_checked": "2026-10-24",
+    "local_task": "bits",
+    "family": "classic",
+    "time_limit_sec": 2.0,
+    "memory_limit_mb": 256,
+    "constraints": {
+      "n_max": 1000000
+    },
+    "examples": [
+      {
+        "input": "4\n",
+        "expected_output": "16\n"
+      }
+    ],
+    "std_cpp": "#include <bits/stdc++.h>\nusing namespace std; using ll=long long; const ll MOD=1000000007;\nint main(){ios::sync_with_stdio(false);cin.tie(nullptr);\nll n;cin>>n;ll b=2,r=1;while(n){if(n&1)r=r*b%MOD;b=b*b%MOD;n>>=1;}cout<<r<<\"\\n\";\n}\n",
+    "flow_steps": [
+      "Ler comprimento",
+      "Combinar escolhas independentes",
+      "Reduzir pelo módulo",
+      "Imprimir contagem"
+    ],
+    "local_pack_version": 1,
+    "attribution": {
+      "title": "Bit Strings",
+      "url": "https://cses.fi/problemset/task/1617",
+      "statement": "Reformulação didática em português",
+      "tests": "Testes próprios gerados; sem vínculo com a avaliação oficial"
+    }
+  },
+  {
+    "id": "external_008e1ac21fb2f6a7",
+    "title": "Trailing Zeros",
+    "url": "https://cses.fi/problemset/task/1618",
+    "source": "CSES",
+    "source_url": "https://cses.fi/problemset/",
+    "section": "Introductory Problems",
+    "topic": "Matemática",
+    "tags": [
+      "Matemática",
+      "CSES",
+      "Correção local"
+    ],
+    "difficulty": "Iniciante",
+    "original_difficulty": "",
+    "difficulty_basis": "Estimativa de organização do catálogo; não é rating oficial.",
+    "external": false,
+    "math_essence": "Quantos algarismos zero aparecem consecutivamente no fim da representação decimal de n fatorial? Não imprima o fatorial.",
+    "core_concepts": [
+      "Matemática"
+    ],
+    "approach_summary": "O(log n) tempo, O(1) memória",
+    "statement": "## Trailing Zeros\n\nQuantos algarismos zero aparecem consecutivamente no fim da representação decimal de n fatorial? Não imprima o fatorial.\n\n### Entrada\nUm inteiro n.\n\n### Saída\nA quantidade de zeros finais.\n\n### Restrições\n1 ≤ n ≤ 10^9.\n\nTempo local: 2 s por teste. Memória local: 256 MB.\n\n**Adaptação didática em português do problema CSES 1618.** Testes e implementações autorais do AutoTutor; não são os testes oficiais do CSES. O formato de entrada e saída é compatível com a tarefa de origem.",
+    "complexity": "O(log n) tempo, O(1) memória",
+    "catalog_checked": "2026-10-24",
+    "local_task": "zeros",
+    "family": "classic",
+    "time_limit_sec": 2.0,
+    "memory_limit_mb": 256,
+    "constraints": {
+      "n_max": 1000000000
+    },
+    "examples": [
+      {
+        "input": "26\n",
+        "expected_output": "6\n"
+      }
+    ],
+    "std_cpp": "#include <bits/stdc++.h>\nusing namespace std; using ll=long long; const ll MOD=1000000007;\nint main(){ios::sync_with_stdio(false);cin.tie(nullptr);\nll n;cin>>n;ll ans=0;for(ll p=5;p<=n;p*=5)ans+=n/p;cout<<ans<<\"\\n\";\n}\n",
+    "flow_steps": [
+      "Ler n",
+      "Contar fatores relevantes",
+      "Incluir potências repetidas",
+      "Imprimir zeros"
+    ],
+    "local_pack_version": 1,
+    "attribution": {
+      "title": "Trailing Zeros",
+      "url": "https://cses.fi/problemset/task/1618",
+      "statement": "Reformulação didática em português",
+      "tests": "Testes próprios gerados; sem vínculo com a avaliação oficial"
+    }
+  },
+  {
+    "id": "external_9e4889bfa58d6a7d",
+    "title": "Coin Piles",
+    "url": "https://cses.fi/problemset/task/1754",
+    "source": "CSES",
+    "source_url": "https://cses.fi/problemset/",
+    "section": "Introductory Problems",
+    "topic": "Matemática",
+    "tags": [
+      "Matemática",
+      "CSES",
+      "Correção local"
+    ],
+    "difficulty": "Iniciante",
+    "original_difficulty": "",
+    "difficulty_basis": "Estimativa de organização do catálogo; não é rating oficial.",
+    "external": false,
+    "math_essence": "Em cada movimento, retire uma moeda de uma pilha e duas da outra. Para cada par de pilhas, decida se ambas podem ficar vazias sem quantidades negativas.",
+    "core_concepts": [
+      "Matemática"
+    ],
+    "approach_summary": "O(t) tempo, O(1) memória",
+    "statement": "## Coin Piles\n\nEm cada movimento, retire uma moeda de uma pilha e duas da outra. Para cada par de pilhas, decida se ambas podem ficar vazias sem quantidades negativas.\n\n### Entrada\nt, seguido de t linhas com a e b.\n\n### Saída\nYES ou NO para cada par.\n\n### Restrições\n1 ≤ t ≤ 100000; 0 ≤ a,b ≤ 10^9.\n\nTempo local: 2 s por teste. Memória local: 256 MB.\n\n**Adaptação didática em português do problema CSES 1754.** Testes e implementações autorais do AutoTutor; não são os testes oficiais do CSES. O formato de entrada e saída é compatível com a tarefa de origem.",
+    "complexity": "O(t) tempo, O(1) memória",
+    "catalog_checked": "2026-10-24",
+    "local_task": "piles",
+    "family": "classic",
+    "time_limit_sec": 2.0,
+    "memory_limit_mb": 256,
+    "constraints": {
+      "n_max": 100000
+    },
+    "examples": [
+      {
+        "input": "4\n0 0\n1 2\n2 2\n3 6\n",
+        "expected_output": "YES\nYES\nNO\nYES\n"
+      }
+    ],
+    "std_cpp": "#include <bits/stdc++.h>\nusing namespace std; using ll=long long; const ll MOD=1000000007;\nint main(){ios::sync_with_stdio(false);cin.tie(nullptr);\nint t;cin>>t;while(t--){ll a,b;cin>>a>>b;cout<<(((a+b)%3==0&&max(a,b)<=2*min(a,b))?\"YES\":\"NO\")<<\"\\n\";}\n}\n",
+    "flow_steps": [
+      "Ler pares",
+      "Verificar conservação das retiradas",
+      "Verificar viabilidade das pilhas",
+      "Responder cada caso"
+    ],
+    "local_pack_version": 1,
+    "attribution": {
+      "title": "Coin Piles",
+      "url": "https://cses.fi/problemset/task/1754",
+      "statement": "Reformulação didática em português",
+      "tests": "Testes próprios gerados; sem vínculo com a avaliação oficial"
+    }
+  },
+  {
+    "id": "external_e9fc6c81c10225f9",
+    "title": "Distinct Numbers",
+    "url": "https://cses.fi/problemset/task/1621",
+    "source": "CSES",
+    "source_url": "https://cses.fi/problemset/",
+    "section": "Sorting and Searching",
+    "topic": "Estruturas de Dados",
+    "tags": [
+      "Estruturas de Dados",
+      "CSES",
+      "Correção local"
+    ],
+    "difficulty": "Intermediário",
+    "original_difficulty": "",
+    "difficulty_basis": "Estimativa de organização do catálogo; não é rating oficial.",
+    "external": false,
+    "math_essence": "Determine quantos valores diferentes existem em uma lista. Repetições do mesmo valor contam uma única vez.",
+    "core_concepts": [
+      "Estruturas de Dados"
+    ],
+    "approach_summary": "O(n log n) tempo, O(n) memória",
+    "statement": "## Distinct Numbers\n\nDetermine quantos valores diferentes existem em uma lista. Repetições do mesmo valor contam uma única vez.\n\n### Entrada\nn seguido de n inteiros.\n\n### Saída\nA quantidade de valores distintos.\n\n### Restrições\n1 ≤ n ≤ 200000; 1 ≤ valores ≤ 10^9.\n\nTempo local: 2 s por teste. Memória local: 256 MB.\n\n**Adaptação didática em português do problema CSES 1621.** Testes e implementações autorais do AutoTutor; não são os testes oficiais do CSES. O formato de entrada e saída é compatível com a tarefa de origem.",
+    "complexity": "O(n log n) tempo, O(n) memória",
+    "catalog_checked": "2026-10-24",
+    "local_task": "distinct",
+    "family": "classic",
+    "time_limit_sec": 2.0,
+    "memory_limit_mb": 256,
+    "constraints": {
+      "n_max": 200000
+    },
+    "examples": [
+      {
+        "input": "6\n8 2 8 4 2 9\n",
+        "expected_output": "4\n"
+      }
+    ],
+    "std_cpp": "#include <bits/stdc++.h>\nusing namespace std; using ll=long long; const ll MOD=1000000007;\nint main(){ios::sync_with_stdio(false);cin.tie(nullptr);\nint n;cin>>n;set<ll>s;while(n--){ll x;cin>>x;s.insert(x);}cout<<s.size()<<\"\\n\";\n}\n",
+    "flow_steps": [
+      "Ler valores",
+      "Agrupar valores iguais",
+      "Contar grupos distintos",
+      "Imprimir quantidade"
+    ],
+    "local_pack_version": 1,
+    "attribution": {
+      "title": "Distinct Numbers",
+      "url": "https://cses.fi/problemset/task/1621",
+      "statement": "Reformulação didática em português",
+      "tests": "Testes próprios gerados; sem vínculo com a avaliação oficial"
+    }
+  },
+  {
+    "id": "external_5f1fd11fc3fffe76",
+    "title": "Maximum Subarray Sum",
+    "url": "https://cses.fi/problemset/task/1643",
+    "source": "CSES",
+    "source_url": "https://cses.fi/problemset/",
+    "section": "Sorting and Searching",
+    "topic": "DP",
+    "tags": [
+      "DP",
+      "CSES",
+      "Correção local"
+    ],
+    "difficulty": "Intermediário",
+    "original_difficulty": "",
+    "difficulty_basis": "Estimativa de organização do catálogo; não é rating oficial.",
+    "external": false,
+    "math_essence": "Escolha um segmento contíguo e não vazio da sequência cuja soma seja a maior possível. Valores negativos também fazem parte da entrada.",
+    "core_concepts": [
+      "DP"
+    ],
+    "approach_summary": "O(n) tempo, O(1) memória",
+    "statement": "## Maximum Subarray Sum\n\nEscolha um segmento contíguo e não vazio da sequência cuja soma seja a maior possível. Valores negativos também fazem parte da entrada.\n\n### Entrada\nn seguido de n inteiros.\n\n### Saída\nA maior soma de um segmento não vazio.\n\n### Restrições\n1 ≤ n ≤ 200000; −10^9 ≤ valores ≤ 10^9.\n\nTempo local: 2 s por teste. Memória local: 256 MB.\n\n**Adaptação didática em português do problema CSES 1643.** Testes e implementações autorais do AutoTutor; não são os testes oficiais do CSES. O formato de entrada e saída é compatível com a tarefa de origem.",
+    "complexity": "O(n) tempo, O(1) memória",
+    "catalog_checked": "2026-10-24",
+    "local_task": "maxsub",
+    "family": "classic",
+    "time_limit_sec": 2.0,
+    "memory_limit_mb": 256,
+    "constraints": {
+      "n_max": 200000
+    },
+    "examples": [
+      {
+        "input": "6\n-4 3 -1 5 -8 2\n",
+        "expected_output": "7\n"
+      }
+    ],
+    "std_cpp": "#include <bits/stdc++.h>\nusing namespace std; using ll=long long; const ll MOD=1000000007;\nint main(){ios::sync_with_stdio(false);cin.tie(nullptr);\nint n;cin>>n;ll x,cur=0,best=LLONG_MIN;for(int i=0;i<n;i++){cin>>x;cur=i?max(x,cur+x):x;best=max(best,cur);}cout<<best<<\"\\n\";\n}\n",
+    "flow_steps": [
+      "Ler sequência",
+      "Melhor segmento terminado na posição",
+      "Atualizar melhor resposta global",
+      "Imprimir soma"
+    ],
+    "local_pack_version": 1,
+    "attribution": {
+      "title": "Maximum Subarray Sum",
+      "url": "https://cses.fi/problemset/task/1643",
+      "statement": "Reformulação didática em português",
+      "tests": "Testes próprios gerados; sem vínculo com a avaliação oficial"
+    }
+  },
+  {
+    "id": "external_7164ea2b8440f1c4",
+    "title": "Stick Lengths",
+    "url": "https://cses.fi/problemset/task/1074",
+    "source": "CSES",
+    "source_url": "https://cses.fi/problemset/",
+    "section": "Sorting and Searching",
+    "topic": "Guloso",
+    "tags": [
+      "Guloso",
+      "CSES",
+      "Correção local"
+    ],
+    "difficulty": "Intermediário",
+    "original_difficulty": "",
+    "difficulty_basis": "Estimativa de organização do catálogo; não é rating oficial.",
+    "external": false,
+    "math_essence": "Ajuste todos os comprimentos para um mesmo valor inteiro. Aumentar ou diminuir uma unidade custa uma unidade. Minimize o custo total.",
+    "core_concepts": [
+      "Guloso"
+    ],
+    "approach_summary": "O(n log n) tempo, O(n) memória",
+    "statement": "## Stick Lengths\n\nAjuste todos os comprimentos para um mesmo valor inteiro. Aumentar ou diminuir uma unidade custa uma unidade. Minimize o custo total.\n\n### Entrada\nn e n comprimentos.\n\n### Saída\nO custo mínimo.\n\n### Restrições\n1 ≤ n ≤ 200000; 1 ≤ comprimentos ≤ 10^9.\n\nTempo local: 2 s por teste. Memória local: 256 MB.\n\n**Adaptação didática em português do problema CSES 1074.** Testes e implementações autorais do AutoTutor; não são os testes oficiais do CSES. O formato de entrada e saída é compatível com a tarefa de origem.",
+    "complexity": "O(n log n) tempo, O(n) memória",
+    "catalog_checked": "2026-10-24",
+    "local_task": "sticks",
+    "family": "classic",
+    "time_limit_sec": 2.0,
+    "memory_limit_mb": 256,
+    "constraints": {
+      "n_max": 200000
+    },
+    "examples": [
+      {
+        "input": "4\n1 3 7 9\n",
+        "expected_output": "12\n"
+      }
+    ],
+    "std_cpp": "#include <bits/stdc++.h>\nusing namespace std; using ll=long long; const ll MOD=1000000007;\nint main(){ios::sync_with_stdio(false);cin.tie(nullptr);\nint n;cin>>n;vector<ll>a(n);for(auto&x:a)cin>>x;sort(a.begin(),a.end());ll ans=0;for(ll x:a)ans+=abs(x-a[n/2]);cout<<ans<<\"\\n\";\n}\n",
+    "flow_steps": [
+      "Ler comprimentos",
+      "Ordenar posições",
+      "Avaliar equilíbrio do custo",
+      "Imprimir mínimo"
+    ],
+    "local_pack_version": 1,
+    "attribution": {
+      "title": "Stick Lengths",
+      "url": "https://cses.fi/problemset/task/1074",
+      "statement": "Reformulação didática em português",
+      "tests": "Testes próprios gerados; sem vínculo com a avaliação oficial"
+    }
+  },
+  {
+    "id": "external_a697122645bdf5a2",
+    "title": "Missing Coin Sum",
+    "url": "https://cses.fi/problemset/task/2183",
+    "source": "CSES",
+    "source_url": "https://cses.fi/problemset/",
+    "section": "Sorting and Searching",
+    "topic": "Guloso",
+    "tags": [
+      "Guloso",
+      "CSES",
+      "Correção local"
+    ],
+    "difficulty": "Intermediário",
+    "original_difficulty": "",
+    "difficulty_basis": "Estimativa de organização do catálogo; não é rating oficial.",
+    "external": false,
+    "math_essence": "Cada moeda pode ser usada no máximo uma vez. Descubra o menor inteiro positivo que não pode ser obtido somando um subconjunto das moedas.",
+    "core_concepts": [
+      "Guloso"
+    ],
+    "approach_summary": "O(n log n) tempo, O(n) memória",
+    "statement": "## Missing Coin Sum\n\nCada moeda pode ser usada no máximo uma vez. Descubra o menor inteiro positivo que não pode ser obtido somando um subconjunto das moedas.\n\n### Entrada\nn e n valores de moedas.\n\n### Saída\nA menor soma positiva impossível.\n\n### Restrições\n1 ≤ n ≤ 200000; 1 ≤ valores ≤ 10^9.\n\nTempo local: 2 s por teste. Memória local: 256 MB.\n\n**Adaptação didática em português do problema CSES 2183.** Testes e implementações autorais do AutoTutor; não são os testes oficiais do CSES. O formato de entrada e saída é compatível com a tarefa de origem.",
+    "complexity": "O(n log n) tempo, O(n) memória",
+    "catalog_checked": "2026-10-24",
+    "local_task": "missingcoin",
+    "family": "classic",
+    "time_limit_sec": 2.0,
+    "memory_limit_mb": 256,
+    "constraints": {
+      "n_max": 200000
+    },
+    "examples": [
+      {
+        "input": "4\n1 2 2 8\n",
+        "expected_output": "6\n"
+      }
+    ],
+    "std_cpp": "#include <bits/stdc++.h>\nusing namespace std; using ll=long long; const ll MOD=1000000007;\nint main(){ios::sync_with_stdio(false);cin.tie(nullptr);\nint n;cin>>n;vector<ll>a(n);for(auto&x:a)cin>>x;sort(a.begin(),a.end());ll reach=1;for(ll x:a){if(x>reach)break;reach+=x;}cout<<reach<<\"\\n\";\n}\n",
+    "flow_steps": [
+      "Ordenar moedas",
+      "Preservar faixa de somas coberta",
+      "Encontrar primeira lacuna",
+      "Imprimir soma impossível"
+    ],
+    "local_pack_version": 1,
+    "attribution": {
+      "title": "Missing Coin Sum",
+      "url": "https://cses.fi/problemset/task/2183",
+      "statement": "Reformulação didática em português",
+      "tests": "Testes próprios gerados; sem vínculo com a avaliação oficial"
+    }
+  },
+  {
+    "id": "external_b686ac4032f0cdd3",
+    "title": "Ferris Wheel",
+    "url": "https://cses.fi/problemset/task/1090",
+    "source": "CSES",
+    "source_url": "https://cses.fi/problemset/",
+    "section": "Sorting and Searching",
+    "topic": "Guloso",
+    "tags": [
+      "Guloso",
+      "CSES",
+      "Correção local"
+    ],
+    "difficulty": "Intermediário",
+    "original_difficulty": "",
+    "difficulty_basis": "Estimativa de organização do catálogo; não é rating oficial.",
+    "external": false,
+    "math_essence": "Distribua as crianças em cabines com capacidade para até duas pessoas. A soma dos pesos em cada cabine não pode ultrapassar x. Minimize a quantidade de cabines.",
+    "core_concepts": [
+      "Guloso"
+    ],
+    "approach_summary": "O(n log n) tempo, O(n) memória",
+    "statement": "## Ferris Wheel\n\nDistribua as crianças em cabines com capacidade para até duas pessoas. A soma dos pesos em cada cabine não pode ultrapassar x. Minimize a quantidade de cabines.\n\n### Entrada\nn e x; depois n pesos.\n\n### Saída\nO menor número de cabines.\n\n### Restrições\n1 ≤ n ≤ 200000; 1 ≤ peso ≤ x ≤ 10^9.\n\nTempo local: 2 s por teste. Memória local: 256 MB.\n\n**Adaptação didática em português do problema CSES 1090.** Testes e implementações autorais do AutoTutor; não são os testes oficiais do CSES. O formato de entrada e saída é compatível com a tarefa de origem.",
+    "complexity": "O(n log n) tempo, O(n) memória",
+    "catalog_checked": "2026-10-24",
+    "local_task": "ferris",
+    "family": "classic",
+    "time_limit_sec": 2.0,
+    "memory_limit_mb": 256,
+    "constraints": {
+      "n_max": 200000
+    },
+    "examples": [
+      {
+        "input": "5 10\n2 8 5 3 7\n",
+        "expected_output": "3\n"
+      }
+    ],
+    "std_cpp": "#include <bits/stdc++.h>\nusing namespace std; using ll=long long; const ll MOD=1000000007;\nint main(){ios::sync_with_stdio(false);cin.tie(nullptr);\nint n;ll x;cin>>n>>x;vector<ll>a(n);for(auto&v:a)cin>>v;sort(a.begin(),a.end());int l=0,r=n-1,ans=0;while(l<=r){if(l<r&&a[l]+a[r]<=x)l++;r--;ans++;}cout<<ans<<\"\\n\";\n}\n",
+    "flow_steps": [
+      "Ordenar pesos",
+      "Comparar extremos disponíveis",
+      "Reservar cabine e avançar",
+      "Imprimir quantidade"
+    ],
+    "local_pack_version": 1,
+    "attribution": {
+      "title": "Ferris Wheel",
+      "url": "https://cses.fi/problemset/task/1090",
+      "statement": "Reformulação didática em português",
+      "tests": "Testes próprios gerados; sem vínculo com a avaliação oficial"
+    }
+  },
+  {
+    "id": "external_022750009e931ce5",
+    "title": "Movie Festival",
+    "url": "https://cses.fi/problemset/task/1629",
+    "source": "CSES",
+    "source_url": "https://cses.fi/problemset/",
+    "section": "Sorting and Searching",
+    "topic": "Guloso",
+    "tags": [
+      "Guloso",
+      "CSES",
+      "Correção local"
+    ],
+    "difficulty": "Intermediário",
+    "original_difficulty": "",
+    "difficulty_basis": "Estimativa de organização do catálogo; não é rating oficial.",
+    "external": false,
+    "math_essence": "Selecione o maior número de filmes que uma pessoa consegue assistir integralmente. É permitido iniciar um filme exatamente quando o anterior termina.",
+    "core_concepts": [
+      "Guloso"
+    ],
+    "approach_summary": "O(n log n) tempo, O(n) memória",
+    "statement": "## Movie Festival\n\nSelecione o maior número de filmes que uma pessoa consegue assistir integralmente. É permitido iniciar um filme exatamente quando o anterior termina.\n\n### Entrada\nn, seguido de n pares início fim.\n\n### Saída\nO máximo de filmes compatíveis.\n\n### Restrições\n1 ≤ n ≤ 200000; 1 ≤ início < fim ≤ 10^9.\n\nTempo local: 2 s por teste. Memória local: 256 MB.\n\n**Adaptação didática em português do problema CSES 1629.** Testes e implementações autorais do AutoTutor; não são os testes oficiais do CSES. O formato de entrada e saída é compatível com a tarefa de origem.",
+    "complexity": "O(n log n) tempo, O(n) memória",
+    "catalog_checked": "2026-10-24",
+    "local_task": "movies",
+    "family": "classic",
+    "time_limit_sec": 2.0,
+    "memory_limit_mb": 256,
+    "constraints": {
+      "n_max": 200000
+    },
+    "examples": [
+      {
+        "input": "4\n1 4\n2 3\n3 5\n5 8\n",
+        "expected_output": "3\n"
+      }
+    ],
+    "std_cpp": "#include <bits/stdc++.h>\nusing namespace std; using ll=long long; const ll MOD=1000000007;\nint main(){ios::sync_with_stdio(false);cin.tie(nullptr);\nint n;cin>>n;vector<pair<ll,ll>>a(n);for(auto&[r,l]:a)cin>>l>>r;sort(a.begin(),a.end());ll last=0;int ans=0;for(auto[r,l]:a)if(l>=last){ans++;last=r;}cout<<ans<<\"\\n\";\n}\n",
+    "flow_steps": [
+      "Ordenar por término",
+      "Verificar compatibilidade",
+      "Atualizar agenda",
+      "Imprimir quantidade"
+    ],
+    "local_pack_version": 1,
+    "attribution": {
+      "title": "Movie Festival",
+      "url": "https://cses.fi/problemset/task/1629",
+      "statement": "Reformulação didática em português",
+      "tests": "Testes próprios gerados; sem vínculo com a avaliação oficial"
+    }
+  },
+  {
+    "id": "external_8178d98ab018f1c1",
+    "title": "Apartments",
+    "url": "https://cses.fi/problemset/task/1084",
+    "source": "CSES",
+    "source_url": "https://cses.fi/problemset/",
+    "section": "Sorting and Searching",
+    "topic": "Guloso",
+    "tags": [
+      "Guloso",
+      "CSES",
+      "Correção local"
+    ],
+    "difficulty": "Intermediário",
+    "original_difficulty": "",
+    "difficulty_basis": "Estimativa de organização do catálogo; não é rating oficial.",
+    "external": false,
+    "math_essence": "Cada candidato deseja um tamanho de apartamento e aceita uma diferença absoluta de até k. Cada apartamento e cada candidato podem participar de no máximo uma atribuição. Maximize as atribuições.",
+    "core_concepts": [
+      "Guloso"
+    ],
+    "approach_summary": "O(n log n + m log m) tempo, O(n+m) memória",
+    "statement": "## Apartments\n\nCada candidato deseja um tamanho de apartamento e aceita uma diferença absoluta de até k. Cada apartamento e cada candidato podem participar de no máximo uma atribuição. Maximize as atribuições.\n\n### Entrada\nn m k; n tamanhos desejados; m tamanhos disponíveis.\n\n### Saída\nO máximo de candidatos atendidos.\n\n### Restrições\n1 ≤ n,m ≤ 200000; 0 ≤ k ≤ 10^9; 1 ≤ tamanhos ≤ 10^9.\n\nTempo local: 2 s por teste. Memória local: 256 MB.\n\n**Adaptação didática em português do problema CSES 1084.** Testes e implementações autorais do AutoTutor; não são os testes oficiais do CSES. O formato de entrada e saída é compatível com a tarefa de origem.",
+    "complexity": "O(n log n + m log m) tempo, O(n+m) memória",
+    "catalog_checked": "2026-10-24",
+    "local_task": "apartments",
+    "family": "classic",
+    "time_limit_sec": 2.0,
+    "memory_limit_mb": 256,
+    "constraints": {
+      "n_max": 200000
+    },
+    "examples": [
+      {
+        "input": "3 4 1\n10 20 30\n9 19 40 31\n",
+        "expected_output": "3\n"
+      }
+    ],
+    "std_cpp": "#include <bits/stdc++.h>\nusing namespace std; using ll=long long; const ll MOD=1000000007;\nint main(){ios::sync_with_stdio(false);cin.tie(nullptr);\nint n,m;ll k;cin>>n>>m>>k;vector<ll>a(n),b(m);for(auto&x:a)cin>>x;for(auto&x:b)cin>>x;sort(a.begin(),a.end());sort(b.begin(),b.end());int i=0,j=0,ans=0;while(i<n&&j<m){if(abs(a[i]-b[j])<=k){ans++;i++;j++;}else if(b[j]<a[i]-k)j++;else i++;}cout<<ans<<\"\\n\";\n}\n",
+    "flow_steps": [
+      "Ordenar desejos e ofertas",
+      "Comparar menor par disponível",
+      "Descartar incompatíveis ou combinar",
+      "Imprimir atendidos"
+    ],
+    "local_pack_version": 1,
+    "attribution": {
+      "title": "Apartments",
+      "url": "https://cses.fi/problemset/task/1084",
+      "statement": "Reformulação didática em português",
+      "tests": "Testes próprios gerados; sem vínculo com a avaliação oficial"
+    }
+  },
+  {
+    "id": "external_b4c1d08a679c7f73",
+    "title": "Dice Combinations",
+    "url": "https://cses.fi/problemset/task/1633",
+    "source": "CSES",
+    "source_url": "https://cses.fi/problemset/",
+    "section": "Dynamic Programming",
+    "topic": "DP",
+    "tags": [
+      "DP",
+      "CSES",
+      "Correção local"
+    ],
+    "difficulty": "Intermediário",
+    "original_difficulty": "",
+    "difficulty_basis": "Estimativa de organização do catálogo; não é rating oficial.",
+    "external": false,
+    "math_essence": "Conte as sequências ordenadas de valores entre 1 e 6 cuja soma seja n. Sequências com ordens diferentes contam separadamente. Use módulo 1000000007.",
+    "core_concepts": [
+      "DP"
+    ],
+    "approach_summary": "O(n) tempo, O(n) memória",
+    "statement": "## Dice Combinations\n\nConte as sequências ordenadas de valores entre 1 e 6 cuja soma seja n. Sequências com ordens diferentes contam separadamente. Use módulo 1000000007.\n\n### Entrada\nUm inteiro n.\n\n### Saída\nA contagem módulo 1000000007.\n\n### Restrições\n1 ≤ n ≤ 1000000.\n\nTempo local: 2 s por teste. Memória local: 256 MB.\n\n**Adaptação didática em português do problema CSES 1633.** Testes e implementações autorais do AutoTutor; não são os testes oficiais do CSES. O formato de entrada e saída é compatível com a tarefa de origem.",
+    "complexity": "O(n) tempo, O(n) memória",
+    "catalog_checked": "2026-10-24",
+    "local_task": "dice",
+    "family": "classic",
+    "time_limit_sec": 2.0,
+    "memory_limit_mb": 256,
+    "constraints": {
+      "n_max": 1000000
+    },
+    "examples": [
+      {
+        "input": "4\n",
+        "expected_output": "8\n"
+      }
+    ],
+    "std_cpp": "#include <bits/stdc++.h>\nusing namespace std; using ll=long long; const ll MOD=1000000007;\nint main(){ios::sync_with_stdio(false);cin.tie(nullptr);\nint n;cin>>n;vector<ll>d(n+1);d[0]=1;for(int i=1;i<=n;i++)for(int k=1;k<=6&&k<=i;k++)d[i]=(d[i]+d[i-k])%MOD;cout<<d[n]<<\"\\n\";\n}\n",
+    "flow_steps": [
+      "Definir estado pela soma",
+      "Considerar último lançamento",
+      "Combinar predecessores",
+      "Imprimir contagem"
+    ],
+    "local_pack_version": 1,
+    "attribution": {
+      "title": "Dice Combinations",
+      "url": "https://cses.fi/problemset/task/1633",
+      "statement": "Reformulação didática em português",
+      "tests": "Testes próprios gerados; sem vínculo com a avaliação oficial"
+    }
+  },
+  {
+    "id": "external_d8c666a480015aab",
+    "title": "Minimizing Coins",
+    "url": "https://cses.fi/problemset/task/1634",
+    "source": "CSES",
+    "source_url": "https://cses.fi/problemset/",
+    "section": "Dynamic Programming",
+    "topic": "DP",
+    "tags": [
+      "DP",
+      "CSES",
+      "Correção local"
+    ],
+    "difficulty": "Intermediário",
+    "original_difficulty": "",
+    "difficulty_basis": "Estimativa de organização do catálogo; não é rating oficial.",
+    "external": false,
+    "math_essence": "Determine a menor quantidade de moedas necessária para totalizar x. Há quantidade ilimitada de cada valor. Se for impossível, responda −1.",
+    "core_concepts": [
+      "DP"
+    ],
+    "approach_summary": "O(n x) tempo, O(x) memória",
+    "statement": "## Minimizing Coins\n\nDetermine a menor quantidade de moedas necessária para totalizar x. Há quantidade ilimitada de cada valor. Se for impossível, responda −1.\n\n### Entrada\nn x, seguidos de n valores distintos de moedas.\n\n### Saída\nO mínimo de moedas ou −1.\n\n### Restrições\n1 ≤ n ≤ 100; 1 ≤ x ≤ 1000000; 1 ≤ moedas ≤ 1000000.\n\nTempo local: 2 s por teste. Memória local: 256 MB.\n\n**Adaptação didática em português do problema CSES 1634.** Testes e implementações autorais do AutoTutor; não são os testes oficiais do CSES. O formato de entrada e saída é compatível com a tarefa de origem.",
+    "complexity": "O(n x) tempo, O(x) memória",
+    "catalog_checked": "2026-10-24",
+    "local_task": "mincoins",
+    "family": "classic",
+    "time_limit_sec": 2.0,
+    "memory_limit_mb": 256,
+    "constraints": {
+      "n_max": 100
+    },
+    "examples": [
+      {
+        "input": "2 4\n1 2\n",
+        "expected_output": "2\n"
+      }
+    ],
+    "std_cpp": "#include <bits/stdc++.h>\nusing namespace std; using ll=long long; const ll MOD=1000000007;\nint main(){ios::sync_with_stdio(false);cin.tie(nullptr);\nint n,x;cin>>n>>x;vector<int>c(n);for(auto&v:c)cin>>v;vector<int>d(x+1,x+1);d[0]=0;for(int s=1;s<=x;s++)for(int v:c)if(v<=s)d[s]=min(d[s],d[s-v]+1);cout<<(d[x]>x?-1:d[x]);cout<<\"\\n\";\n}\n",
+    "flow_steps": [
+      "Definir estados de soma",
+      "Distinguir ordem e disponibilidade",
+      "Atualizar transições",
+      "Imprimir estado do alvo"
+    ],
+    "local_pack_version": 1,
+    "attribution": {
+      "title": "Minimizing Coins",
+      "url": "https://cses.fi/problemset/task/1634",
+      "statement": "Reformulação didática em português",
+      "tests": "Testes próprios gerados; sem vínculo com a avaliação oficial"
+    }
+  },
+  {
+    "id": "external_8776bb1988d351e9",
+    "title": "Coin Combinations I",
+    "url": "https://cses.fi/problemset/task/1635",
+    "source": "CSES",
+    "source_url": "https://cses.fi/problemset/",
+    "section": "Dynamic Programming",
+    "topic": "DP",
+    "tags": [
+      "DP",
+      "CSES",
+      "Correção local"
+    ],
+    "difficulty": "Intermediário",
+    "original_difficulty": "",
+    "difficulty_basis": "Estimativa de organização do catálogo; não é rating oficial.",
+    "external": false,
+    "math_essence": "Conte as sequências de moedas cuja soma é x. A ordem importa e cada valor pode ser reutilizado. Use módulo 1000000007.",
+    "core_concepts": [
+      "DP"
+    ],
+    "approach_summary": "O(n x) tempo, O(x) memória",
+    "statement": "## Coin Combinations I\n\nConte as sequências de moedas cuja soma é x. A ordem importa e cada valor pode ser reutilizado. Use módulo 1000000007.\n\n### Entrada\nn x, seguidos de n valores distintos de moedas.\n\n### Saída\nA contagem de sequências módulo 1000000007.\n\n### Restrições\n1 ≤ n ≤ 100; 1 ≤ x ≤ 1000000; 1 ≤ moedas ≤ 1000000.\n\nTempo local: 2 s por teste. Memória local: 256 MB.\n\n**Adaptação didática em português do problema CSES 1635.** Testes e implementações autorais do AutoTutor; não são os testes oficiais do CSES. O formato de entrada e saída é compatível com a tarefa de origem.",
+    "complexity": "O(n x) tempo, O(x) memória",
+    "catalog_checked": "2026-10-24",
+    "local_task": "coins1",
+    "family": "classic",
+    "time_limit_sec": 2.0,
+    "memory_limit_mb": 256,
+    "constraints": {
+      "n_max": 100
+    },
+    "examples": [
+      {
+        "input": "2 4\n1 2\n",
+        "expected_output": "5\n"
+      }
+    ],
+    "std_cpp": "#include <bits/stdc++.h>\nusing namespace std; using ll=long long; const ll MOD=1000000007;\nint main(){ios::sync_with_stdio(false);cin.tie(nullptr);\nint n,x;cin>>n>>x;vector<int>c(n);for(auto&v:c)cin>>v;vector<ll>d(x+1);d[0]=1;for(int s=1;s<=x;s++)for(int v:c)if(v<=s)d[s]=(d[s]+d[s-v])%MOD;cout<<d[x];cout<<\"\\n\";\n}\n",
+    "flow_steps": [
+      "Definir estados de soma",
+      "Distinguir ordem e disponibilidade",
+      "Atualizar transições",
+      "Imprimir estado do alvo"
+    ],
+    "local_pack_version": 1,
+    "attribution": {
+      "title": "Coin Combinations I",
+      "url": "https://cses.fi/problemset/task/1635",
+      "statement": "Reformulação didática em português",
+      "tests": "Testes próprios gerados; sem vínculo com a avaliação oficial"
+    }
+  },
+  {
+    "id": "external_4dad0dc60891e402",
+    "title": "Coin Combinations II",
+    "url": "https://cses.fi/problemset/task/1636",
+    "source": "CSES",
+    "source_url": "https://cses.fi/problemset/",
+    "section": "Dynamic Programming",
+    "topic": "DP",
+    "tags": [
+      "DP",
+      "CSES",
+      "Correção local"
+    ],
+    "difficulty": "Intermediário",
+    "original_difficulty": "",
+    "difficulty_basis": "Estimativa de organização do catálogo; não é rating oficial.",
+    "external": false,
+    "math_essence": "Conte as combinações de moedas cuja soma é x. A ordem não importa e cada valor pode ser reutilizado. Use módulo 1000000007.",
+    "core_concepts": [
+      "DP"
+    ],
+    "approach_summary": "O(n x) tempo, O(x) memória",
+    "statement": "## Coin Combinations II\n\nConte as combinações de moedas cuja soma é x. A ordem não importa e cada valor pode ser reutilizado. Use módulo 1000000007.\n\n### Entrada\nn x, seguidos de n valores distintos de moedas.\n\n### Saída\nA contagem de combinações módulo 1000000007.\n\n### Restrições\n1 ≤ n ≤ 100; 1 ≤ x ≤ 1000000; 1 ≤ moedas ≤ 1000000.\n\nTempo local: 2 s por teste. Memória local: 256 MB.\n\n**Adaptação didática em português do problema CSES 1636.** Testes e implementações autorais do AutoTutor; não são os testes oficiais do CSES. O formato de entrada e saída é compatível com a tarefa de origem.",
+    "complexity": "O(n x) tempo, O(x) memória",
+    "catalog_checked": "2026-10-24",
+    "local_task": "coins2",
+    "family": "classic",
+    "time_limit_sec": 2.0,
+    "memory_limit_mb": 256,
+    "constraints": {
+      "n_max": 100
+    },
+    "examples": [
+      {
+        "input": "2 4\n1 2\n",
+        "expected_output": "3\n"
+      }
+    ],
+    "std_cpp": "#include <bits/stdc++.h>\nusing namespace std; using ll=long long; const ll MOD=1000000007;\nint main(){ios::sync_with_stdio(false);cin.tie(nullptr);\nint n,x;cin>>n>>x;vector<int>c(n);for(auto&v:c)cin>>v;vector<ll>d(x+1);d[0]=1;for(int v:c)for(int s=v;s<=x;s++)d[s]=(d[s]+d[s-v])%MOD;cout<<d[x];cout<<\"\\n\";\n}\n",
+    "flow_steps": [
+      "Definir estados de soma",
+      "Distinguir ordem e disponibilidade",
+      "Atualizar transições",
+      "Imprimir estado do alvo"
+    ],
+    "local_pack_version": 1,
+    "attribution": {
+      "title": "Coin Combinations II",
+      "url": "https://cses.fi/problemset/task/1636",
+      "statement": "Reformulação didática em português",
+      "tests": "Testes próprios gerados; sem vínculo com a avaliação oficial"
+    }
+  },
+  {
+    "id": "external_ebf2b377453e18bc",
+    "title": "Removing Digits",
+    "url": "https://cses.fi/problemset/task/1637",
+    "source": "CSES",
+    "source_url": "https://cses.fi/problemset/",
+    "section": "Dynamic Programming",
+    "topic": "DP",
+    "tags": [
+      "DP",
+      "CSES",
+      "Correção local"
+    ],
+    "difficulty": "Intermediário",
+    "original_difficulty": "",
+    "difficulty_basis": "Estimativa de organização do catálogo; não é rating oficial.",
+    "external": false,
+    "math_essence": "Partindo de n, a cada passo subtraia um dos algarismos não nulos do valor atual. Minimize o número de passos até zero.",
+    "core_concepts": [
+      "DP"
+    ],
+    "approach_summary": "O(n log n) tempo, O(n) memória",
+    "statement": "## Removing Digits\n\nPartindo de n, a cada passo subtraia um dos algarismos não nulos do valor atual. Minimize o número de passos até zero.\n\n### Entrada\nUm inteiro n.\n\n### Saída\nO mínimo de subtrações.\n\n### Restrições\n1 ≤ n ≤ 1000000.\n\nTempo local: 2 s por teste. Memória local: 256 MB.\n\n**Adaptação didática em português do problema CSES 1637.** Testes e implementações autorais do AutoTutor; não são os testes oficiais do CSES. O formato de entrada e saída é compatível com a tarefa de origem.",
+    "complexity": "O(n log n) tempo, O(n) memória",
+    "catalog_checked": "2026-10-24",
+    "local_task": "digits",
+    "family": "classic",
+    "time_limit_sec": 2.0,
+    "memory_limit_mb": 256,
+    "constraints": {
+      "n_max": 1000000
+    },
+    "examples": [
+      {
+        "input": "21\n",
+        "expected_output": "4\n"
+      }
+    ],
+    "std_cpp": "#include <bits/stdc++.h>\nusing namespace std; using ll=long long; const ll MOD=1000000007;\nint main(){ios::sync_with_stdio(false);cin.tie(nullptr);\nint n;cin>>n;vector<int>d(n+1,n+1);d[0]=0;for(int i=1;i<=n;i++)for(int v=i;v;v/=10)if(v%10)d[i]=min(d[i],d[i-v%10]+1);cout<<d[n]<<\"\\n\";\n}\n",
+    "flow_steps": [
+      "Definir estado pelo valor",
+      "Enumerar algarismos disponíveis",
+      "Minimizar transições",
+      "Imprimir distância até zero"
+    ],
+    "local_pack_version": 1,
+    "attribution": {
+      "title": "Removing Digits",
+      "url": "https://cses.fi/problemset/task/1637",
+      "statement": "Reformulação didática em português",
+      "tests": "Testes próprios gerados; sem vínculo com a avaliação oficial"
+    }
+  },
+  {
+    "id": "external_1bb9ae62b9ef8238",
+    "title": "Grid Paths I",
+    "url": "https://cses.fi/problemset/task/1638",
+    "source": "CSES",
+    "source_url": "https://cses.fi/problemset/",
+    "section": "Dynamic Programming",
+    "topic": "DP",
+    "tags": [
+      "DP",
+      "CSES",
+      "Correção local"
+    ],
+    "difficulty": "Intermediário",
+    "original_difficulty": "",
+    "difficulty_basis": "Estimativa de organização do catálogo; não é rating oficial.",
+    "external": false,
+    "math_essence": "Conte os caminhos do canto superior esquerdo ao inferior direito de uma grade quadrada. Só são permitidos passos para a direita ou para baixo, sem atravessar células bloqueadas (*). Use módulo 1000000007.",
+    "core_concepts": [
+      "DP"
+    ],
+    "approach_summary": "O(n²) tempo, O(n) memória",
+    "statement": "## Grid Paths I\n\nConte os caminhos do canto superior esquerdo ao inferior direito de uma grade quadrada. Só são permitidos passos para a direita ou para baixo, sem atravessar células bloqueadas (*). Use módulo 1000000007.\n\n### Entrada\nn, seguido de n linhas com n caracteres . ou *.\n\n### Saída\nA quantidade de caminhos módulo 1000000007.\n\n### Restrições\n1 ≤ n ≤ 1000.\n\nTempo local: 2 s por teste. Memória local: 256 MB.\n\n**Adaptação didática em português do problema CSES 1638.** Testes e implementações autorais do AutoTutor; não são os testes oficiais do CSES. O formato de entrada e saída é compatível com a tarefa de origem.",
+    "complexity": "O(n²) tempo, O(n) memória",
+    "catalog_checked": "2026-10-24",
+    "local_task": "grid",
+    "family": "classic",
+    "time_limit_sec": 2.0,
+    "memory_limit_mb": 256,
+    "constraints": {
+      "n_max": 1000
+    },
+    "examples": [
+      {
+        "input": "3\n...\n.*.\n...\n",
+        "expected_output": "2\n"
+      }
+    ],
+    "std_cpp": "#include <bits/stdc++.h>\nusing namespace std; using ll=long long; const ll MOD=1000000007;\nint main(){ios::sync_with_stdio(false);cin.tie(nullptr);\nint n;cin>>n;vector<ll>d(n);d[0]=1;for(int i=0;i<n;i++){string s;cin>>s;for(int j=0;j<n;j++){if(s[j]=='*')d[j]=0;else if(j)d[j]=(d[j]+d[j-1])%MOD;}}cout<<d[n-1]<<\"\\n\";\n}\n",
+    "flow_steps": [
+      "Ler grade",
+      "Zerar estados bloqueados",
+      "Combinar chegada de cima e esquerda",
+      "Imprimir destino"
+    ],
+    "local_pack_version": 1,
+    "attribution": {
+      "title": "Grid Paths I",
+      "url": "https://cses.fi/problemset/task/1638",
+      "statement": "Reformulação didática em português",
+      "tests": "Testes próprios gerados; sem vínculo com a avaliação oficial"
+    }
+  },
+  {
+    "id": "external_90ff63ecf7296213",
+    "title": "Book Shop",
+    "url": "https://cses.fi/problemset/task/1158",
+    "source": "CSES",
+    "source_url": "https://cses.fi/problemset/",
+    "section": "Dynamic Programming",
+    "topic": "DP",
+    "tags": [
+      "DP",
+      "CSES",
+      "Correção local"
+    ],
+    "difficulty": "Intermediário",
+    "original_difficulty": "",
+    "difficulty_basis": "Estimativa de organização do catálogo; não é rating oficial.",
+    "external": false,
+    "math_essence": "Cada livro tem preço e quantidade de páginas. Escolha livros com preço total de até x para maximizar as páginas. Cada livro pode ser comprado no máximo uma vez.",
+    "core_concepts": [
+      "DP"
+    ],
+    "approach_summary": "O(n x) tempo, O(x) memória",
+    "statement": "## Book Shop\n\nCada livro tem preço e quantidade de páginas. Escolha livros com preço total de até x para maximizar as páginas. Cada livro pode ser comprado no máximo uma vez.\n\n### Entrada\nn x; n preços; n quantidades de páginas.\n\n### Saída\nO máximo de páginas possível.\n\n### Restrições\n1 ≤ n ≤ 1000; 1 ≤ x ≤ 100000; 1 ≤ preços,páginas ≤ 1000.\n\nTempo local: 2 s por teste. Memória local: 256 MB.\n\n**Adaptação didática em português do problema CSES 1158.** Testes e implementações autorais do AutoTutor; não são os testes oficiais do CSES. O formato de entrada e saída é compatível com a tarefa de origem.",
+    "complexity": "O(n x) tempo, O(x) memória",
+    "catalog_checked": "2026-10-24",
+    "local_task": "books",
+    "family": "classic",
+    "time_limit_sec": 2.0,
+    "memory_limit_mb": 256,
+    "constraints": {
+      "n_max": 1000
+    },
+    "examples": [
+      {
+        "input": "3 7\n3 4 6\n5 7 10\n",
+        "expected_output": "12\n"
+      }
+    ],
+    "std_cpp": "#include <bits/stdc++.h>\nusing namespace std; using ll=long long; const ll MOD=1000000007;\nint main(){ios::sync_with_stdio(false);cin.tie(nullptr);\nint n,x;cin>>n>>x;vector<int>p(n),v(n),d(x+1);for(auto&a:p)cin>>a;for(auto&a:v)cin>>a;for(int i=0;i<n;i++)for(int j=x;j>=p[i];j--)d[j]=max(d[j],d[j-p[i]]+v[i]);cout<<d[x]<<\"\\n\";\n}\n",
+    "flow_steps": [
+      "Ler preço e benefício",
+      "Processar cada livro uma vez",
+      "Preservar camada anterior",
+      "Imprimir melhor benefício"
+    ],
+    "local_pack_version": 1,
+    "attribution": {
+      "title": "Book Shop",
+      "url": "https://cses.fi/problemset/task/1158",
+      "statement": "Reformulação didática em português",
+      "tests": "Testes próprios gerados; sem vínculo com a avaliação oficial"
+    }
+  },
+  {
+    "id": "external_ad5acb055c08f73c",
+    "title": "Counting Rooms",
+    "url": "https://cses.fi/problemset/task/1192",
+    "source": "CSES",
+    "source_url": "https://cses.fi/problemset/",
+    "section": "Graph Algorithms",
+    "topic": "Grafos",
+    "tags": [
+      "Grafos",
+      "CSES",
+      "Correção local"
+    ],
+    "difficulty": "Intermediário",
+    "original_difficulty": "",
+    "difficulty_basis": "Estimativa de organização do catálogo; não é rating oficial.",
+    "external": false,
+    "math_essence": "Células de piso (.) ligadas por lados pertencem ao mesmo cômodo. Paredes (#) não podem ser atravessadas. Conte os componentes de piso; diagonais não conectam células.",
+    "core_concepts": [
+      "Grafos"
+    ],
+    "approach_summary": "O(n m) tempo e memória",
+    "statement": "## Counting Rooms\n\nCélulas de piso (.) ligadas por lados pertencem ao mesmo cômodo. Paredes (#) não podem ser atravessadas. Conte os componentes de piso; diagonais não conectam células.\n\n### Entrada\nn m e n linhas com m caracteres . ou #.\n\n### Saída\nA quantidade de cômodos.\n\n### Restrições\n1 ≤ n,m ≤ 1000.\n\nTempo local: 2 s por teste. Memória local: 256 MB.\n\n**Adaptação didática em português do problema CSES 1192.** Testes e implementações autorais do AutoTutor; não são os testes oficiais do CSES. O formato de entrada e saída é compatível com a tarefa de origem.",
+    "complexity": "O(n m) tempo e memória",
+    "catalog_checked": "2026-10-24",
+    "local_task": "rooms",
+    "family": "classic",
+    "time_limit_sec": 2.0,
+    "memory_limit_mb": 256,
+    "constraints": {
+      "n_max": 1000
+    },
+    "examples": [
+      {
+        "input": "3 4\n..#.\n####\n.#..\n",
+        "expected_output": "4\n"
+      }
+    ],
+    "std_cpp": "#include <bits/stdc++.h>\nusing namespace std; using ll=long long; const ll MOD=1000000007;\nint main(){ios::sync_with_stdio(false);cin.tie(nullptr);\nint n,m;cin>>n>>m;vector<string>g(n);for(auto&s:g)cin>>s;int ans=0;int dr[]={1,-1,0,0},dc[]={0,0,1,-1};for(int i=0;i<n;i++)for(int j=0;j<m;j++)if(g[i][j]=='.'){ans++;vector<pair<int,int>>q{{i,j}};g[i][j]='#';while(!q.empty()){auto[r,c]=q.back();q.pop_back();for(int k=0;k<4;k++){int a=r+dr[k],b=c+dc[k];if(a>=0&&a<n&&b>=0&&b<m&&g[a][b]=='.'){g[a][b]='#';q.push_back({a,b});}}}}cout<<ans<<\"\\n\";\n}\n",
+    "flow_steps": [
+      "Ler mapa",
+      "Encontrar piso não visitado",
+      "Percorrer componente sem recursão profunda",
+      "Contar componentes"
+    ],
+    "local_pack_version": 1,
+    "attribution": {
+      "title": "Counting Rooms",
+      "url": "https://cses.fi/problemset/task/1192",
+      "statement": "Reformulação didática em português",
+      "tests": "Testes próprios gerados; sem vínculo com a avaliação oficial"
+    }
+  },
+  {
+    "id": "external_1e644e6db700683a",
+    "title": "Subarray Sums II",
+    "url": "https://cses.fi/problemset/task/1661",
+    "source": "CSES",
+    "source_url": "https://cses.fi/problemset/",
+    "section": "Sorting and Searching",
+    "topic": "Prefix Sum",
+    "tags": [
+      "Prefix Sum",
+      "CSES",
+      "Correção local"
+    ],
+    "difficulty": "Intermediário",
+    "original_difficulty": "",
+    "difficulty_basis": "Estimativa de organização do catálogo; não é rating oficial.",
+    "external": false,
+    "math_essence": "Conte os segmentos contíguos e não vazios cuja soma é exatamente x. Os valores podem ser positivos, negativos ou zero.",
+    "core_concepts": [
+      "Prefix Sum"
+    ],
+    "approach_summary": "O(n log n) tempo, O(n) memória",
+    "statement": "## Subarray Sums II\n\nConte os segmentos contíguos e não vazios cuja soma é exatamente x. Os valores podem ser positivos, negativos ou zero.\n\n### Entrada\nn x, seguidos dos n valores.\n\n### Saída\nO número de segmentos de soma x.\n\n### Restrições\n1 ≤ n ≤ 200000; −10^9 ≤ x,valores ≤ 10^9.\n\nTempo local: 2 s por teste. Memória local: 256 MB.\n\n**Adaptação didática em português do problema CSES 1661.** Testes e implementações autorais do AutoTutor; não são os testes oficiais do CSES. O formato de entrada e saída é compatível com a tarefa de origem.",
+    "complexity": "O(n log n) tempo, O(n) memória",
+    "catalog_checked": "2026-10-24",
+    "local_task": "subsum",
+    "family": "classic",
+    "time_limit_sec": 2.0,
+    "memory_limit_mb": 256,
+    "constraints": {
+      "n_max": 200000
+    },
+    "examples": [
+      {
+        "input": "4 0\n1 -1 0 2\n",
+        "expected_output": "3\n"
+      }
+    ],
+    "std_cpp": "#include <bits/stdc++.h>\nusing namespace std; using ll=long long; const ll MOD=1000000007;\nint main(){ios::sync_with_stdio(false);cin.tie(nullptr);\nint n;ll x;cin>>n>>x;map<ll,ll>f;f[0]=1;ll s=0,ans=0;while(n--){ll a;cin>>a;s+=a;ans+=f[s-x];f[s]++;}cout<<ans<<\"\\n\";\n}\n",
+    "flow_steps": [
+      "Ler alvo",
+      "Manter frequências de prefixos",
+      "Consultar prefixos compatíveis antes de inserir",
+      "Imprimir contagem"
+    ],
+    "local_pack_version": 1,
+    "attribution": {
+      "title": "Subarray Sums II",
+      "url": "https://cses.fi/problemset/task/1661",
+      "statement": "Reformulação didática em português",
+      "tests": "Testes próprios gerados; sem vínculo com a avaliação oficial"
+    }
+  },
+  {
+    "id": "external_5571ba75c3b101fd",
+    "title": "Range Xor Queries",
+    "url": "https://cses.fi/problemset/task/1650",
+    "source": "CSES",
+    "source_url": "https://cses.fi/problemset/",
+    "section": "Range Queries",
+    "topic": "Prefix Sum",
+    "tags": [
+      "Prefix Sum",
+      "CSES",
+      "Correção local"
+    ],
+    "difficulty": "Intermediário",
+    "original_difficulty": "",
+    "difficulty_basis": "Estimativa de organização do catálogo; não é rating oficial.",
+    "external": false,
+    "math_essence": "Responda ao XOR bit a bit de todos os valores em cada intervalo fechado [l,r]. A sequência não muda.",
+    "core_concepts": [
+      "Prefix Sum"
+    ],
+    "approach_summary": "O(n+q) tempo, O(n) memória",
+    "statement": "## Range Xor Queries\n\nResponda ao XOR bit a bit de todos os valores em cada intervalo fechado [l,r]. A sequência não muda.\n\n### Entrada\nn q; n valores; q linhas l r.\n\n### Saída\nO XOR de cada consulta, uma resposta por linha.\n\n### Restrições\n1 ≤ n,q ≤ 200000; 1 ≤ valores ≤ 10^9; 1 ≤ l ≤ r ≤ n.\n\nTempo local: 2 s por teste. Memória local: 256 MB.\n\n**Adaptação didática em português do problema CSES 1650.** Testes e implementações autorais do AutoTutor; não são os testes oficiais do CSES. O formato de entrada e saída é compatível com a tarefa de origem.",
+    "complexity": "O(n+q) tempo, O(n) memória",
+    "catalog_checked": "2026-10-24",
+    "local_task": "xor",
+    "family": "classic",
+    "time_limit_sec": 2.0,
+    "memory_limit_mb": 256,
+    "constraints": {
+      "n_max": 200000
+    },
+    "examples": [
+      {
+        "input": "4 2\n1 3 2 4\n1 4\n2 2\n",
+        "expected_output": "4\n3\n"
+      }
+    ],
+    "std_cpp": "#include <bits/stdc++.h>\nusing namespace std; using ll=long long; const ll MOD=1000000007;\nint main(){ios::sync_with_stdio(false);cin.tie(nullptr);\nint n,q;cin>>n>>q;vector<ll>a(n);for(auto&v:a)cin>>v;vector<ll>p(n+1);for(int i=1;i<=n;i++)p[i]=p[i-1]^a[i-1];while(q--){int l,r;cin>>l>>r;cout<<(p[r]^p[l-1])<<\"\\n\";}\n}\n",
+    "flow_steps": [
+      "Ler sequência fixa",
+      "Preparar estrutura de consulta",
+      "Responder intervalos inclusivos",
+      "Imprimir respostas"
+    ],
+    "local_pack_version": 1,
+    "attribution": {
+      "title": "Range Xor Queries",
+      "url": "https://cses.fi/problemset/task/1650",
+      "statement": "Reformulação didática em português",
+      "tests": "Testes próprios gerados; sem vínculo com a avaliação oficial"
+    }
+  },
+  {
+    "id": "external_a03108adde8deeda",
+    "title": "Static Range Minimum Queries",
+    "url": "https://cses.fi/problemset/task/1647",
+    "source": "CSES",
+    "source_url": "https://cses.fi/problemset/",
+    "section": "Range Queries",
+    "topic": "Estruturas de Dados",
+    "tags": [
+      "Estruturas de Dados",
+      "CSES",
+      "Correção local"
+    ],
+    "difficulty": "Intermediário",
+    "original_difficulty": "",
+    "difficulty_basis": "Estimativa de organização do catálogo; não é rating oficial.",
+    "external": false,
+    "math_essence": "Responda ao menor valor em cada intervalo fechado [l,r] de uma sequência que não sofre alterações.",
+    "core_concepts": [
+      "Estruturas de Dados"
+    ],
+    "approach_summary": "O(n+q log n) tempo, O(n) memória",
+    "statement": "## Static Range Minimum Queries\n\nResponda ao menor valor em cada intervalo fechado [l,r] de uma sequência que não sofre alterações.\n\n### Entrada\nn q; n valores; q linhas l r.\n\n### Saída\nO mínimo de cada consulta, uma resposta por linha.\n\n### Restrições\n1 ≤ n,q ≤ 200000; 1 ≤ valores ≤ 10^9; 1 ≤ l ≤ r ≤ n.\n\nTempo local: 2 s por teste. Memória local: 256 MB.\n\n**Adaptação didática em português do problema CSES 1647.** Testes e implementações autorais do AutoTutor; não são os testes oficiais do CSES. O formato de entrada e saída é compatível com a tarefa de origem.",
+    "complexity": "O(n+q log n) tempo, O(n) memória",
+    "catalog_checked": "2026-10-24",
+    "local_task": "rmq",
+    "family": "classic",
+    "time_limit_sec": 2.0,
+    "memory_limit_mb": 256,
+    "constraints": {
+      "n_max": 200000
+    },
+    "examples": [
+      {
+        "input": "4 2\n1 3 2 4\n1 4\n2 2\n",
+        "expected_output": "1\n3\n"
+      }
+    ],
+    "std_cpp": "#include <bits/stdc++.h>\nusing namespace std; using ll=long long; const ll MOD=1000000007;\nint main(){ios::sync_with_stdio(false);cin.tie(nullptr);\nint n,q;cin>>n>>q;vector<ll>a(n);for(auto&v:a)cin>>v;int sz=1;while(sz<n)sz*=2;vector<ll>t(2*sz,LLONG_MAX);for(int i=0;i<n;i++)t[sz+i]=a[i];for(int i=sz-1;i;i--)t[i]=min(t[2*i],t[2*i+1]);while(q--){int l,r;cin>>l>>r;l+=sz-1;r+=sz-1;ll res=LLONG_MAX;while(l<=r){if(l&1)res=min(res,t[l++]);if(!(r&1))res=min(res,t[r--]);l/=2;r/=2;}cout<<res<<\"\\n\";}\n}\n",
+    "flow_steps": [
+      "Ler sequência fixa",
+      "Preparar estrutura de consulta",
+      "Responder intervalos inclusivos",
+      "Imprimir respostas"
+    ],
+    "local_pack_version": 1,
+    "attribution": {
+      "title": "Static Range Minimum Queries",
+      "url": "https://cses.fi/problemset/task/1647",
+      "statement": "Reformulação didática em português",
+      "tests": "Testes próprios gerados; sem vínculo com a avaliação oficial"
+    }
+  }
+]

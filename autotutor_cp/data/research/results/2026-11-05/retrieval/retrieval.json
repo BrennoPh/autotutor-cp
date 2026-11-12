@@ -1,0 +1,234 @@
+{
+  "target": "Segment Tree",
+  "results": [
+    {
+      "method": "bm25",
+      "seconds": 0.0209,
+      "sources": [
+        {
+          "id": "kb_783a10f5f328cc27a4d55106b4772f6b",
+          "chunk_id": 772,
+          "title": "Segment Tree",
+          "url": "https://cp-algorithms.com/data_structures/segment_tree.html",
+          "license": "CC BY-SA 4.0",
+          "retrieval_score": 35.04427
+        },
+        {
+          "id": "kb_6138ef8dabbd07d5901c4efa96026be6",
+          "chunk_id": 7650,
+          "title": "More Applications of Segment Tree",
+          "url": "https://usaco.guide/plat/segtree-ext",
+          "license": "CC BY-NC-SA 4.0",
+          "retrieval_score": 18.206865
+        },
+        {
+          "id": "kb_380efd76a752f9dce9b96015b473362b",
+          "chunk_id": 7651,
+          "title": "Sparse Segment Trees",
+          "url": "https://usaco.guide/plat/sparse-segtree",
+          "license": "CC BY-NC-SA 4.0",
+          "retrieval_score": 17.475971
+        }
+      ],
+      "context_chars": 2144,
+      "competency_labels": "keyword-based weak labels, unreviewed",
+      "index_digest": null,
+      "redundancy_jaccard": 0.0512,
+      "ranking_quality": {
+        "status": "not_evaluated",
+        "reason": "Requer julgamentos revisados e universo relevante completo."
+      }
+    },
+    {
+      "method": "semantic",
+      "seconds": 90.7014,
+      "sources": [
+        {
+          "id": "kb_783a10f5f328cc27a4d55106b4772f6b",
+          "chunk_id": 739,
+          "title": "Segment Tree",
+          "url": "https://cp-algorithms.com/data_structures/segment_tree.html",
+          "license": "CC BY-SA 4.0",
+          "retrieval_score": 0.7512243986129761
+        },
+        {
+          "id": "kb_6138ef8dabbd07d5901c4efa96026be6",
+          "chunk_id": 7650,
+          "title": "More Applications of Segment Tree",
+          "url": "https://usaco.guide/plat/segtree-ext",
+          "license": "CC BY-NC-SA 4.0",
+          "retrieval_score": 0.6213260889053345
+        },
+        {
+          "id": "kb_e243d9a0d7ade5f2110e9ce8d198f0b0",
+          "chunk_id": 1385,
+          "title": "Paint the edges of the tree",
+          "url": "https://cp-algorithms.com/graph/tree_painting.html",
+          "license": "CC BY-SA 4.0",
+          "retrieval_score": 0.6191738843917847
+        }
+      ],
+      "context_chars": 2144,
+      "competency_labels": "keyword-based weak labels, unreviewed",
+      "index_digest": "60cb0e49a425eff76ddd6193f5b80470633f0bf83dea59dc68654d1e333e1448",
+      "redundancy_jaccard": 0.0747,
+      "ranking_quality": {
+        "status": "not_evaluated",
+        "reason": "Requer julgamentos revisados e universo relevante completo."
+      }
+    },
+    {
+      "method": "hybrid",
+      "seconds": 0.3001,
+      "sources": [
+        {
+          "id": "kb_783a10f5f328cc27a4d55106b4772f6b",
+          "chunk_id": 739,
+          "title": "Segment Tree",
+          "url": "https://cp-algorithms.com/data_structures/segment_tree.html",
+          "license": "CC BY-SA 4.0",
+          "retrieval_score": 0.03252247488101534
+        },
+        {
+          "id": "kb_6138ef8dabbd07d5901c4efa96026be6",
+          "chunk_id": 7650,
+          "title": "More Applications of Segment Tree",
+          "url": "https://usaco.guide/plat/segtree-ext",
+          "license": "CC BY-NC-SA 4.0",
+          "retrieval_score": 0.029030910609857977
+        },
+        {
+          "id": "kb_380efd76a752f9dce9b96015b473362b",
+          "chunk_id": 7651,
+          "title": "Sparse Segment Trees",
+          "url": "https://usaco.guide/plat/sparse-segtree",
+          "license": "CC BY-NC-SA 4.0",
+          "retrieval_score": 0.015625
+        }
+      ],
+      "context_chars": 2144,
+      "competency_labels": "keyword-based weak labels, unreviewed",
+      "index_digest": "60cb0e49a425eff76ddd6193f5b80470633f0bf83dea59dc68654d1e333e1448",
+      "redundancy_jaccard": 0.067,
+      "ranking_quality": {
+        "status": "not_evaluated",
+        "reason": "Requer julgamentos revisados e universo relevante completo."
+      }
+    },
+    {
+      "method": "hybrid_rerank",
+      "seconds": 0.4278,
+      "sources": [
+        {
+          "id": "kb_783a10f5f328cc27a4d55106b4772f6b",
+          "chunk_id": 742,
+          "title": "Segment Tree",
+          "url": "https://cp-algorithms.com/data_structures/segment_tree.html",
+          "license": "CC BY-SA 4.0",
+          "retrieval_score": 0.015625
+        },
+        {
+          "id": "kb_c1504e2b79e323d3b2c4d25f2cabf913",
+          "chunk_id": 7777,
+          "title": "Wavelet Tree",
+          "url": "https://usaco.guide/adv/wavelet",
+          "license": "CC BY-NC-SA 4.0",
+          "retrieval_score": 0.013513513513513514
+        },
+        {
+          "id": "kb_380efd76a752f9dce9b96015b473362b",
+          "chunk_id": 7651,
+          "title": "Sparse Segment Trees",
+          "url": "https://usaco.guide/plat/sparse-segtree",
+          "license": "CC BY-NC-SA 4.0",
+          "retrieval_score": 0.015625
+        }
+      ],
+      "context_chars": 2198,
+      "competency_labels": "keyword-based weak labels, unreviewed",
+      "index_digest": "60cb0e49a425eff76ddd6193f5b80470633f0bf83dea59dc68654d1e333e1448",
+      "redundancy_jaccard": 0.067,
+      "ranking_quality": {
+        "status": "not_evaluated",
+        "reason": "Requer julgamentos revisados e universo relevante completo."
+      }
+    },
+    {
+      "method": "hybrid_mmr",
+      "seconds": 0.4194,
+      "sources": [
+        {
+          "id": "kb_783a10f5f328cc27a4d55106b4772f6b",
+          "chunk_id": 739,
+          "title": "Segment Tree",
+          "url": "https://cp-algorithms.com/data_structures/segment_tree.html",
+          "license": "CC BY-SA 4.0",
+          "retrieval_score": 0.03252247488101534
+        },
+        {
+          "id": "kb_6138ef8dabbd07d5901c4efa96026be6",
+          "chunk_id": 7650,
+          "title": "More Applications of Segment Tree",
+          "url": "https://usaco.guide/plat/segtree-ext",
+          "license": "CC BY-NC-SA 4.0",
+          "retrieval_score": 0.029030910609857977
+        },
+        {
+          "id": "kb_380efd76a752f9dce9b96015b473362b",
+          "chunk_id": 7651,
+          "title": "Sparse Segment Trees",
+          "url": "https://usaco.guide/plat/sparse-segtree",
+          "license": "CC BY-NC-SA 4.0",
+          "retrieval_score": 0.015625
+        }
+      ],
+      "context_chars": 2144,
+      "competency_labels": "keyword-based weak labels, unreviewed",
+      "index_digest": "60cb0e49a425eff76ddd6193f5b80470633f0bf83dea59dc68654d1e333e1448",
+      "redundancy_jaccard": 0.067,
+      "ranking_quality": {
+        "status": "not_evaluated",
+        "reason": "Requer julgamentos revisados e universo relevante completo."
+      }
+    },
+    {
+      "method": "competencies",
+      "seconds": 0.05,
+      "sources": [
+        {
+          "id": "kb_783a10f5f328cc27a4d55106b4772f6b",
+          "chunk_id": 746,
+          "title": "Segment Tree",
+          "url": "https://cp-algorithms.com/data_structures/segment_tree.html",
+          "license": "CC BY-SA 4.0",
+          "retrieval_score": 44.295016
+        },
+        {
+          "id": "kb_380efd76a752f9dce9b96015b473362b",
+          "chunk_id": 7651,
+          "title": "Sparse Segment Trees",
+          "url": "https://usaco.guide/plat/sparse-segtree",
+          "license": "CC BY-NC-SA 4.0",
+          "retrieval_score": 23.561452
+        },
+        {
+          "id": "kb_5c0966d5131fbfce90464de02ad6b1fd",
+          "chunk_id": 7430,
+          "title": "Time Complexity",
+          "url": "https://usaco.guide/bronze/time-comp",
+          "license": "CC BY-NC-SA 4.0",
+          "retrieval_score": 18.634345
+        }
+      ],
+      "context_chars": 2198,
+      "competency_labels": "keyword-based weak labels, unreviewed",
+      "index_digest": "60cb0e49a425eff76ddd6193f5b80470633f0bf83dea59dc68654d1e333e1448",
+      "redundancy_jaccard": 0.0448,
+      "ranking_quality": {
+        "status": "not_evaluated",
+        "reason": "Requer julgamentos revisados e universo relevante completo."
+      }
+    }
+  ],
+  "human_labels": false
+}

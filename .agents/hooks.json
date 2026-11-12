@@ -1,0 +1,17 @@
+{
+  "sdlc-bus": {
+    "enabled": true,
+    "SessionStart": [
+      {
+        "type": "command",
+        "command": "python3 autotutor_cp/scripts/hook_session_start.py"
+      }
+    ],
+    "Stop": [
+      {
+        "type": "command",
+        "command": "python3 autotutor_cp/scripts/hook_session_stop.py"
+      }
+    ]
+  }
+}

@@ -1,0 +1,36 @@
+[
+  {
+    "synthetic": true,
+    "profile_id": "synthetic-range-01",
+    "events": [
+      {
+        "competency": "segment_tree",
+        "item_id": "synthetic-0",
+        "correct": false,
+        "attempts": 1,
+        "time_seconds": 600,
+        "hints_used": 0,
+        "error_type": "WA"
+      },
+      {
+        "competency": "segment_tree",
+        "item_id": "synthetic-1",
+        "correct": false,
+        "attempts": 1,
+        "time_seconds": 600,
+        "hints_used": 0,
+        "error_type": "WA"
+      },
+      {
+        "competency": "segment_tree",
+        "item_id": "synthetic-2",
+        "correct": false,
+        "attempts": 1,
+        "time_seconds": 600,
+        "hints_used": 0,
+        "error_type": "WA"
+      }
+    ],
+    "note": "Eventos inventados para testar o protótipo; não representam estudantes. Tempo, dicas e tentativas são armazenados mas não entram no BKT atual."
+  }
+]

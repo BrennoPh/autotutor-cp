@@ -1,0 +1,91 @@
+{
+  "synthetic": true,
+  "model": "BKT editorial, não calibrado",
+  "parameters": {
+    "prior": 0.2,
+    "learn": 0.15,
+    "guess": 0.2,
+    "slip": 0.1
+  },
+  "states": {
+    "complexity": {
+      "probability": 0.2,
+      "distinct_items": 0,
+      "status": "evidência insuficiente"
+    },
+    "prefix_sum": {
+      "probability": 0.2,
+      "distinct_items": 0,
+      "status": "evidência insuficiente"
+    },
+    "bfs": {
+      "probability": 0.2,
+      "distinct_items": 0,
+      "status": "evidência insuficiente"
+    },
+    "integer_bounds": {
+      "probability": 0.2,
+      "distinct_items": 0,
+      "status": "evidência insuficiente"
+    },
+    "graph_traversal": {
+      "probability": 0.2,
+      "distinct_items": 0,
+      "status": "evidência insuficiente"
+    },
+    "greedy": {
+      "probability": 0.2,
+      "distinct_items": 0,
+      "status": "evidência insuficiente"
+    },
+    "monotonicity": {
+      "probability": 0.2,
+      "distinct_items": 0,
+      "status": "evidência insuficiente"
+    },
+    "tree_paths": {
+      "probability": 0.2,
+      "distinct_items": 0,
+      "status": "evidência insuficiente"
+    },
+    "loops": {
+      "probability": 0.2,
+      "distinct_items": 0,
+      "status": "evidência insuficiente"
+    },
+    "binary_search": {
+      "probability": 0.2,
+      "distinct_items": 0,
+      "status": "evidência insuficiente"
+    },
+    "lazy_propagation": {
+      "probability": 0.2,
+      "distinct_items": 0,
+      "status": "evidência insuficiente"
+    },
+    "segment_tree": {
+      "probability": 0.1715226727794904,
+      "distinct_items": 3,
+      "status": "estimativa experimental, sem diagnóstico validado"
+    },
+    "dfs": {
+      "probability": 0.2,
+      "distinct_items": 0,
+      "status": "evidência insuficiente"
+    },
+    "arrays": {
+      "probability": 0.2,
+      "distinct_items": 0,
+      "status": "evidência insuficiente"
+    },
+    "dp_state": {
+      "probability": 0.2,
+      "distinct_items": 0,
+      "status": "evidência insuficiente"
+    }
+  },
+  "scope": "Desempenho e probabilidade hipotética, não certificação de domínio.",
+  "support_candidates": [
+    "segment_tree"
+  ]
+}

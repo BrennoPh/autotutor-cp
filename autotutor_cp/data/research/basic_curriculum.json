@@ -1,0 +1,104 @@
+{
+  "version": 1,
+  "focus": "Fundamentos de programação competitiva",
+  "audience": "Iniciantes com conhecimentos iniciais de uma linguagem",
+  "excluded_primary_evaluation": [
+    "Segment Tree",
+    "Lazy propagation",
+    "Block-Cut Tree"
+  ],
+  "modules": [
+    {
+      "name": "Fundamentos e simulação",
+      "contract_id": "external_316f25ad6b1d1a3f",
+      "competencies": [
+        "loops",
+        "simulation"
+      ]
+    },
+    {
+      "name": "Vetores e contagem",
+      "contract_id": "external_8ed32967ddec7f18",
+      "competencies": [
+        "arrays",
+        "integer_bounds"
+      ]
+    },
+    {
+      "name": "Ordenação",
+      "contract_id": "external_e9fc6c81c10225f9",
+      "competencies": [
+        "sorting",
+        "arrays"
+      ]
+    },
+    {
+      "name": "Soma de prefixos",
+      "contract_id": "prefix",
+      "competencies": [
+        "prefix_sum",
+        "integer_bounds"
+      ]
+    },
+    {
+      "name": "Busca binária",
+      "contract_id": "binary",
+      "competencies": [
+        "binary_search",
+        "monotonicity"
+      ]
+    },
+    {
+      "name": "Guloso introdutório",
+      "contract_id": "greedy",
+      "competencies": [
+        "greedy",
+        "sorting"
+      ]
+    },
+    {
+      "name": "BFS",
+      "contract_id": "extended_nearest_source",
+      "competencies": [
+        "bfs",
+        "graph_traversal"
+      ]
+    },
+    {
+      "name": "DFS",
+      "contract_id": "extended_components",
+      "competencies": [
+        "dfs",
+        "graph_traversal"
+      ]
+    },
+    {
+      "name": "DP",
+      "contract_id": "dp",
+      "competencies": [
+        "dp_state",
+        "arrays"
+      ]
+    }
+  ],
+  "first_api_benchmark": {
+    "status": "planned_not_run",
+    "topics": [
+      "Fundamentos e simulação",
+      "Soma de prefixos",
+      "BFS",
+      "DP"
+    ],
+    "arms": [
+      "direct",
+      "rag",
+      "structured"
+    ],
+    "replications": 1,
+    "calls_without_repair": 12,
+    "local_daily_cap": 6,
+    "minimum_days_if_full_cap_available": 2,
+    "financial_budget": 0,
+    "note": "Mesmo modelo, schema, limite de saída e critérios. Um exemplo por célula é apenas piloto, sem poder para superioridade."
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "execution_mode": "offline_fixture",
+  "target": "Soma de prefixos",
+  "runs": [
+    {
+      "run_id": "81bdcf2016ee485c9e37229924896344",
+      "strategy": "direct",
+      "validated": true,
+      "error": null,
+      "attempts": 1,
+      "seconds": 5.621,
+      "path": ".runtime/research/basic_offline/81bdcf2016ee485c9e37229924896344"
+    }
+  ],
+  "financial_policy": "Gasto autorizado zero; somente cota gratuita informada pelo usuário.",
+  "limits": "Uma tarefa por estratégia, sem repetição estatística ou avaliação humana. Não demonstra superioridade nem aprendizagem."
+}
