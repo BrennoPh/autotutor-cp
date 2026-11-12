@@ -144,6 +144,9 @@ pytest tests/ -v
 ├── frontend/                 # Frontend Next.js 14 App Router (Porta 3000)
 │   ├── src/                  # Componentes React, hooks, Monaco e layout
 │   └── package.json          # Dependências do frontend
+├── docs/                     # Documentação de apoio e referências científicas
+│   └── referencias/          # Literatura acadêmica de base (AutoCode, CODIGEN, OI-Assistant)
+├── slides_apresentacao/      # Apresentações oficiais e slides acadêmicos
 ├── .agents/                  # Skills, agentes e automação de desenvolvimento
 ├── .ai-memory/               # Memória de handoff e especificações técnicas
 ├── iniciar_sistema.sh        # Orquestrador do ecossistema completo

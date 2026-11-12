@@ -45,10 +45,17 @@ yarn-debug.log*
 yarn-error.log*
 *.tsbuildinfo
 
-# --- Builds, Artefatos Compilados & Scratch ---
+# --- Builds, Artefatos de Execução & Outputs Locais ---
 .build/
 **/.build/
 **/.build
+output/
+**/output/
+autotutor_cp/output/
+
+# --- Apresentações Geradas na Raiz (Oficiais residem em slides_apresentacao/) ---
+/Apresentacao_*
+/apresentacao_*
 
 # --- Bancos de Dados & Backups Locais ---
 *.sqlite3*
